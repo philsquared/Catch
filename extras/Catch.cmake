@@ -138,6 +138,18 @@ same as the Catch name; see also ``TEST_PREFIX`` and ``TEST_SUFFIX``.
     of test cases from the test executable and when the tests are executed themselves.
     This requires cmake/ctest >= 3.22.
 
+  ``DISCOVERY_ENVIRONMENT <var>=<value>...``
+    Specifies environment variables that are set while the test executable is
+    run to retrieve the list of test cases. This is useful when the executable
+    needs a specific environment merely to start up and list its tests, for
+    example a platform plugin selection variable, or a variable that suppresses
+    extra output from an instrumentation library that would otherwise corrupt
+    the listing.
+
+    These variables are **not** applied when the tests themselves are run. Use
+    ``PROPERTIES ENVIRONMENT ...`` for that, or pass the same values to both if
+    the environment is needed in both cases.
+
   ``DISCOVERY_MODE mode``
     Provides control over when ``catch_discover_tests`` performs test discovery.
     By default, ``POST_BUILD`` sets up a post-build command to perform test discovery
@@ -172,7 +184,7 @@ function(catch_discover_tests TARGET)
     ""
     "SKIP_IS_FAILURE;ADD_TAGS_AS_LABELS"
     "TEST_PREFIX;TEST_SUFFIX;WORKING_DIRECTORY;TEST_LIST;REPORTER;OUTPUT_DIR;OUTPUT_PREFIX;OUTPUT_SUFFIX;DISCOVERY_MODE"
-    "TEST_SPEC;EXTRA_ARGS;PROPERTIES;DL_PATHS;DL_FRAMEWORK_PATHS"
+    "TEST_SPEC;EXTRA_ARGS;PROPERTIES;DL_PATHS;DL_FRAMEWORK_PATHS;DISCOVERY_ENVIRONMENT"
     ${ARGN}
   )
 
@@ -240,6 +252,7 @@ function(catch_discover_tests TARGET)
               -D "TEST_OUTPUT_SUFFIX=${_OUTPUT_SUFFIX}"
               -D "TEST_DL_PATHS=${_DL_PATHS}"
               -D "TEST_DL_FRAMEWORK_PATHS=${_DL_FRAMEWORK_PATHS}"
+              -D "TEST_DISCOVERY_ENVIRONMENT=${_DISCOVERY_ENVIRONMENT}"
               -D "CTEST_FILE=${ctest_tests_file}"
               -D "ADD_TAGS_AS_LABELS=${_ADD_TAGS_AS_LABELS}"
               -P "${_CATCH_DISCOVER_TESTS_SCRIPT}"
@@ -287,6 +300,7 @@ function(catch_discover_tests TARGET)
       "      CTEST_FILE"             " [==[" "${ctest_tests_file}"        "]==]"   "\n"
       "      TEST_DL_PATHS"          " [==[" "${_DL_PATHS}"               "]==]"   "\n"
       "      TEST_DL_FRAMEWORK_PATHS" " [==[" "${_DL_FRAMEWORK_PATHS}"     "]==]"   "\n"
+      "      TEST_DISCOVERY_ENVIRONMENT" " [==[" "${_DISCOVERY_ENVIRONMENT}" "]==]"  "\n"
       "      ADD_TAGS_AS_LABELS"     " [==[" "${_ADD_TAGS_AS_LABELS}"     "]==]"   "\n"
       "    )"                                                                      "\n"
       "  endif()"                                                                  "\n"

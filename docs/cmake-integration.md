@@ -127,6 +127,7 @@ catch_discover_tests(target
                      [OUTPUT_PREFIX prefix]
                      [OUTPUT_SUFFIX suffix]
                      [DISCOVERY_MODE <POST_BUILD|PRE_TEST>]
+                     [DISCOVERY_ENVIRONMENT var1=value1...]
                      [SKIP_IS_FAILURE]
                      [ADD_TAGS_AS_LABELS]
 )
@@ -222,6 +223,31 @@ discovery until test time, when the executable is already signed. The same
 limitation affects CMake's `gtest_discover_tests`; see
 [Catch2 #2411](https://github.com/catchorg/Catch2/issues/2411) and
 [CMake #21845](https://gitlab.kitware.com/cmake/cmake/-/issues/21845)._
+
+* `DISCOVERY_ENVIRONMENT var1=value1...`
+
+Environment variables to set while the test executable is run to retrieve the
+list of test cases. This is for executables that need a specific environment
+merely to start up and list their tests, for example one that needs a platform
+plugin selected, or one where an instrumentation library must be disabled so
+that its extra output does not corrupt the listing.
+
+These variables are **not** set when the tests themselves are run; use
+`PROPERTIES ENVIRONMENT ...` for that. Pass the value to both if it is needed
+in both cases.
+
+```cmake
+catch_discover_tests(tests
+                     DISCOVERY_ENVIRONMENT
+                       QT_QPA_PLATFORM=offscreen
+                     PROPERTIES
+                       ENVIRONMENT QT_QPA_PLATFORM=offscreen
+)
+```
+
+Note that `DL_PATHS` already covers the specific case of directories that the
+dynamic linker needs in order to load shared libraries, and applies to both
+discovery and test execution.
 
 * `SKIP_IS_FAILURE`
 

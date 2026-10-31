@@ -677,6 +677,13 @@ if(CATCH_ENABLE_CMAKE_HELPER_TESTS)
       "-DCATCH_ADD_TESTS_SCRIPT=${CATCH_DIR}/extras/CatchAddTests.cmake"
       -P "${CMAKE_CURRENT_LIST_DIR}/TestScripts/DiscoverTests/TestDecomposeJsonArray.cmake"
   )
+
+  add_test(NAME "CMakeHelper::DiscoveryEnvironment"
+    COMMAND
+      "${CMAKE_COMMAND}"
+      "-DCATCH_ADD_TESTS_SCRIPT=${CATCH_DIR}/extras/CatchAddTests.cmake"
+      -P "${CMAKE_CURRENT_LIST_DIR}/TestScripts/DiscoverTests/TestDiscoveryEnvironment.cmake"
+  )
 endif()
 
 foreach(reporterName # "Automake" - the simple .trs format does not support any kind of comments/metadata

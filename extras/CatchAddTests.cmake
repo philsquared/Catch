@@ -219,7 +219,7 @@ function(catch_discover_tests_impl)
     ""
     ""
     "TEST_EXECUTABLE;TEST_WORKING_DIR;TEST_OUTPUT_DIR;TEST_OUTPUT_PREFIX;TEST_OUTPUT_SUFFIX;TEST_PREFIX;TEST_REPORTER;TEST_SPEC;TEST_SUFFIX;TEST_LIST;CTEST_FILE"
-    "TEST_EXTRA_ARGS;TEST_PROPERTIES;TEST_EXECUTOR;TEST_DL_PATHS;TEST_DL_FRAMEWORK_PATHS;ADD_TAGS_AS_LABELS"
+    "TEST_EXTRA_ARGS;TEST_PROPERTIES;TEST_EXECUTOR;TEST_DL_PATHS;TEST_DL_FRAMEWORK_PATHS;TEST_DISCOVERY_ENVIRONMENT;ADD_TAGS_AS_LABELS"
     ${ARGN}
   )
 
@@ -248,6 +248,7 @@ function(catch_discover_tests_impl)
   set(output_suffix ${_TEST_OUTPUT_SUFFIX})
   set(dl_paths ${_TEST_DL_PATHS})
   set(dl_framework_paths ${_TEST_DL_FRAMEWORK_PATHS})
+  set(discovery_environment ${_TEST_DISCOVERY_ENVIRONMENT})
   set(environment_modifications "")
   set(script)
   set(suite)
@@ -285,6 +286,43 @@ function(catch_discover_tests_impl)
     cmake_path(CONVERT "${env_dl_framework_paths}" TO_NATIVE_PATH_LIST paths)
     set(ENV{DYLD_FRAMEWORK_PATH} "${paths}")
   endif()
+
+  # Apply DISCOVERY_ENVIRONMENT for the duration of the discovery run only.
+  # In PRE_TEST mode this function runs inside the CTest process, so the
+  # previous values are remembered and restored once discovery is finished;
+  # otherwise these variables would leak into the environment of the tests,
+  # which is explicitly not what this option promises.
+  set(_saved_env_names)
+  foreach(_env_entry IN LISTS discovery_environment)
+    if(NOT _env_entry MATCHES "^([^=]+)=(.*)$")
+      message(FATAL_ERROR
+        "Invalid DISCOVERY_ENVIRONMENT entry '${_env_entry}'. "
+        "Entries must have the form <var>=<value>."
+      )
+    endif()
+    set(_env_name "${CMAKE_MATCH_1}")
+    set(_env_value "${CMAKE_MATCH_2}")
+
+    # The previous value is stashed in a per-variable CMake variable rather
+    # than in parallel lists, because an environment variable may be unset or
+    # hold an empty value, and CMake lists cannot represent those distinctly.
+    #
+    # Only stash it the first time a name is seen. A repeated entry, such as
+    # `FOO=a;FOO=b`, would otherwise stash the value set by the previous
+    # iteration and restore to that instead of the original.
+    list(FIND _saved_env_names "${_env_name}" _already_saved)
+    if(_already_saved EQUAL -1)
+      list(APPEND _saved_env_names "${_env_name}")
+      if(DEFINED ENV{${_env_name}})
+        set(_saved_env_was_set_${_env_name} TRUE)
+        set(_saved_env_value_${_env_name} "$ENV{${_env_name}}")
+      else()
+        set(_saved_env_was_set_${_env_name} FALSE)
+      endif()
+    endif()
+
+    set(ENV{${_env_name}} "${_env_value}")
+  endforeach()
 
   make_temp_file_path(listing_output_path "${_TEST_WORKING_DIR}")
 
@@ -341,6 +379,15 @@ function(catch_discover_tests_impl)
       )
     endif()
   endif()
+
+  # Discovery is done, so restore whatever the environment looked like before.
+  foreach(_env_name IN LISTS _saved_env_names)
+    if(_saved_env_was_set_${_env_name})
+      set(ENV{${_env_name}} "${_saved_env_value_${_env_name}}")
+    else()
+      unset(ENV{${_env_name}})
+    endif()
+  endforeach()
 
   # Prepare output dir
   if(output_dir AND NOT IS_ABSOLUTE ${output_dir})
@@ -544,6 +591,7 @@ if(CMAKE_SCRIPT_MODE_FILE AND DEFINED TEST_EXECUTABLE)
     TEST_OUTPUT_SUFFIX ${TEST_OUTPUT_SUFFIX}
     TEST_DL_PATHS ${TEST_DL_PATHS}
     TEST_DL_FRAMEWORK_PATHS ${TEST_DL_FRAMEWORK_PATHS}
+    TEST_DISCOVERY_ENVIRONMENT ${TEST_DISCOVERY_ENVIRONMENT}
     CTEST_FILE ${CTEST_FILE}
     ADD_TAGS_AS_LABELS ${ADD_TAGS_AS_LABELS}
   )
