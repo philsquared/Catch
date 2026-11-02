@@ -164,6 +164,28 @@ TEST_CASE( "Tracker" ) {
     }
 }
 
+TEST_CASE( "Tracker rejects a section encountered twice in one cycle" ) {
+    TrackerContext ctx;
+    ITracker& root = ctx.startRun();
+    std::vector<PathFilter> dummyFilters;
+    root.setFilters( &dummyFilters, false );
+    ctx.startCycle();
+
+    ITracker& testCase = SectionTracker::acquire( ctx, makeNAL( "Testcase" ) );
+    ITracker& section = SectionTracker::acquire( ctx, makeNAL( "Section" ) );
+    ITracker& firstChild = SectionTracker::acquire( ctx, makeNAL( "First child" ) );
+
+    firstChild.close();
+    SectionTracker::acquire( ctx, makeNAL( "Second child" ) );
+    section.close();
+
+    REQUIRE( ctx.completedCycle() );
+    REQUIRE( section.isOpen() );
+    REQUIRE_THROWS( SectionTracker::acquire( ctx, makeNAL( "Section" ) ) );
+
+    testCase.close();
+}
+
 static bool previouslyRun = false;
 static bool previouslyRunNested = false;
 

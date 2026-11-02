@@ -242,6 +242,11 @@ namespace TestCaseTracking {
             currentTracker.addChild( CATCH_MOVE( newTracker ) );
         }
 
+        if ( ctx.completedCycle() && tracker->isOpen() ) {
+            CATCH_INTERNAL_ERROR(
+                "The same SECTION was encountered multiple times in one test cycle" );
+        }
+
         if ( !ctx.completedCycle() ) {
             tracker->tryOpen();
         }
