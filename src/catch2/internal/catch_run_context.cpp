@@ -332,8 +332,10 @@ namespace Catch {
 
     } // namespace Detail
 
-    RunContext::RunContext(IConfig const* _config, IEventListenerPtr&& reporter)
-    :   m_runInfo(_config->name()),
+    RunContext::RunContext( IConfig const* _config,
+                            IEventListenerPtr&& reporter,
+                            std::size_t testCaseCount )
+    :   m_runInfo( _config->name(), testCaseCount ),
         m_config(_config),
         m_reporter(CATCH_MOVE(reporter)),
         m_outputRedirect( makeOutputRedirect( m_reporter->getPreferences().shouldRedirectStdOut ) ),

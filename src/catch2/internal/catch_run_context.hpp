@@ -22,6 +22,7 @@
 #include <catch2/internal/catch_move_and_forward.hpp>
 #include <catch2/internal/catch_thread_support.hpp>
 
+#include <cstddef>
 #include <string>
 
 namespace Catch {
@@ -40,7 +41,9 @@ namespace Catch {
         RunContext( RunContext const& ) = delete;
         RunContext& operator =( RunContext const& ) = delete;
 
-        explicit RunContext( IConfig const* _config, IEventListenerPtr&& reporter );
+        explicit RunContext( IConfig const* _config,
+                             IEventListenerPtr&& reporter,
+                             std::size_t testCaseCount );
 
         ~RunContext() override;
 

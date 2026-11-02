@@ -35,6 +35,11 @@
 namespace Catch {
 
     namespace {
+        struct PreparedTests {
+            std::vector<TestCaseHandle const*> tests;
+            TestSpec::Matches matches;
+        };
+
         IEventListenerPtr createReporter(std::string const& reporterName, ReporterConfig&& config) {
             auto reporter = Catch::getRegistryHub().getReporterRegistry().create(reporterName, CATCH_MOVE(config));
             CATCH_ENFORCE(reporter, "No reporter registered with name: '" << reporterName << '\'');
@@ -75,44 +80,60 @@ namespace Catch {
             return multi;
         }
 
-        class TestGroup {
-        public:
-            explicit TestGroup(IEventListenerPtr&& reporter, Config const* config):
-                m_reporter(reporter.get()),
-                m_config{config},
-                m_context{config, CATCH_MOVE(reporter)} {
+        PreparedTests prepareTests( Config const* config ) {
+            assert( config->testSpec().getInvalidSpecs().empty() &&
+                    "Invalid test specs should be handled before running tests" );
 
-                assert( m_config->testSpec().getInvalidSpecs().empty() &&
-                        "Invalid test specs should be handled before running tests" );
+            PreparedTests prepared;
 
-                // Note that we are working with pointers into this vector
-                // of sorted test cases, so sorting/unique-ing the pointers
-                // keeps the user-specified order.
-                auto const& allTestCases = getAllTestCasesSorted(*m_config);
-                auto const& testSpec = m_config->testSpec();
-                m_tests.reserve( allTestCases.size() );
-                if ( !testSpec.hasFilters() ) {
-                    for ( auto const& test : allTestCases ) {
-                        if ( !test.getTestCaseInfo().isHidden() ) {
-                            m_tests.push_back( &test );
-                        }
+            // Note that we are working with pointers into this vector
+            // of sorted test cases, so sorting/unique-ing the pointers
+            // keeps the user-specified order.
+            auto const& allTestCases = getAllTestCasesSorted( *config );
+            auto const& testSpec = config->testSpec();
+            prepared.tests.reserve( allTestCases.size() );
+
+            if ( !testSpec.hasFilters() ) {
+                for ( auto const& test : allTestCases ) {
+                    if ( !test.getTestCaseInfo().isHidden() ) {
+                        prepared.tests.push_back( &test );
                     }
-                } else {
-                    m_matches = testSpec.matchesByFilter( allTestCases, *m_config );
-                    for ( auto const& match : m_matches ) {
-                        m_tests.insert( m_tests.end(),
-                                        match.tests.begin(),
-                                        match.tests.end() );
-                    }
-                    std::sort( m_tests.begin(), m_tests.end() );
-                    m_tests.erase(
-                        std::unique( m_tests.begin(), m_tests.end() ),
-                        m_tests.end() );
                 }
-
-                m_tests = createShard(CATCH_MOVE(m_tests), m_config->shardCount(), m_config->shardIndex());
+            } else {
+                prepared.matches = testSpec.matchesByFilter( allTestCases, *config );
+                for ( auto const& match : prepared.matches ) {
+                    prepared.tests.insert( prepared.tests.end(),
+                                           match.tests.begin(),
+                                           match.tests.end() );
+                }
+                std::sort( prepared.tests.begin(), prepared.tests.end() );
+                prepared.tests.erase(
+                    std::unique( prepared.tests.begin(), prepared.tests.end() ),
+                    prepared.tests.end() );
             }
 
+            prepared.tests = createShard( CATCH_MOVE( prepared.tests ),
+                                          config->shardCount(),
+                                          config->shardIndex() );
+            return prepared;
+        }
+
+        class TestGroup {
+        public:
+            explicit TestGroup( IEventListenerPtr&& reporter, Config const* config ):
+                TestGroup( CATCH_MOVE( reporter ), config, prepareTests( config ) ) {}
+
+        private:
+            TestGroup( IEventListenerPtr&& reporter,
+                       Config const* config,
+                       PreparedTests&& prepared ):
+                m_reporter(reporter.get()),
+                m_config{config},
+                m_tests( CATCH_MOVE( prepared.tests ) ),
+                m_matches( CATCH_MOVE( prepared.matches ) ),
+                m_context{ config, CATCH_MOVE( reporter ), m_tests.size() } {}
+
+        public:
             Totals execute() {
                 Totals totals;
                 for (auto const& testCase : m_tests) {
@@ -140,9 +161,9 @@ namespace Catch {
         private:
             IEventListener* m_reporter;
             Config const* m_config;
-            RunContext m_context;
             std::vector<TestCaseHandle const*> m_tests;
             TestSpec::Matches m_matches;
+            RunContext m_context;
             bool m_unmatchedTestSpecs = false;
         };
 

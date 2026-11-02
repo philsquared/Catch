@@ -38,3 +38,6 @@ docs/doxygen
 *.cache
 compile_commands.json
 **/*.unapproved.txt
+build/
+build-dev/
+build-selftest/

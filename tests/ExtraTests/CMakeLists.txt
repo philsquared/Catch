@@ -393,6 +393,26 @@ set_tests_properties(CustomArgumentsForReporters
     PASS_REGULAR_EXPRESSION "Xa b=c 1::Xz:e = 1234"
 )
 
+add_executable(TestRunInfoTestCaseCount ${TESTS_DIR}/X39-TestRunInfoTestCaseCount.cpp)
+target_link_libraries(TestRunInfoTestCaseCount PRIVATE Catch2::Catch2WithMain)
+add_test(
+  NAME Listeners::TestRunInfoExposesVisibleTestCount
+  COMMAND TestRunInfoTestCaseCount
+)
+set_tests_properties(Listeners::TestRunInfoExposesVisibleTestCount
+  PROPERTIES
+    PASS_REGULAR_EXPRESSION "X39 - testCaseCount: 3"
+)
+
+add_test(
+  NAME Listeners::TestRunInfoExposesFilteredDeduplicatedTestCount
+  COMMAND TestRunInfoTestCaseCount [x39a],[x39b]
+)
+set_tests_properties(Listeners::TestRunInfoExposesFilteredDeduplicatedTestCount
+  PROPERTIES
+    PASS_REGULAR_EXPRESSION "X39 - testCaseCount: 3"
+)
+
 add_executable(DuplicatedTestCases-SameNameAndTags ${TESTS_DIR}/X31-DuplicatedTestCases.cpp)
 target_link_libraries(DuplicatedTestCases-SameNameAndTags PRIVATE Catch2::Catch2WithMain)
 add_test(

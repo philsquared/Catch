@@ -10,11 +10,18 @@
 
 #include <catch2/internal/catch_stringref.hpp>
 
+#include <cstddef>
+
 namespace Catch {
 
     struct TestRunInfo {
-        constexpr TestRunInfo(StringRef _name) : name(_name) {}
+        constexpr TestRunInfo(StringRef _name) : name(_name), testCaseCount(0) {}
+        constexpr TestRunInfo(StringRef _name, std::size_t _testCaseCount):
+            name(_name),
+            testCaseCount(_testCaseCount) {}
+
         StringRef name;
+        std::size_t testCaseCount;
     };
 
 } // end namespace Catch
