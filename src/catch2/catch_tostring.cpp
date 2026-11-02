@@ -12,7 +12,9 @@
 #include <catch2/internal/catch_context.hpp>
 #include <catch2/internal/catch_polyfills.hpp>
 
+#include <cmath>
 #include <iomanip>
+#include <sstream>
 
 namespace Catch {
 
@@ -40,6 +42,36 @@ namespace Detail {
         std::string fpToString(T value, int precision) {
             if (Catch::isnan(value)) {
                 return "nan";
+            }
+
+            if ( std::isinf( value ) ) {
+                ReusableStringStream rss;
+                rss << value;
+                return rss.str();
+            }
+
+            if ( precision == std::numeric_limits<T>::max_digits10 ) {
+                // The default precision is enough to round-trip a value.
+                // Find the shortest precision that does so without losing
+                // information in failure messages.
+                ReusableStringStream rss;
+                std::string d;
+                for ( int currentPrecision = 1; currentPrecision <= precision;
+                      ++currentPrecision ) {
+                    rss.str( "" );
+                    rss << std::setprecision( currentPrecision )
+                        << std::defaultfloat << value;
+                    d = rss.str();
+
+                    std::istringstream input( d );
+                    T roundtrip{};
+                    input >> roundtrip;
+                    if ( roundtrip == value &&
+                         std::signbit( roundtrip ) == std::signbit( value ) ) {
+                        return d;
+                    }
+                }
+                return d;
             }
 
             ReusableStringStream rss;

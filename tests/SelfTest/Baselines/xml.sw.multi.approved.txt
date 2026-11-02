@@ -635,7 +635,7 @@ Nor would this
         smallest_non_zero, WithinULP( -smallest_non_zero, 2 )
       </Original>
       <Expanded>
-        0.0 is within 2 ULPs of -4.9406564584124654e-324 ([-1.4821969375237396e-323, 4.9406564584124654e-324])
+        5e-324 is within 2 ULPs of -4.9406564584124654e-324 ([-1.4821969375237396e-323, 4.9406564584124654e-324])
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -643,7 +643,7 @@ Nor would this
         smallest_non_zero, !WithinULP( -smallest_non_zero, 1 )
       </Original>
       <Expanded>
-        0.0 not is within 1 ULPs of -4.9406564584124654e-324 ([-9.8813129168249309e-324, -0.0000000000000000e+00])
+        5e-324 not is within 1 ULPs of -4.9406564584124654e-324 ([-9.8813129168249309e-324, -0.0000000000000000e+00])
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -654,7 +654,7 @@ Nor would this
         smallest_non_zero, WithinULP( -smallest_non_zero, 2 )
       </Original>
       <Expanded>
-        0.0f is within 2 ULPs of -1.40129846e-45f ([-4.20389539e-45, 1.40129846e-45])
+        1e-45f is within 2 ULPs of -1.40129846e-45f ([-4.20389539e-45, 1.40129846e-45])
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -662,7 +662,7 @@ Nor would this
         smallest_non_zero, !WithinULP( -smallest_non_zero, 1 )
       </Original>
       <Expanded>
-        0.0f not is within 1 ULPs of -1.40129846e-45f ([-2.80259693e-45, -0.00000000e+00])
+        1e-45f not is within 1 ULPs of -1.40129846e-45f ([-2.80259693e-45, -0.00000000e+00])
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -1940,7 +1940,7 @@ Nor would this
         Template_Fixture&lt;TestType>::m_a == 2
       </Original>
       <Expanded>
-        1.0 == 2
+        1 == 2
       </Expanded>
     </Expression>
     <OverallResult success="false" skips="0"/>
@@ -1951,7 +1951,7 @@ Nor would this
         Template_Fixture&lt;TestType>::m_a == 2
       </Original>
       <Expanded>
-        1.0f == 2
+        1f == 2
       </Expanded>
     </Expression>
     <OverallResult success="false" skips="0"/>
@@ -1973,7 +1973,7 @@ Nor would this
         Template_Fixture&lt;TestType>::m_a == 1
       </Original>
       <Expanded>
-        1.0 == 1
+        1 == 1
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -1984,7 +1984,7 @@ Nor would this
         Template_Fixture&lt;TestType>::m_a == 1
       </Original>
       <Expanded>
-        1.0f == 1
+        1f == 1
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -2232,9 +2232,7 @@ Nor would this
         d == 1.23_a
       </Original>
       <Expanded>
-        1.22999999999999998
-==
-Approx( 1.22999999999999998 )
+        1.23 == Approx( 1.23 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2242,9 +2240,7 @@ Approx( 1.22999999999999998 )
         d != 1.22_a
       </Original>
       <Expanded>
-        1.22999999999999998
-!=
-Approx( 1.21999999999999997 )
+        1.23 != Approx( 1.22 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2252,9 +2248,7 @@ Approx( 1.21999999999999997 )
         -d == -1.23_a
       </Original>
       <Expanded>
-        -1.22999999999999998
-==
-Approx( -1.22999999999999998 )
+        -1.23 == Approx( -1.23 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2262,9 +2256,7 @@ Approx( -1.22999999999999998 )
         d == 1.2_a .epsilon(.1)
       </Original>
       <Expanded>
-        1.22999999999999998
-==
-Approx( 1.19999999999999996 )
+        1.23 == Approx( 1.2 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2272,9 +2264,7 @@ Approx( 1.19999999999999996 )
         d != 1.2_a .epsilon(.001)
       </Original>
       <Expanded>
-        1.22999999999999998
-!=
-Approx( 1.19999999999999996 )
+        1.23 != Approx( 1.2 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2282,7 +2272,7 @@ Approx( 1.19999999999999996 )
         d == 1_a .epsilon(.3)
       </Original>
       <Expanded>
-        1.22999999999999998 == Approx( 1.0 )
+        1.23 == Approx( 1 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -2324,7 +2314,7 @@ Approx( 1.19999999999999996 )
         104.0 != Approx(100.0)
       </Original>
       <Expanded>
-        104.0 != Approx( 100.0 )
+        104 != Approx( 1e+02 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2332,7 +2322,7 @@ Approx( 1.19999999999999996 )
         104.0 == Approx(100.0).margin(5)
       </Original>
       <Expanded>
-        104.0 == Approx( 100.0 )
+        104 == Approx( 1e+02 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2340,7 +2330,7 @@ Approx( 1.19999999999999996 )
         104.0 == Approx(100.0).margin(4)
       </Original>
       <Expanded>
-        104.0 == Approx( 100.0 )
+        104 == Approx( 1e+02 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2348,7 +2338,7 @@ Approx( 1.19999999999999996 )
         104.0 != Approx(100.0).margin(3)
       </Original>
       <Expanded>
-        104.0 != Approx( 100.0 )
+        104 != Approx( 1e+02 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2356,7 +2346,7 @@ Approx( 1.19999999999999996 )
         100.3 != Approx(100.0)
       </Original>
       <Expanded>
-        100.29999999999999716 != Approx( 100.0 )
+        100.3 != Approx( 1e+02 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2364,7 +2354,7 @@ Approx( 1.19999999999999996 )
         100.3 == Approx(100.0).margin(0.5)
       </Original>
       <Expanded>
-        100.29999999999999716 == Approx( 100.0 )
+        100.3 == Approx( 1e+02 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -2481,7 +2471,7 @@ Approx( 1.19999999999999996 )
         0.25f == Approx(0.0f).margin(0.25f)
       </Original>
       <Expanded>
-        0.25f == Approx( 0.0 )
+        0.25f == Approx( 0 )
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2489,7 +2479,7 @@ Approx( 1.19999999999999996 )
         0.0f == Approx(0.25f).margin(0.25f)
       </Original>
       <Expanded>
-        0.0f == Approx( 0.25 )
+        0f == Approx( 0.25 )
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2505,7 +2495,7 @@ Approx( 1.19999999999999996 )
         245.0f == Approx(245.25f).margin(0.25f)
       </Original>
       <Expanded>
-        245.0f == Approx( 245.25 )
+        245f == Approx( 245.25 )
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2524,9 +2514,7 @@ Approx( 1.19999999999999996 )
         divide( 22, 7 ) == Approx( 3.141 ).epsilon( 0.001 )
       </Original>
       <Expanded>
-        3.14285714285714279
-==
-Approx( 3.14100000000000001 )
+        3.142857142857143 == Approx( 3.141 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2534,9 +2522,7 @@ Approx( 3.14100000000000001 )
         divide( 22, 7 ) != Approx( 3.141 ).epsilon( 0.0001 )
       </Original>
       <Expanded>
-        3.14285714285714279
-!=
-Approx( 3.14100000000000001 )
+        3.142857142857143 != Approx( 3.141 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -2547,9 +2533,7 @@ Approx( 3.14100000000000001 )
         d != Approx( 1.231 )
       </Original>
       <Expanded>
-        1.22999999999999998
-!=
-Approx( 1.23100000000000009 )
+        1.23 != Approx( 1.231 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2557,9 +2541,7 @@ Approx( 1.23100000000000009 )
         d == Approx( 1.231 ).epsilon( 0.1 )
       </Original>
       <Expanded>
-        1.22999999999999998
-==
-Approx( 1.23100000000000009 )
+        1.23 == Approx( 1.231 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -2570,9 +2552,7 @@ Approx( 1.23100000000000009 )
         1.23f == Approx( 1.23f )
       </Original>
       <Expanded>
-        1.230000019f
-==
-Approx( 1.23000001907348633 )
+        1.23f == Approx( 1.2300000190734863 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2580,7 +2560,7 @@ Approx( 1.23000001907348633 )
         0.0f == Approx( 0.0f )
       </Original>
       <Expanded>
-        0.0f == Approx( 0.0 )
+        0f == Approx( 0 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -2591,7 +2571,7 @@ Approx( 1.23000001907348633 )
         1 == Approx( 1 )
       </Original>
       <Expanded>
-        1 == Approx( 1.0 )
+        1 == Approx( 1 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2599,7 +2579,7 @@ Approx( 1.23000001907348633 )
         0 == Approx( 0 )
       </Original>
       <Expanded>
-        0 == Approx( 0.0 )
+        0 == Approx( 0 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -2610,7 +2590,7 @@ Approx( 1.23000001907348633 )
         1.0f == Approx( 1 )
       </Original>
       <Expanded>
-        1.0f == Approx( 1.0 )
+        1f == Approx( 1 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2618,7 +2598,7 @@ Approx( 1.23000001907348633 )
         0 == Approx( dZero)
       </Original>
       <Expanded>
-        0 == Approx( 0.0 )
+        0 == Approx( 0 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2626,7 +2606,7 @@ Approx( 1.23000001907348633 )
         0 == Approx( dSmall ).margin( 0.001 )
       </Original>
       <Expanded>
-        0 == Approx( 0.00001 )
+        0 == Approx( 1e-05 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2634,9 +2614,7 @@ Approx( 1.23000001907348633 )
         1.234f == Approx( dMedium )
       </Original>
       <Expanded>
-        1.233999968f
-==
-Approx( 1.23399999999999999 )
+        1.234f == Approx( 1.234 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -2644,9 +2622,7 @@ Approx( 1.23399999999999999 )
         dMedium == Approx( 1.234f )
       </Original>
       <Expanded>
-        1.23399999999999999
-==
-Approx( 1.23399996757507324 )
+        1.234 == Approx( 1.2339999675750732 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -2960,7 +2936,7 @@ Approx( 1.23399996757507324 )
           in, Contains(Catch::Matchers::WithinAbs(0.5, 0.5))
         </Original>
         <Expanded>
-          { 1.0, 2.0, 3.0, 0.0 } contains element matching is within 0.5 of 0.5
+          { 1, 2, 3, 0 } contains element matching is within 0.5 of 0.5
         </Expanded>
       </Expression>
       <OverallResults successes="1" failures="0" expectedFailures="0" skipped="false"/>
@@ -2982,7 +2958,7 @@ Approx( 1.23399996757507324 )
           non_empty_array, !IsEmpty()
         </Original>
         <Expanded>
-          { 0.0 } not is empty
+          { 0 } not is empty
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/MatchersRanges.tests.cpp" >
@@ -4000,7 +3976,7 @@ C
         td == Approx(10.0)
       </Original>
       <Expanded>
-        StrongDoubleTypedef(10) == Approx( 10.0 )
+        StrongDoubleTypedef(10) == Approx( 1e+01 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4008,7 +3984,7 @@ C
         Approx(10.0) == td
       </Original>
       <Expanded>
-        Approx( 10.0 ) == StrongDoubleTypedef(10)
+        Approx( 1e+01 ) == StrongDoubleTypedef(10)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4016,7 +3992,7 @@ C
         td != Approx(11.0)
       </Original>
       <Expanded>
-        StrongDoubleTypedef(10) != Approx( 11.0 )
+        StrongDoubleTypedef(10) != Approx( 11 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4024,7 +4000,7 @@ C
         Approx(11.0) != td
       </Original>
       <Expanded>
-        Approx( 11.0 ) != StrongDoubleTypedef(10)
+        Approx( 11 ) != StrongDoubleTypedef(10)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4032,7 +4008,7 @@ C
         td &lt;= Approx(10.0)
       </Original>
       <Expanded>
-        StrongDoubleTypedef(10) &lt;= Approx( 10.0 )
+        StrongDoubleTypedef(10) &lt;= Approx( 1e+01 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4040,7 +4016,7 @@ C
         td &lt;= Approx(11.0)
       </Original>
       <Expanded>
-        StrongDoubleTypedef(10) &lt;= Approx( 11.0 )
+        StrongDoubleTypedef(10) &lt;= Approx( 11 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4048,7 +4024,7 @@ C
         Approx(10.0) &lt;= td
       </Original>
       <Expanded>
-        Approx( 10.0 ) &lt;= StrongDoubleTypedef(10)
+        Approx( 1e+01 ) &lt;= StrongDoubleTypedef(10)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4056,7 +4032,7 @@ C
         Approx(9.0) &lt;= td
       </Original>
       <Expanded>
-        Approx( 9.0 ) &lt;= StrongDoubleTypedef(10)
+        Approx( 9 ) &lt;= StrongDoubleTypedef(10)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4064,7 +4040,7 @@ C
         td >= Approx(9.0)
       </Original>
       <Expanded>
-        StrongDoubleTypedef(10) >= Approx( 9.0 )
+        StrongDoubleTypedef(10) >= Approx( 9 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4072,7 +4048,7 @@ C
         td >= Approx(td)
       </Original>
       <Expanded>
-        StrongDoubleTypedef(10) >= Approx( 10.0 )
+        StrongDoubleTypedef(10) >= Approx( 1e+01 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4080,7 +4056,7 @@ C
         Approx(td) >= td
       </Original>
       <Expanded>
-        Approx( 10.0 ) >= StrongDoubleTypedef(10)
+        Approx( 1e+01 ) >= StrongDoubleTypedef(10)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4088,7 +4064,7 @@ C
         Approx(11.0) >= td
       </Original>
       <Expanded>
-        Approx( 11.0 ) >= StrongDoubleTypedef(10)
+        Approx( 11 ) >= StrongDoubleTypedef(10)
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -4705,7 +4681,7 @@ C
         101.000001 != Approx(100).epsilon(0.01)
       </Original>
       <Expanded>
-        101.00000099999999748 != Approx( 100.0 )
+        101.000001 != Approx( 1e+02 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -4713,7 +4689,7 @@ C
         std::pow(10, -5) != Approx(std::pow(10, -7))
       </Original>
       <Expanded>
-        0.00001 != Approx( 0.0000001 )
+        1e-05 != Approx( 1e-07 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -4905,7 +4881,7 @@ C
         101.01 != Approx(100).epsilon(0.01)
       </Original>
       <Expanded>
-        101.01000000000000512 != Approx( 100.0 )
+        101.01 != Approx( 1e+02 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -4940,9 +4916,7 @@ C
         data.float_nine_point_one == Approx( 9.11f )
       </Original>
       <Expanded>
-        9.100000381f
-==
-Approx( 9.10999965667724609 )
+        9.1f == Approx( 9.109999656677246 )
       </Expanded>
     </Expression>
     <Expression success="false" type="CHECK" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -4950,7 +4924,7 @@ Approx( 9.10999965667724609 )
         data.float_nine_point_one == Approx( 9.0f )
       </Original>
       <Expanded>
-        9.100000381f == Approx( 9.0 )
+        9.1f == Approx( 9 )
       </Expanded>
     </Expression>
     <Expression success="false" type="CHECK" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -4958,7 +4932,7 @@ Approx( 9.10999965667724609 )
         data.float_nine_point_one == Approx( 1 )
       </Original>
       <Expanded>
-        9.100000381f == Approx( 1.0 )
+        9.1f == Approx( 1 )
       </Expanded>
     </Expression>
     <Expression success="false" type="CHECK" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -4966,7 +4940,7 @@ Approx( 9.10999965667724609 )
         data.float_nine_point_one == Approx( 0 )
       </Original>
       <Expanded>
-        9.100000381f == Approx( 0.0 )
+        9.1f == Approx( 0 )
       </Expanded>
     </Expression>
     <Expression success="false" type="CHECK" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -4974,9 +4948,7 @@ Approx( 9.10999965667724609 )
         data.double_pi == Approx( 3.1415 )
       </Original>
       <Expanded>
-        3.14159265350000005
-==
-Approx( 3.14150000000000018 )
+        3.1415926535 == Approx( 3.1415 )
       </Expanded>
     </Expression>
     <Expression success="false" type="CHECK" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -5016,9 +4988,7 @@ Approx( 3.14150000000000018 )
         x == Approx( 1.301 )
       </Original>
       <Expanded>
-        1.30000000000000027
-==
-Approx( 1.30099999999999993 )
+        1.3000000000000003 == Approx( 1.301 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -5037,9 +5007,7 @@ Approx( 1.30099999999999993 )
         data.float_nine_point_one == Approx( 9.1f )
       </Original>
       <Expanded>
-        9.100000381f
-==
-Approx( 9.10000038146972656 )
+        9.1f == Approx( 9.100000381469727 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -5047,9 +5015,7 @@ Approx( 9.10000038146972656 )
         data.double_pi == Approx( 3.1415926535 )
       </Original>
       <Expanded>
-        3.14159265350000005
-==
-Approx( 3.14159265350000005 )
+        3.1415926535 == Approx( 3.1415926535 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -5081,9 +5047,7 @@ Approx( 3.14159265350000005 )
         x == Approx( 1.3 )
       </Original>
       <Expanded>
-        1.30000000000000027
-==
-Approx( 1.30000000000000004 )
+        1.3000000000000003 == Approx( 1.3 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -5566,7 +5530,7 @@ Approx( 1.30000000000000004 )
           10., WithinRel( 11.1, 0.1 )
         </Original>
         <Expanded>
-          10.0 and 11.09999999999999964 are within 10% of each other
+          1e+01 and 11.1 are within 10% of each other
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5574,7 +5538,7 @@ Approx( 1.30000000000000004 )
           10., !WithinRel( 11.2, 0.1 )
         </Original>
         <Expanded>
-          10.0 not and 11.19999999999999929 are within 10% of each other
+          1e+01 not and 11.2 are within 10% of each other
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5582,7 +5546,7 @@ Approx( 1.30000000000000004 )
           1., !WithinRel( 0., 0.99 )
         </Original>
         <Expanded>
-          1.0 not and 0.0 are within 99% of each other
+          1 not and 0 are within 99% of each other
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5590,7 +5554,7 @@ Approx( 1.30000000000000004 )
           -0., WithinRel( 0. )
         </Original>
         <Expanded>
-          -0.0 and 0.0 are within 2.22045e-12% of each other
+          -0 and 0 are within 2.22045e-12% of each other
         </Expanded>
       </Expression>
       <Section name="Some subnormal values" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5599,7 +5563,7 @@ Approx( 1.30000000000000004 )
             v1, WithinRel( v2 )
           </Original>
           <Expanded>
-            0.0 and 0.0 are within 2.22045e-12% of each other
+            2.2250738585072014e-308 and 2.225073858507201e-308 are within 2.22045e-12% of each other
           </Expanded>
         </Expression>
         <OverallResults successes="1" failures="0" expectedFailures="0" skipped="false"/>
@@ -5612,7 +5576,7 @@ Approx( 1.30000000000000004 )
           1., WithinAbs( 1., 0 )
         </Original>
         <Expanded>
-          1.0 is within 0.0 of 1.0
+          1 is within 0 of 1
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5620,7 +5584,7 @@ Approx( 1.30000000000000004 )
           0., WithinAbs( 1., 1 )
         </Original>
         <Expanded>
-          0.0 is within 1.0 of 1.0
+          0 is within 1 of 1
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5628,7 +5592,7 @@ Approx( 1.30000000000000004 )
           0., !WithinAbs( 1., 0.99 )
         </Original>
         <Expanded>
-          0.0 not is within 0.98999999999999999 of 1.0
+          0 not is within 0.99 of 1
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5636,7 +5600,7 @@ Approx( 1.30000000000000004 )
           0., !WithinAbs( 1., 0.99 )
         </Original>
         <Expanded>
-          0.0 not is within 0.98999999999999999 of 1.0
+          0 not is within 0.99 of 1
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5644,7 +5608,7 @@ Approx( 1.30000000000000004 )
           11., !WithinAbs( 10., 0.5 )
         </Original>
         <Expanded>
-          11.0 not is within 0.5 of 10.0
+          11 not is within 0.5 of 1e+01
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5652,7 +5616,7 @@ Approx( 1.30000000000000004 )
           10., !WithinAbs( 11., 0.5 )
         </Original>
         <Expanded>
-          10.0 not is within 0.5 of 11.0
+          1e+01 not is within 0.5 of 11
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5660,7 +5624,7 @@ Approx( 1.30000000000000004 )
           -10., WithinAbs( -10., 0.5 )
         </Original>
         <Expanded>
-          -10.0 is within 0.5 of -10.0
+          -1e+01 is within 0.5 of -1e+01
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5668,7 +5632,7 @@ Approx( 1.30000000000000004 )
           -10., WithinAbs( -9.6, 0.5 )
         </Original>
         <Expanded>
-          -10.0 is within 0.5 of -9.59999999999999964
+          -1e+01 is within 0.5 of -9.6
         </Expanded>
       </Expression>
       <OverallResults successes="8" failures="0" expectedFailures="0" skipped="false"/>
@@ -5679,7 +5643,7 @@ Approx( 1.30000000000000004 )
           1., WithinULP( 1., 0 )
         </Original>
         <Expanded>
-          1.0 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00])
+          1 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5687,7 +5651,7 @@ Approx( 1.30000000000000004 )
           nextafter( 1., 2. ), WithinULP( 1., 1 )
         </Original>
         <Expanded>
-          1.00000000000000022 is within 1 ULPs of 1.0000000000000000e+00 ([9.9999999999999989e-01, 1.0000000000000002e+00])
+          1.0000000000000002 is within 1 ULPs of 1.0000000000000000e+00 ([9.9999999999999989e-01, 1.0000000000000002e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5695,7 +5659,7 @@ Approx( 1.30000000000000004 )
           0., WithinULP( nextafter( 0., 1. ), 1 )
         </Original>
         <Expanded>
-          0.0 is within 1 ULPs of 4.9406564584124654e-324 ([0.0000000000000000e+00, 9.8813129168249309e-324])
+          0 is within 1 ULPs of 4.9406564584124654e-324 ([0.0000000000000000e+00, 9.8813129168249309e-324])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5703,7 +5667,7 @@ Approx( 1.30000000000000004 )
           1., WithinULP( nextafter( 1., 0. ), 1 )
         </Original>
         <Expanded>
-          1.0 is within 1 ULPs of 9.9999999999999989e-01 ([9.9999999999999978e-01, 1.0000000000000000e+00])
+          1 is within 1 ULPs of 9.9999999999999989e-01 ([9.9999999999999978e-01, 1.0000000000000000e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5711,7 +5675,7 @@ Approx( 1.30000000000000004 )
           1., !WithinULP( nextafter( 1., 2. ), 0 )
         </Original>
         <Expanded>
-          1.0 not is within 0 ULPs of 1.0000000000000002e+00 ([1.0000000000000002e+00, 1.0000000000000002e+00])
+          1 not is within 0 ULPs of 1.0000000000000002e+00 ([1.0000000000000002e+00, 1.0000000000000002e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5719,7 +5683,7 @@ Approx( 1.30000000000000004 )
           1., WithinULP( 1., 0 )
         </Original>
         <Expanded>
-          1.0 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00])
+          1 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5727,7 +5691,7 @@ Approx( 1.30000000000000004 )
           -0., WithinULP( 0., 0 )
         </Original>
         <Expanded>
-          -0.0 is within 0 ULPs of 0.0000000000000000e+00 ([0.0000000000000000e+00, 0.0000000000000000e+00])
+          -0 is within 0 ULPs of 0.0000000000000000e+00 ([0.0000000000000000e+00, 0.0000000000000000e+00])
         </Expanded>
       </Expression>
       <OverallResults successes="7" failures="0" expectedFailures="0" skipped="false"/>
@@ -5738,7 +5702,7 @@ Approx( 1.30000000000000004 )
           1., WithinAbs( 1., 0.5 ) || WithinULP( 2., 1 )
         </Original>
         <Expanded>
-          1.0 ( is within 0.5 of 1.0 or is within 1 ULPs of 2.0000000000000000e+00 ([1.9999999999999998e+00, 2.0000000000000004e+00]) )
+          1 ( is within 0.5 of 1 or is within 1 ULPs of 2.0000000000000000e+00 ([1.9999999999999998e+00, 2.0000000000000004e+00]) )
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5746,7 +5710,7 @@ Approx( 1.30000000000000004 )
           1., WithinAbs( 2., 0.5 ) || WithinULP( 1., 0 )
         </Original>
         <Expanded>
-          1.0 ( is within 0.5 of 2.0 or is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00]) )
+          1 ( is within 0.5 of 2 or is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00]) )
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5754,7 +5718,7 @@ Approx( 1.30000000000000004 )
           0.0001, WithinAbs( 0., 0.001 ) || WithinRel( 0., 0.1 )
         </Original>
         <Expanded>
-          0.0001 ( is within 0.001 of 0.0 or and 0.0 are within 10% of each other )
+          0.0001 ( is within 0.001 of 0 or and 0 are within 10% of each other )
         </Expanded>
       </Expression>
       <OverallResults successes="3" failures="0" expectedFailures="0" skipped="false"/>
@@ -5816,7 +5780,7 @@ Approx( 1.30000000000000004 )
           1., !IsNaN()
         </Original>
         <Expanded>
-          1.0 not is NaN
+          1 not is NaN
         </Expanded>
       </Expression>
       <OverallResults successes="1" failures="0" expectedFailures="0" skipped="false"/>
@@ -5830,7 +5794,7 @@ Approx( 1.30000000000000004 )
           10.f, WithinRel( 11.1f, 0.1f )
         </Original>
         <Expanded>
-          10.0f and 11.10000038146972656 are within 10% of each other
+          1e+01f and 11.100000381469727 are within 10% of each other
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5838,7 +5802,7 @@ Approx( 1.30000000000000004 )
           10.f, !WithinRel( 11.2f, 0.1f )
         </Original>
         <Expanded>
-          10.0f not and 11.19999980926513672 are within 10% of each other
+          1e+01f not and 11.199999809265137 are within 10% of each other
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5846,7 +5810,7 @@ Approx( 1.30000000000000004 )
           1.f, !WithinRel( 0.f, 0.99f )
         </Original>
         <Expanded>
-          1.0f not and 0.0 are within 99% of each other
+          1f not and 0 are within 99% of each other
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5854,7 +5818,7 @@ Approx( 1.30000000000000004 )
           -0.f, WithinRel( 0.f )
         </Original>
         <Expanded>
-          -0.0f and 0.0 are within 0.00119209% of each other
+          -0f and 0 are within 0.00119209% of each other
         </Expanded>
       </Expression>
       <Section name="Some subnormal values" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5863,7 +5827,7 @@ Approx( 1.30000000000000004 )
             v1, WithinRel( v2 )
           </Original>
           <Expanded>
-            0.0f and 0.0 are within 0.00119209% of each other
+            1.1754944e-38f and 1.1754942106924411e-38 are within 0.00119209% of each other
           </Expanded>
         </Expression>
         <OverallResults successes="1" failures="0" expectedFailures="0" skipped="false"/>
@@ -5876,7 +5840,7 @@ Approx( 1.30000000000000004 )
           1.f, WithinAbs( 1.f, 0 )
         </Original>
         <Expanded>
-          1.0f is within 0.0 of 1.0
+          1f is within 0 of 1
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5884,7 +5848,7 @@ Approx( 1.30000000000000004 )
           0.f, WithinAbs( 1.f, 1 )
         </Original>
         <Expanded>
-          0.0f is within 1.0 of 1.0
+          0f is within 1 of 1
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5892,7 +5856,7 @@ Approx( 1.30000000000000004 )
           0.f, !WithinAbs( 1.f, 0.99f )
         </Original>
         <Expanded>
-          0.0f not is within 0.99000000953674316 of 1.0
+          0f not is within 0.9900000095367432 of 1
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5900,7 +5864,7 @@ Approx( 1.30000000000000004 )
           0.f, !WithinAbs( 1.f, 0.99f )
         </Original>
         <Expanded>
-          0.0f not is within 0.99000000953674316 of 1.0
+          0f not is within 0.9900000095367432 of 1
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5908,7 +5872,7 @@ Approx( 1.30000000000000004 )
           0.f, WithinAbs( -0.f, 0 )
         </Original>
         <Expanded>
-          0.0f is within 0.0 of -0.0
+          0f is within 0 of -0
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5916,7 +5880,7 @@ Approx( 1.30000000000000004 )
           11.f, !WithinAbs( 10.f, 0.5f )
         </Original>
         <Expanded>
-          11.0f not is within 0.5 of 10.0
+          11f not is within 0.5 of 1e+01
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5924,7 +5888,7 @@ Approx( 1.30000000000000004 )
           10.f, !WithinAbs( 11.f, 0.5f )
         </Original>
         <Expanded>
-          10.0f not is within 0.5 of 11.0
+          1e+01f not is within 0.5 of 11
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5932,7 +5896,7 @@ Approx( 1.30000000000000004 )
           -10.f, WithinAbs( -10.f, 0.5f )
         </Original>
         <Expanded>
-          -10.0f is within 0.5 of -10.0
+          -1e+01f is within 0.5 of -1e+01
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5940,7 +5904,7 @@ Approx( 1.30000000000000004 )
           -10.f, WithinAbs( -9.6f, 0.5f )
         </Original>
         <Expanded>
-          -10.0f is within 0.5 of -9.60000038146972656
+          -1e+01f is within 0.5 of -9.600000381469727
         </Expanded>
       </Expression>
       <OverallResults successes="9" failures="0" expectedFailures="0" skipped="false"/>
@@ -5951,7 +5915,7 @@ Approx( 1.30000000000000004 )
           1.f, WithinULP( 1.f, 0 )
         </Original>
         <Expanded>
-          1.0f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
+          1f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5959,7 +5923,7 @@ Approx( 1.30000000000000004 )
           -1.f, WithinULP( -1.f, 0 )
         </Original>
         <Expanded>
-          -1.0f is within 0 ULPs of -1.00000000e+00f ([-1.00000000e+00, -1.00000000e+00])
+          -1f is within 0 ULPs of -1.00000000e+00f ([-1.00000000e+00, -1.00000000e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5967,7 +5931,7 @@ Approx( 1.30000000000000004 )
           nextafter( 1.f, 2.f ), WithinULP( 1.f, 1 )
         </Original>
         <Expanded>
-          1.000000119f is within 1 ULPs of 1.00000000e+00f ([9.99999940e-01, 1.00000012e+00])
+          1.0000001f is within 1 ULPs of 1.00000000e+00f ([9.99999940e-01, 1.00000012e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5975,7 +5939,7 @@ Approx( 1.30000000000000004 )
           0.f, WithinULP( nextafter( 0.f, 1.f ), 1 )
         </Original>
         <Expanded>
-          0.0f is within 1 ULPs of 1.40129846e-45f ([0.00000000e+00, 2.80259693e-45])
+          0f is within 1 ULPs of 1.40129846e-45f ([0.00000000e+00, 2.80259693e-45])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5983,7 +5947,7 @@ Approx( 1.30000000000000004 )
           1.f, WithinULP( nextafter( 1.f, 0.f ), 1 )
         </Original>
         <Expanded>
-          1.0f is within 1 ULPs of 9.99999940e-01f ([9.99999881e-01, 1.00000000e+00])
+          1f is within 1 ULPs of 9.99999940e-01f ([9.99999881e-01, 1.00000000e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5991,7 +5955,7 @@ Approx( 1.30000000000000004 )
           1.f, !WithinULP( nextafter( 1.f, 2.f ), 0 )
         </Original>
         <Expanded>
-          1.0f not is within 0 ULPs of 1.00000012e+00f ([1.00000012e+00, 1.00000012e+00])
+          1f not is within 0 ULPs of 1.00000012e+00f ([1.00000012e+00, 1.00000012e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -5999,7 +5963,7 @@ Approx( 1.30000000000000004 )
           1.f, WithinULP( 1.f, 0 )
         </Original>
         <Expanded>
-          1.0f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
+          1f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -6007,7 +5971,7 @@ Approx( 1.30000000000000004 )
           -0.f, WithinULP( 0.f, 0 )
         </Original>
         <Expanded>
-          -0.0f is within 0 ULPs of 0.00000000e+00f ([0.00000000e+00, 0.00000000e+00])
+          -0f is within 0 ULPs of 0.00000000e+00f ([0.00000000e+00, 0.00000000e+00])
         </Expanded>
       </Expression>
       <OverallResults successes="8" failures="0" expectedFailures="0" skipped="false"/>
@@ -6018,7 +5982,7 @@ Approx( 1.30000000000000004 )
           1.f, WithinAbs( 1.f, 0.5 ) || WithinULP( 1.f, 1 )
         </Original>
         <Expanded>
-          1.0f ( is within 0.5 of 1.0 or is within 1 ULPs of 1.00000000e+00f ([9.99999940e-01, 1.00000012e+00]) )
+          1f ( is within 0.5 of 1 or is within 1 ULPs of 1.00000000e+00f ([9.99999940e-01, 1.00000012e+00]) )
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -6026,7 +5990,7 @@ Approx( 1.30000000000000004 )
           1.f, WithinAbs( 2.f, 0.5 ) || WithinULP( 1.f, 0 )
         </Original>
         <Expanded>
-          1.0f ( is within 0.5 of 2.0 or is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00]) )
+          1f ( is within 0.5 of 2 or is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00]) )
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -6034,7 +5998,7 @@ Approx( 1.30000000000000004 )
           0.0001f, WithinAbs( 0.f, 0.001f ) || WithinRel( 0.f, 0.1f )
         </Original>
         <Expanded>
-          0.0001f ( is within 0.00100000004749745 of 0.0 or and 0.0 are within 10% of each other )
+          0.0001f ( is within 0.0010000000474974513 of 0 or and 0 are within 10% of each other )
         </Expanded>
       </Expression>
       <OverallResults successes="3" failures="0" expectedFailures="0" skipped="false"/>
@@ -6104,7 +6068,7 @@ Approx( 1.30000000000000004 )
           1., !IsNaN()
         </Original>
         <Expanded>
-          1.0 not is NaN
+          1 not is NaN
         </Expanded>
       </Expression>
       <OverallResults successes="1" failures="0" expectedFailures="0" skipped="false"/>
@@ -7401,7 +7365,7 @@ Approx( 1.30000000000000004 )
           gen.get() == 2.0
         </Original>
         <Expanded>
-          2.0 == 2.0
+          2 == 2
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -7417,7 +7381,7 @@ Approx( 1.30000000000000004 )
           gen.get() == 4.0
         </Original>
         <Expanded>
-          4.0 == 4.0
+          4 == 4
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -7433,7 +7397,7 @@ Approx( 1.30000000000000004 )
           gen.get() == 6.0
         </Original>
         <Expanded>
-          6.0 == 6.0
+          6 == 6
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_FALSE" filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -7452,7 +7416,7 @@ Approx( 1.30000000000000004 )
           gen.get() == 2.0
         </Original>
         <Expanded>
-          2.0 == 2.0
+          2 == 2
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -7468,7 +7432,7 @@ Approx( 1.30000000000000004 )
           gen.get() == 4.0
         </Original>
         <Expanded>
-          4.0 == 4.0
+          4 == 4
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -7484,7 +7448,7 @@ Approx( 1.30000000000000004 )
           gen.get() == 6.0
         </Original>
         <Expanded>
-          6.0 == 6.0
+          6 == 6
         </Expanded>
       </Expression>
       <Expression success="true" type="REQUIRE_FALSE" filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8023,7 +7987,7 @@ Approx( 1.30000000000000004 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -1.0 == Approx( -1.0 )
+                -1 == Approx( -1 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8045,9 +8009,7 @@ Approx( 1.30000000000000004 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -0.90000000000000002
-==
-Approx( -0.90000000000000002 )
+                -0.9 == Approx( -0.9 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8069,9 +8031,7 @@ Approx( -0.90000000000000002 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -0.80000000000000004
-==
-Approx( -0.80000000000000004 )
+                -0.8 == Approx( -0.8 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8093,9 +8053,9 @@ Approx( -0.80000000000000004 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -0.70000000000000007
+                -0.7000000000000001
 ==
-Approx( -0.70000000000000007 )
+Approx( -0.7000000000000001 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8117,9 +8077,9 @@ Approx( -0.70000000000000007 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -0.60000000000000009
+                -0.6000000000000001
 ==
-Approx( -0.60000000000000009 )
+Approx( -0.6000000000000001 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8141,9 +8101,9 @@ Approx( -0.60000000000000009 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -0.50000000000000011
+                -0.5000000000000001
 ==
-Approx( -0.50000000000000011 )
+Approx( -0.5000000000000001 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8261,9 +8221,9 @@ Approx( -0.10000000000000014 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -0.00000000000000014
+                -1.3877787807814457e-16
 ==
-Approx( -0.00000000000000014 )
+Approx( -1.3877787807814457e-16 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8333,9 +8293,9 @@ Approx( 0.19999999999999987 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                0.29999999999999988
+                0.2999999999999999
 ==
-Approx( 0.29999999999999988 )
+Approx( 0.2999999999999999 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8357,9 +8317,9 @@ Approx( 0.29999999999999988 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                0.39999999999999991
+                0.3999999999999999
 ==
-Approx( 0.39999999999999991 )
+Approx( 0.3999999999999999 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8381,9 +8341,9 @@ Approx( 0.39999999999999991 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                0.49999999999999989
+                0.4999999999999999
 ==
-Approx( 0.49999999999999989 )
+Approx( 0.4999999999999999 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8405,9 +8365,9 @@ Approx( 0.49999999999999989 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                0.59999999999999987
+                0.5999999999999999
 ==
-Approx( 0.59999999999999987 )
+Approx( 0.5999999999999999 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8429,9 +8389,9 @@ Approx( 0.59999999999999987 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                0.69999999999999984
+                0.6999999999999998
 ==
-Approx( 0.69999999999999984 )
+Approx( 0.6999999999999998 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8453,9 +8413,9 @@ Approx( 0.69999999999999984 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                0.79999999999999982
+                0.7999999999999998
 ==
-Approx( 0.79999999999999982 )
+Approx( 0.7999999999999998 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8498,7 +8458,7 @@ Approx( 0.8999999999999998 )
                 gen.get() == Approx( rangeEnd )
               </Original>
               <Expanded>
-                0.99999999999999978 == Approx( 1.0 )
+                0.9999999999999998 == Approx( 1 )
               </Expanded>
             </Expression>
             <Expression success="true" type="REQUIRE_FALSE" filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8529,7 +8489,7 @@ Approx( 0.8999999999999998 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -1.0 == Approx( -1.0 )
+                -1 == Approx( -1 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8551,9 +8511,7 @@ Approx( 0.8999999999999998 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -0.69999999999999996
-==
-Approx( -0.69999999999999996 )
+                -0.7 == Approx( -0.7 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8623,9 +8581,7 @@ Approx( -0.09999999999999998 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                0.20000000000000001
-==
-Approx( 0.20000000000000001 )
+                0.2 == Approx( 0.2 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8689,7 +8645,7 @@ Approx( 0.20000000000000001 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -1.0 == Approx( -1.0 )
+                -1 == Approx( -1 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8711,9 +8667,7 @@ Approx( 0.20000000000000001 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                -0.69999999999999996
-==
-Approx( -0.69999999999999996 )
+                -0.7 == Approx( -0.7 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -8783,9 +8737,7 @@ Approx( -0.09999999999999998 )
                 gen.get() == Approx(expected)
               </Original>
               <Expanded>
-                0.20000000000000001
-==
-Approx( 0.20000000000000001 )
+                0.2 == Approx( 0.2 )
               </Expanded>
             </Expression>
             <Info filename="tests/<exe-name>/IntrospectiveTests/GeneratorsImpl.tests.cpp" >
@@ -9089,9 +9041,7 @@ Approx( 0.20000000000000001 )
         d >= Approx( 1.22 )
       </Original>
       <Expanded>
-        1.22999999999999998
->=
-Approx( 1.21999999999999997 )
+        1.23 >= Approx( 1.22 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -9099,9 +9049,7 @@ Approx( 1.21999999999999997 )
         d >= Approx( 1.23 )
       </Original>
       <Expanded>
-        1.22999999999999998
->=
-Approx( 1.22999999999999998 )
+        1.23 >= Approx( 1.23 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE_FALSE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -9109,9 +9057,7 @@ Approx( 1.22999999999999998 )
         !(d >= Approx( 1.24 ))
       </Original>
       <Expanded>
-        !(1.22999999999999998
->=
-Approx( 1.23999999999999999 ))
+        !(1.23 >= Approx( 1.24 ))
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -9119,9 +9065,7 @@ Approx( 1.23999999999999999 ))
         d >= Approx( 1.24 ).epsilon(0.1)
       </Original>
       <Expanded>
-        1.22999999999999998
->=
-Approx( 1.23999999999999999 )
+        1.23 >= Approx( 1.24 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -9495,9 +9439,7 @@ Approx( 1.23999999999999999 )
         data.float_nine_point_one != Approx( 9.1f )
       </Original>
       <Expanded>
-        9.100000381f
-!=
-Approx( 9.10000038146972656 )
+        9.1f != Approx( 9.100000381469727 )
       </Expanded>
     </Expression>
     <Expression success="false" type="CHECK" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -9505,9 +9447,7 @@ Approx( 9.10000038146972656 )
         data.double_pi != Approx( 3.1415926535 )
       </Original>
       <Expanded>
-        3.14159265350000005
-!=
-Approx( 3.14159265350000005 )
+        3.1415926535 != Approx( 3.1415926535 )
       </Expanded>
     </Expression>
     <Expression success="false" type="CHECK" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -9550,9 +9490,7 @@ Approx( 3.14159265350000005 )
         data.float_nine_point_one != Approx( 9.11f )
       </Original>
       <Expanded>
-        9.100000381f
-!=
-Approx( 9.10999965667724609 )
+        9.1f != Approx( 9.109999656677246 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -9560,7 +9498,7 @@ Approx( 9.10999965667724609 )
         data.float_nine_point_one != Approx( 9.0f )
       </Original>
       <Expanded>
-        9.100000381f != Approx( 9.0 )
+        9.1f != Approx( 9 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -9568,7 +9506,7 @@ Approx( 9.10999965667724609 )
         data.float_nine_point_one != Approx( 1 )
       </Original>
       <Expanded>
-        9.100000381f != Approx( 1.0 )
+        9.1f != Approx( 1 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -9576,7 +9514,7 @@ Approx( 9.10999965667724609 )
         data.float_nine_point_one != Approx( 0 )
       </Original>
       <Expanded>
-        9.100000381f != Approx( 0.0 )
+        9.1f != Approx( 0 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -9584,9 +9522,7 @@ Approx( 9.10999965667724609 )
         data.double_pi != Approx( 3.1415 )
       </Original>
       <Expanded>
-        3.14159265350000005
-!=
-Approx( 3.14150000000000018 )
+        3.1415926535 != Approx( 3.1415 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -10007,9 +9943,7 @@ Approx( 3.14150000000000018 )
         d &lt;= Approx( 1.24 )
       </Original>
       <Expanded>
-        1.22999999999999998
-&lt;=
-Approx( 1.23999999999999999 )
+        1.23 &lt;= Approx( 1.24 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -10017,9 +9951,7 @@ Approx( 1.23999999999999999 )
         d &lt;= Approx( 1.23 )
       </Original>
       <Expanded>
-        1.22999999999999998
-&lt;=
-Approx( 1.22999999999999998 )
+        1.23 &lt;= Approx( 1.23 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE_FALSE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -10027,9 +9959,7 @@ Approx( 1.22999999999999998 )
         !(d &lt;= Approx( 1.22 ))
       </Original>
       <Expanded>
-        !(1.22999999999999998
-&lt;=
-Approx( 1.21999999999999997 ))
+        !(1.23 &lt;= Approx( 1.22 ))
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -10037,9 +9967,7 @@ Approx( 1.21999999999999997 ))
         d &lt;= Approx( 1.22 ).epsilon(0.1)
       </Original>
       <Expanded>
-        1.22999999999999998
-&lt;=
-Approx( 1.21999999999999997 )
+        1.23 &lt;= Approx( 1.22 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -10758,7 +10686,7 @@ Approx( 1.21999999999999997 )
         data.float_nine_point_one &lt; 9
       </Original>
       <Expanded>
-        9.100000381f &lt; 9
+        9.1f &lt; 9
       </Expanded>
     </Expression>
     <Expression success="false" type="CHECK" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -10766,7 +10694,7 @@ Approx( 1.21999999999999997 )
         data.float_nine_point_one > 10
       </Original>
       <Expanded>
-        9.100000381f > 10
+        9.1f > 10
       </Expanded>
     </Expression>
     <Expression success="false" type="CHECK" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -10774,7 +10702,7 @@ Approx( 1.21999999999999997 )
         data.float_nine_point_one > 9.2
       </Original>
       <Expanded>
-        9.100000381f > 9.19999999999999929
+        9.1f > 9.2
       </Expanded>
     </Expression>
     <Expression success="false" type="CHECK" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -10913,7 +10841,7 @@ Approx( 1.21999999999999997 )
         data.float_nine_point_one > 9
       </Original>
       <Expanded>
-        9.100000381f > 9
+        9.1f > 9
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -10921,7 +10849,7 @@ Approx( 1.21999999999999997 )
         data.float_nine_point_one &lt; 10
       </Original>
       <Expanded>
-        9.100000381f &lt; 10
+        9.1f &lt; 10
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -10929,7 +10857,7 @@ Approx( 1.21999999999999997 )
         data.float_nine_point_one &lt; 9.2
       </Original>
       <Expanded>
-        9.100000381f &lt; 9.19999999999999929
+        9.1f &lt; 9.2
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Condition.tests.cpp" >
@@ -12925,9 +12853,7 @@ Approx( 1.21999999999999997 )
             config.benchmarkConfidenceInterval == Catch::Approx(0.99)
           </Original>
           <Expanded>
-            0.98999999999999999
-==
-Approx( 0.98999999999999999 )
+            0.99 == Approx( 0.99 )
           </Expanded>
         </Expression>
         <OverallResults successes="2" failures="0" expectedFailures="0" skipped="false"/>
@@ -14179,9 +14105,7 @@ A string sent to stderr via clog
         d == Approx( 1.23 )
       </Original>
       <Expanded>
-        1.22999999999999998
-==
-Approx( 1.22999999999999998 )
+        1.23 == Approx( 1.23 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -14189,9 +14113,7 @@ Approx( 1.22999999999999998 )
         d != Approx( 1.22 )
       </Original>
       <Expanded>
-        1.22999999999999998
-!=
-Approx( 1.21999999999999997 )
+        1.23 != Approx( 1.22 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -14199,9 +14121,7 @@ Approx( 1.21999999999999997 )
         d != Approx( 1.24 )
       </Original>
       <Expanded>
-        1.22999999999999998
-!=
-Approx( 1.23999999999999999 )
+        1.23 != Approx( 1.24 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -14209,9 +14129,7 @@ Approx( 1.23999999999999999 )
         d == 1.23_a
       </Original>
       <Expanded>
-        1.22999999999999998
-==
-Approx( 1.22999999999999998 )
+        1.23 == Approx( 1.23 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -14219,9 +14137,7 @@ Approx( 1.22999999999999998 )
         d != 1.22_a
       </Original>
       <Expanded>
-        1.22999999999999998
-!=
-Approx( 1.21999999999999997 )
+        1.23 != Approx( 1.22 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -14229,9 +14145,7 @@ Approx( 1.21999999999999997 )
         Approx( d ) == 1.23
       </Original>
       <Expanded>
-        Approx( 1.22999999999999998 )
-==
-1.22999999999999998
+        Approx( 1.23 ) == 1.23
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -14239,9 +14153,7 @@ Approx( 1.21999999999999997 )
         Approx( d ) != 1.22
       </Original>
       <Expanded>
-        Approx( 1.22999999999999998 )
-!=
-1.21999999999999997
+        Approx( 1.23 ) != 1.22
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -14249,9 +14161,7 @@ Approx( 1.21999999999999997 )
         Approx( d ) != 1.24
       </Original>
       <Expanded>
-        Approx( 1.22999999999999998 )
-!=
-1.23999999999999999
+        Approx( 1.23 ) != 1.24
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -15143,7 +15053,7 @@ Message from section two
         Template_Fixture&lt;TestType>::m_a == 1
       </Original>
       <Expanded>
-        1.0 == 1
+        1 == 1
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -17526,7 +17436,7 @@ There is no extra whitespace here
   </TestCase>
   <TestCase name="Unexpected exceptions can be translated" tags="[!throws][.][failing]" filename="tests/<exe-name>/UsageTests/Exception.tests.cpp" >
     <Exception filename="tests/<exe-name>/UsageTests/Exception.tests.cpp" >
-      3.14000000000000012
+      3.14
     </Exception>
     <OverallResult success="false" skips="0"/>
   </TestCase>
@@ -19132,9 +19042,7 @@ There is no extra whitespace here
         d == approx( 1.23 )
       </Original>
       <Expanded>
-        1.22999999999999998
-==
-Approx( 1.22999999999999998 )
+        1.23 == Approx( 1.23 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -19142,9 +19050,7 @@ Approx( 1.22999999999999998 )
         d == approx( 1.22 )
       </Original>
       <Expanded>
-        1.22999999999999998
-==
-Approx( 1.21999999999999997 )
+        1.23 == Approx( 1.22 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -19152,9 +19058,7 @@ Approx( 1.21999999999999997 )
         d == approx( 1.24 )
       </Original>
       <Expanded>
-        1.22999999999999998
-==
-Approx( 1.23999999999999999 )
+        1.23 == Approx( 1.24 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -19162,7 +19066,7 @@ Approx( 1.23999999999999999 )
         d != approx( 1.25 )
       </Original>
       <Expanded>
-        1.22999999999999998 != Approx( 1.25 )
+        1.23 != Approx( 1.25 )
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -19170,9 +19074,7 @@ Approx( 1.23999999999999999 )
         approx( d ) == 1.23
       </Original>
       <Expanded>
-        Approx( 1.22999999999999998 )
-==
-1.22999999999999998
+        Approx( 1.23 ) == 1.23
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -19180,9 +19082,7 @@ Approx( 1.23999999999999999 )
         approx( d ) == 1.22
       </Original>
       <Expanded>
-        Approx( 1.22999999999999998 )
-==
-1.21999999999999997
+        Approx( 1.23 ) == 1.22
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -19190,9 +19090,7 @@ Approx( 1.23999999999999999 )
         approx( d ) == 1.24
       </Original>
       <Expanded>
-        Approx( 1.22999999999999998 )
-==
-1.23999999999999999
+        Approx( 1.23 ) == 1.24
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -19200,7 +19098,7 @@ Approx( 1.23999999999999999 )
         approx( d ) != 1.25
       </Original>
       <Expanded>
-        Approx( 1.22999999999999998 ) != 1.25
+        Approx( 1.23 ) != 1.25
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -19230,7 +19128,7 @@ Approx( 1.23999999999999999 )
             v1, Approx( v1 )
           </Original>
           <Expanded>
-            { 1.0, 2.0, 3.0 } is approx: { 1.0, 2.0, 3.0 }
+            { 1, 2, 3 } is approx: { 1, 2, 3 }
           </Expanded>
         </Expression>
         <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -19238,7 +19136,7 @@ Approx( 1.23999999999999999 )
             v1, Approx&lt;double>( { 1., 2., 3. } )
           </Original>
           <Expanded>
-            { 1.0, 2.0, 3.0 } is approx: { 1.0, 2.0, 3.0 }
+            { 1, 2, 3 } is approx: { 1, 2, 3 }
           </Expanded>
         </Expression>
         <OverallResults successes="2" failures="0" expectedFailures="0" skipped="false"/>
@@ -19252,7 +19150,7 @@ Approx( 1.23999999999999999 )
             v1, !Approx( temp )
           </Original>
           <Expanded>
-            { 1.0, 2.0, 3.0 } not is approx: { 1.0, 2.0, 3.0, 4.0 }
+            { 1, 2, 3 } not is approx: { 1, 2, 3, 4 }
           </Expanded>
         </Expression>
         <OverallResults successes="1" failures="0" expectedFailures="0" skipped="false"/>
@@ -19266,7 +19164,7 @@ Approx( 1.23999999999999999 )
             v1, !Approx( v2 )
           </Original>
           <Expanded>
-            { 1.0, 2.0, 3.0 } not is approx: { 1.5, 2.5, 3.5 }
+            { 1, 2, 3 } not is approx: { 1.5, 2.5, 3.5 }
           </Expanded>
         </Expression>
         <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -19274,7 +19172,7 @@ Approx( 1.23999999999999999 )
             v1, Approx( v2 ).margin( 0.5 )
           </Original>
           <Expanded>
-            { 1.0, 2.0, 3.0 } is approx: { 1.5, 2.5, 3.5 }
+            { 1, 2, 3 } is approx: { 1.5, 2.5, 3.5 }
           </Expanded>
         </Expression>
         <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -19282,7 +19180,7 @@ Approx( 1.23999999999999999 )
             v1, Approx( v2 ).epsilon( 0.5 )
           </Original>
           <Expanded>
-            { 1.0, 2.0, 3.0 } is approx: { 1.5, 2.5, 3.5 }
+            { 1, 2, 3 } is approx: { 1.5, 2.5, 3.5 }
           </Expanded>
         </Expression>
         <Expression success="true" type="REQUIRE_THAT" filename="tests/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -19290,7 +19188,7 @@ Approx( 1.23999999999999999 )
             v1, Approx( v2 ).epsilon( 0.1 ).scale( 500 )
           </Original>
           <Expanded>
-            { 1.0, 2.0, 3.0 } is approx: { 1.5, 2.5, 3.5 }
+            { 1, 2, 3 } is approx: { 1.5, 2.5, 3.5 }
           </Expanded>
         </Expression>
         <OverallResults successes="4" failures="0" expectedFailures="0" skipped="false"/>
@@ -19306,7 +19204,7 @@ Approx( 1.23999999999999999 )
           empty, Approx( t1 )
         </Original>
         <Expanded>
-          {  } is approx: { 1.0, 2.0 }
+          {  } is approx: { 1, 2 }
         </Expanded>
       </Expression>
       <OverallResults successes="0" failures="1" expectedFailures="0" skipped="false"/>
@@ -19317,7 +19215,7 @@ Approx( 1.23999999999999999 )
           v1, Approx( v2 )
         </Original>
         <Expanded>
-          { 2.0, 4.0, 6.0 } is approx: { 1.0, 3.0, 5.0 }
+          { 2, 4, 6 } is approx: { 1, 3, 5 }
         </Expanded>
       </Expression>
       <OverallResults successes="0" failures="1" expectedFailures="0" skipped="false"/>
@@ -19896,7 +19794,7 @@ Approx( 1.23999999999999999 )
         analysis.mean.point.count() == 23
       </Original>
       <Expanded>
-        23.0 == 23
+        23 == 23
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -19904,7 +19802,7 @@ Approx( 1.23999999999999999 )
         analysis.mean.lower_bound.count() == 23
       </Original>
       <Expanded>
-        23.0 == 23
+        23 == 23
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -19912,7 +19810,7 @@ Approx( 1.23999999999999999 )
         analysis.mean.upper_bound.count() == 23
       </Original>
       <Expanded>
-        23.0 == 23
+        23 == 23
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -19920,7 +19818,7 @@ Approx( 1.23999999999999999 )
         analysis.standard_deviation.point.count() == 0
       </Original>
       <Expanded>
-        0.0 == 0
+        0 == 0
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -19928,7 +19826,7 @@ Approx( 1.23999999999999999 )
         analysis.standard_deviation.lower_bound.count() == 0
       </Original>
       <Expanded>
-        0.0 == 0
+        0 == 0
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -19936,7 +19834,7 @@ Approx( 1.23999999999999999 )
         analysis.standard_deviation.upper_bound.count() == 0
       </Original>
       <Expanded>
-        0.0 == 0
+        0 == 0
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -19992,7 +19890,7 @@ Approx( 1.23999999999999999 )
         analysis.outlier_variance == 0
       </Original>
       <Expanded>
-        0.0 == 0
+        0 == 0
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -20828,9 +20726,9 @@ Approx( -0.05980291115763361 )
         erfc_inv(0.050000) == Approx(1.38590382434967796)
       </Original>
       <Expanded>
-        1.38590382434967774
+        1.3859038243496777
 ==
-Approx( 1.38590382434967796 )
+Approx( 1.385903824349678 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -20841,7 +20739,7 @@ Approx( 1.38590382434967796 )
         res.mean.count() == rate
       </Original>
       <Expanded>
-        2000.0 == 2000 (0x<hex digits>)
+        2e+03 == 2000 (0x<hex digits>)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -21199,7 +21097,7 @@ Approx( 1.38590382434967796 )
         m == 19.
       </Original>
       <Expanded>
-        19.0 == 19.0
+        19 == 19
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -21446,9 +21344,9 @@ Approx( 0.08457408802851875 )
         normal_quantile(0.025000) == Approx(-1.95996398454005449)
       </Original>
       <Expanded>
-        -1.95996398454005405
+        -1.959963984540054
 ==
-Approx( -1.95996398454005449 )
+Approx( -1.9599639845400545 )
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -21924,7 +21822,7 @@ Approx( -1.95996398454005449 )
         res[i] == rate
       </Original>
       <Expanded>
-        1000.0 == 1000 (0x<hex digits>)
+        1e+03 == 1000 (0x<hex digits>)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -21932,7 +21830,7 @@ Approx( -1.95996398454005449 )
         res[i] == rate
       </Original>
       <Expanded>
-        1000.0 == 1000 (0x<hex digits>)
+        1e+03 == 1000 (0x<hex digits>)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -21940,7 +21838,7 @@ Approx( -1.95996398454005449 )
         res[i] == rate
       </Original>
       <Expanded>
-        1000.0 == 1000 (0x<hex digits>)
+        1e+03 == 1000 (0x<hex digits>)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -21948,7 +21846,7 @@ Approx( -1.95996398454005449 )
         res[i] == rate
       </Original>
       <Expanded>
-        1000.0 == 1000 (0x<hex digits>)
+        1e+03 == 1000 (0x<hex digits>)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -21956,7 +21854,7 @@ Approx( -1.95996398454005449 )
         res[i] == rate
       </Original>
       <Expanded>
-        1000.0 == 1000 (0x<hex digits>)
+        1e+03 == 1000 (0x<hex digits>)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -21964,7 +21862,7 @@ Approx( -1.95996398454005449 )
         res[i] == rate
       </Original>
       <Expanded>
-        1000.0 == 1000 (0x<hex digits>)
+        1e+03 == 1000 (0x<hex digits>)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -21972,7 +21870,7 @@ Approx( -1.95996398454005449 )
         res[i] == rate
       </Original>
       <Expanded>
-        1000.0 == 1000 (0x<hex digits>)
+        1e+03 == 1000 (0x<hex digits>)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -21980,7 +21878,7 @@ Approx( -1.95996398454005449 )
         res[i] == rate
       </Original>
       <Expanded>
-        1000.0 == 1000 (0x<hex digits>)
+        1e+03 == 1000 (0x<hex digits>)
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -21988,7 +21886,7 @@ Approx( -1.95996398454005449 )
         res[i] == rate
       </Original>
       <Expanded>
-        1000.0 == 1000 (0x<hex digits>)
+        1e+03 == 1000 (0x<hex digits>)
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -23049,7 +22947,7 @@ Approx( -1.95996398454005449 )
         e.point == 23
       </Original>
       <Expanded>
-        23.0 == 23
+        23 == 23
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -23057,7 +22955,7 @@ Approx( -1.95996398454005449 )
         e.upper_bound == 23
       </Original>
       <Expanded>
-        23.0 == 23
+        23 == 23
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -23065,7 +22963,7 @@ Approx( -1.95996398454005449 )
         e.lower_bound == 23
       </Original>
       <Expanded>
-        23.0 == 23
+        23 == 23
       </Expanded>
     </Expression>
     <Expression success="true" type="CHECK" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -23073,7 +22971,7 @@ Approx( -1.95996398454005449 )
         e.confidence_interval == 0.95
       </Original>
       <Expanded>
-        0.94999999999999996 == 0.94999999999999996
+        0.95 == 0.95
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>
@@ -23629,7 +23527,7 @@ Approx( -1.95996398454005449 )
         med == 18.
       </Original>
       <Expanded>
-        18.0 == 18.0
+        18 == 18
       </Expanded>
     </Expression>
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
@@ -23637,7 +23535,7 @@ Approx( -1.95996398454005449 )
         q3 == 23.
       </Original>
       <Expanded>
-        23.0 == 23.0
+        23 == 23
       </Expanded>
     </Expression>
     <OverallResult success="true" skips="0"/>

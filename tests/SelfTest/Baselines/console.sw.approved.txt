@@ -735,14 +735,14 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   CHECK_THAT( smallest_non_zero, WithinULP( -smallest_non_zero, 2 ) )
 with expansion:
-  0.0 is within 2 ULPs of -4.9406564584124654e-324 ([-1.4821969375237396e-323,
-  4.9406564584124654e-324])
+  5e-324 is within 2 ULPs of -4.9406564584124654e-324 ([-1.4821969375237396e-
+  323, 4.9406564584124654e-324])
 
 Matchers.tests.cpp:<line number>: PASSED:
   CHECK_THAT( smallest_non_zero, !WithinULP( -smallest_non_zero, 1 ) )
 with expansion:
-  0.0 not is within 1 ULPs of -4.9406564584124654e-324 ([-9.8813129168249309e-
-  324, -0.0000000000000000e+00])
+  5e-324 not is within 1 ULPs of -4.9406564584124654e-324 ([-9.
+  8813129168249309e-324, -0.0000000000000000e+00])
 
 -------------------------------------------------------------------------------
 #2152 - ULP checks between differently signed values were wrong - float
@@ -753,12 +753,13 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   CHECK_THAT( smallest_non_zero, WithinULP( -smallest_non_zero, 2 ) )
 with expansion:
-  0.0f is within 2 ULPs of -1.40129846e-45f ([-4.20389539e-45, 1.40129846e-45])
+  1e-45f is within 2 ULPs of -1.40129846e-45f ([-4.20389539e-45, 1.40129846e-
+  45])
 
 Matchers.tests.cpp:<line number>: PASSED:
   CHECK_THAT( smallest_non_zero, !WithinULP( -smallest_non_zero, 1 ) )
 with expansion:
-  0.0f not is within 1 ULPs of -1.40129846e-45f ([-2.80259693e-45, -0.
+  1e-45f not is within 1 ULPs of -1.40129846e-45f ([-2.80259693e-45, -0.
   00000000e+00])
 
 -------------------------------------------------------------------------------
@@ -1900,7 +1901,7 @@ Class.tests.cpp:<line number>
 Class.tests.cpp:<line number>: FAILED:
   REQUIRE( Template_Fixture<TestType>::m_a == 2 )
 with expansion:
-  1.0 == 2
+  1 == 2
 
 -------------------------------------------------------------------------------
 A TEMPLATE_TEST_CASE_METHOD based test run that fails - float
@@ -1911,7 +1912,7 @@ Class.tests.cpp:<line number>
 Class.tests.cpp:<line number>: FAILED:
   REQUIRE( Template_Fixture<TestType>::m_a == 2 )
 with expansion:
-  1.0f == 2
+  1f == 2
 
 -------------------------------------------------------------------------------
 A TEMPLATE_TEST_CASE_METHOD based test run that fails - int
@@ -1933,7 +1934,7 @@ Class.tests.cpp:<line number>
 Class.tests.cpp:<line number>: PASSED:
   REQUIRE( Template_Fixture<TestType>::m_a == 1 )
 with expansion:
-  1.0 == 1
+  1 == 1
 
 -------------------------------------------------------------------------------
 A TEMPLATE_TEST_CASE_METHOD based test run that succeeds - float
@@ -1944,7 +1945,7 @@ Class.tests.cpp:<line number>
 Class.tests.cpp:<line number>: PASSED:
   REQUIRE( Template_Fixture<TestType>::m_a == 1 )
 with expansion:
-  1.0f == 1
+  1f == 1
 
 -------------------------------------------------------------------------------
 A TEMPLATE_TEST_CASE_METHOD based test run that succeeds - int
@@ -2190,42 +2191,32 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d == 1.23_a )
 with expansion:
-  1.22999999999999998
-  ==
-  Approx( 1.22999999999999998 )
+  1.23 == Approx( 1.23 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d != 1.22_a )
 with expansion:
-  1.22999999999999998
-  !=
-  Approx( 1.21999999999999997 )
+  1.23 != Approx( 1.22 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( -d == -1.23_a )
 with expansion:
-  -1.22999999999999998
-  ==
-  Approx( -1.22999999999999998 )
+  -1.23 == Approx( -1.23 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d == 1.2_a .epsilon(.1) )
 with expansion:
-  1.22999999999999998
-  ==
-  Approx( 1.19999999999999996 )
+  1.23 == Approx( 1.2 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d != 1.2_a .epsilon(.001) )
 with expansion:
-  1.22999999999999998
-  !=
-  Approx( 1.19999999999999996 )
+  1.23 != Approx( 1.2 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d == 1_a .epsilon(.3) )
 with expansion:
-  1.22999999999999998 == Approx( 1.0 )
+  1.23 == Approx( 1 )
 
 -------------------------------------------------------------------------------
 A couple of nested sections followed by a failure
@@ -2274,32 +2265,32 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 104.0 != Approx(100.0) )
 with expansion:
-  104.0 != Approx( 100.0 )
+  104 != Approx( 1e+02 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 104.0 == Approx(100.0).margin(5) )
 with expansion:
-  104.0 == Approx( 100.0 )
+  104 == Approx( 1e+02 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 104.0 == Approx(100.0).margin(4) )
 with expansion:
-  104.0 == Approx( 100.0 )
+  104 == Approx( 1e+02 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 104.0 != Approx(100.0).margin(3) )
 with expansion:
-  104.0 != Approx( 100.0 )
+  104 != Approx( 1e+02 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 100.3 != Approx(100.0) )
 with expansion:
-  100.29999999999999716 != Approx( 100.0 )
+  100.3 != Approx( 1e+02 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 100.3 == Approx(100.0).margin(0.5) )
 with expansion:
-  100.29999999999999716 == Approx( 100.0 )
+  100.3 == Approx( 1e+02 )
 
 -------------------------------------------------------------------------------
 An empty test with no assertions
@@ -2386,12 +2377,12 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   CHECK( 0.25f == Approx(0.0f).margin(0.25f) )
 with expansion:
-  0.25f == Approx( 0.0 )
+  0.25f == Approx( 0 )
 
 Approx.tests.cpp:<line number>: PASSED:
   CHECK( 0.0f == Approx(0.25f).margin(0.25f) )
 with expansion:
-  0.0f == Approx( 0.25 )
+  0f == Approx( 0.25 )
 
 Approx.tests.cpp:<line number>: PASSED:
   CHECK( 0.5f == Approx(0.25f).margin(0.25f) )
@@ -2401,7 +2392,7 @@ with expansion:
 Approx.tests.cpp:<line number>: PASSED:
   CHECK( 245.0f == Approx(245.25f).margin(0.25f) )
 with expansion:
-  245.0f == Approx( 245.25 )
+  245f == Approx( 245.25 )
 
 Approx.tests.cpp:<line number>: PASSED:
   CHECK( 245.5f == Approx(245.25f).margin(0.25f) )
@@ -2417,16 +2408,12 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( divide( 22, 7 ) == Approx( 3.141 ).epsilon( 0.001 ) )
 with expansion:
-  3.14285714285714279
-  ==
-  Approx( 3.14100000000000001 )
+  3.142857142857143 == Approx( 3.141 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( divide( 22, 7 ) != Approx( 3.141 ).epsilon( 0.0001 ) )
 with expansion:
-  3.14285714285714279
-  !=
-  Approx( 3.14100000000000001 )
+  3.142857142857143 != Approx( 3.141 )
 
 -------------------------------------------------------------------------------
 Approximate comparisons with different epsilons
@@ -2437,16 +2424,12 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d != Approx( 1.231 ) )
 with expansion:
-  1.22999999999999998
-  !=
-  Approx( 1.23100000000000009 )
+  1.23 != Approx( 1.231 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d == Approx( 1.231 ).epsilon( 0.1 ) )
 with expansion:
-  1.22999999999999998
-  ==
-  Approx( 1.23100000000000009 )
+  1.23 == Approx( 1.231 )
 
 -------------------------------------------------------------------------------
 Approximate comparisons with floats
@@ -2457,14 +2440,12 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 1.23f == Approx( 1.23f ) )
 with expansion:
-  1.230000019f
-  ==
-  Approx( 1.23000001907348633 )
+  1.23f == Approx( 1.2300000190734863 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 0.0f == Approx( 0.0f ) )
 with expansion:
-  0.0f == Approx( 0.0 )
+  0f == Approx( 0 )
 
 -------------------------------------------------------------------------------
 Approximate comparisons with ints
@@ -2474,13 +2455,9 @@ Approx.tests.cpp:<line number>
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 1 == Approx( 1 ) )
-with expansion:
-  1 == Approx( 1.0 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 0 == Approx( 0 ) )
-with expansion:
-  0 == Approx( 0.0 )
 
 -------------------------------------------------------------------------------
 Approximate comparisons with mixed numeric types
@@ -2491,31 +2468,27 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 1.0f == Approx( 1 ) )
 with expansion:
-  1.0f == Approx( 1.0 )
+  1f == Approx( 1 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 0 == Approx( dZero) )
 with expansion:
-  0 == Approx( 0.0 )
+  0 == Approx( 0 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 0 == Approx( dSmall ).margin( 0.001 ) )
 with expansion:
-  0 == Approx( 0.00001 )
+  0 == Approx( 1e-05 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 1.234f == Approx( dMedium ) )
 with expansion:
-  1.233999968f
-  ==
-  Approx( 1.23399999999999999 )
+  1.234f == Approx( 1.234 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( dMedium == Approx( 1.234f ) )
 with expansion:
-  1.23399999999999999
-  ==
-  Approx( 1.23399996757507324 )
+  1.234 == Approx( 1.2339999675750732 )
 
 -------------------------------------------------------------------------------
 Arbitrary predicate matcher
@@ -2777,7 +2750,7 @@ MatchersRanges.tests.cpp:<line number>
 MatchersRanges.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( in, Contains(Catch::Matchers::WithinAbs(0.5, 0.5)) )
 with expansion:
-  { 1.0, 2.0, 3.0, 0.0 } contains element matching is within 0.5 of 0.5
+  { 1, 2, 3, 0 } contains element matching is within 0.5 of 0.5
 
 -------------------------------------------------------------------------------
 Basic use of the Empty range matcher
@@ -2794,7 +2767,7 @@ with expansion:
 MatchersRanges.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( non_empty_array, !IsEmpty() )
 with expansion:
-  { 0.0 } not is empty
+  { 0 } not is empty
 
 MatchersRanges.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( empty_vec, IsEmpty() )
@@ -3647,62 +3620,62 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( td == Approx(10.0) )
 with expansion:
-  StrongDoubleTypedef(10) == Approx( 10.0 )
+  StrongDoubleTypedef(10) == Approx( 1e+01 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( Approx(10.0) == td )
 with expansion:
-  Approx( 10.0 ) == StrongDoubleTypedef(10)
+  Approx( 1e+01 ) == StrongDoubleTypedef(10)
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( td != Approx(11.0) )
 with expansion:
-  StrongDoubleTypedef(10) != Approx( 11.0 )
+  StrongDoubleTypedef(10) != Approx( 11 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( Approx(11.0) != td )
 with expansion:
-  Approx( 11.0 ) != StrongDoubleTypedef(10)
+  Approx( 11 ) != StrongDoubleTypedef(10)
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( td <= Approx(10.0) )
 with expansion:
-  StrongDoubleTypedef(10) <= Approx( 10.0 )
+  StrongDoubleTypedef(10) <= Approx( 1e+01 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( td <= Approx(11.0) )
 with expansion:
-  StrongDoubleTypedef(10) <= Approx( 11.0 )
+  StrongDoubleTypedef(10) <= Approx( 11 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( Approx(10.0) <= td )
 with expansion:
-  Approx( 10.0 ) <= StrongDoubleTypedef(10)
+  Approx( 1e+01 ) <= StrongDoubleTypedef(10)
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( Approx(9.0) <= td )
 with expansion:
-  Approx( 9.0 ) <= StrongDoubleTypedef(10)
+  Approx( 9 ) <= StrongDoubleTypedef(10)
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( td >= Approx(9.0) )
 with expansion:
-  StrongDoubleTypedef(10) >= Approx( 9.0 )
+  StrongDoubleTypedef(10) >= Approx( 9 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( td >= Approx(td) )
 with expansion:
-  StrongDoubleTypedef(10) >= Approx( 10.0 )
+  StrongDoubleTypedef(10) >= Approx( 1e+01 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( Approx(td) >= td )
 with expansion:
-  Approx( 10.0 ) >= StrongDoubleTypedef(10)
+  Approx( 1e+01 ) >= StrongDoubleTypedef(10)
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( Approx(11.0) >= td )
 with expansion:
-  Approx( 11.0 ) >= StrongDoubleTypedef(10)
+  Approx( 11 ) >= StrongDoubleTypedef(10)
 
 -------------------------------------------------------------------------------
 Comparisons between ints where one side is computed
@@ -4215,12 +4188,12 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 101.000001 != Approx(100).epsilon(0.01) )
 with expansion:
-  101.00000099999999748 != Approx( 100.0 )
+  101.000001 != Approx( 1e+02 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( std::pow(10, -5) != Approx(std::pow(10, -7)) )
 with expansion:
-  0.00001 != Approx( 0.0000001 )
+  1e-05 != Approx( 1e-07 )
 
 -------------------------------------------------------------------------------
 Delayed unscoped message clearing does not catch newly inserted messages
@@ -4379,7 +4352,7 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( 101.01 != Approx(100).epsilon(0.01) )
 with expansion:
-  101.01000000000000512 != Approx( 100.0 )
+  101.01 != Approx( 1e+02 )
 
 -------------------------------------------------------------------------------
 Equality checks that should fail
@@ -4405,31 +4378,27 @@ with expansion:
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one == Approx( 9.11f ) )
 with expansion:
-  9.100000381f
-  ==
-  Approx( 9.10999965667724609 )
+  9.1f == Approx( 9.109999656677246 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one == Approx( 9.0f ) )
 with expansion:
-  9.100000381f == Approx( 9.0 )
+  9.1f == Approx( 9 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one == Approx( 1 ) )
 with expansion:
-  9.100000381f == Approx( 1.0 )
+  9.1f == Approx( 1 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one == Approx( 0 ) )
 with expansion:
-  9.100000381f == Approx( 0.0 )
+  9.1f == Approx( 0 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.double_pi == Approx( 3.1415 ) )
 with expansion:
-  3.14159265350000005
-  ==
-  Approx( 3.14150000000000018 )
+  3.1415926535 == Approx( 3.1415 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.str_hello == "goodbye" )
@@ -4454,9 +4423,7 @@ with expansion:
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( x == Approx( 1.301 ) )
 with expansion:
-  1.30000000000000027
-  ==
-  Approx( 1.30099999999999993 )
+  1.3000000000000003 == Approx( 1.301 )
 
 -------------------------------------------------------------------------------
 Equality checks that should succeed
@@ -4472,16 +4439,12 @@ with expansion:
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.float_nine_point_one == Approx( 9.1f ) )
 with expansion:
-  9.100000381f
-  ==
-  Approx( 9.10000038146972656 )
+  9.1f == Approx( 9.100000381469727 )
 
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.double_pi == Approx( 3.1415926535 ) )
 with expansion:
-  3.14159265350000005
-  ==
-  Approx( 3.14159265350000005 )
+  3.1415926535 == Approx( 3.1415926535 )
 
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.str_hello == "hello" )
@@ -4501,9 +4464,7 @@ with expansion:
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( x == Approx( 1.3 ) )
 with expansion:
-  1.30000000000000027
-  ==
-  Approx( 1.30000000000000004 )
+  1.3000000000000003 == Approx( 1.3 )
 
 -------------------------------------------------------------------------------
 Equals
@@ -4897,22 +4858,22 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 10., WithinRel( 11.1, 0.1 ) )
 with expansion:
-  10.0 and 11.09999999999999964 are within 10% of each other
+  1e+01 and 11.1 are within 10% of each other
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 10., !WithinRel( 11.2, 0.1 ) )
 with expansion:
-  10.0 not and 11.19999999999999929 are within 10% of each other
+  1e+01 not and 11.2 are within 10% of each other
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1., !WithinRel( 0., 0.99 ) )
 with expansion:
-  1.0 not and 0.0 are within 99% of each other
+  1 not and 0 are within 99% of each other
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( -0., WithinRel( 0. ) )
 with expansion:
-  -0.0 and 0.0 are within 2.22045e-12% of each other
+  -0 and 0 are within 2.22045e-12% of each other
 
 -------------------------------------------------------------------------------
 Floating point matchers: double
@@ -4925,7 +4886,8 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( v1, WithinRel( v2 ) )
 with expansion:
-  0.0 and 0.0 are within 2.22045e-12% of each other
+  2.2250738585072014e-308 and 2.225073858507201e-308 are within 2.22045e-12% of
+  each other
 
 -------------------------------------------------------------------------------
 Floating point matchers: double
@@ -4937,42 +4899,42 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1., WithinAbs( 1., 0 ) )
 with expansion:
-  1.0 is within 0.0 of 1.0
+  1 is within 0 of 1
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0., WithinAbs( 1., 1 ) )
 with expansion:
-  0.0 is within 1.0 of 1.0
+  0 is within 1 of 1
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0., !WithinAbs( 1., 0.99 ) )
 with expansion:
-  0.0 not is within 0.98999999999999999 of 1.0
+  0 not is within 0.99 of 1
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0., !WithinAbs( 1., 0.99 ) )
 with expansion:
-  0.0 not is within 0.98999999999999999 of 1.0
+  0 not is within 0.99 of 1
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 11., !WithinAbs( 10., 0.5 ) )
 with expansion:
-  11.0 not is within 0.5 of 10.0
+  11 not is within 0.5 of 1e+01
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 10., !WithinAbs( 11., 0.5 ) )
 with expansion:
-  10.0 not is within 0.5 of 11.0
+  1e+01 not is within 0.5 of 11
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( -10., WithinAbs( -10., 0.5 ) )
 with expansion:
-  -10.0 is within 0.5 of -10.0
+  -1e+01 is within 0.5 of -1e+01
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( -10., WithinAbs( -9.6, 0.5 ) )
 with expansion:
-  -10.0 is within 0.5 of -9.59999999999999964
+  -1e+01 is within 0.5 of -9.6
 
 -------------------------------------------------------------------------------
 Floating point matchers: double
@@ -4984,43 +4946,43 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1., WithinULP( 1., 0 ) )
 with expansion:
-  1.0 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.
+  1 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.
   0000000000000000e+00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( nextafter( 1., 2. ), WithinULP( 1., 1 ) )
 with expansion:
-  1.00000000000000022 is within 1 ULPs of 1.0000000000000000e+00 ([9.
+  1.0000000000000002 is within 1 ULPs of 1.0000000000000000e+00 ([9.
   9999999999999989e-01, 1.0000000000000002e+00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0., WithinULP( nextafter( 0., 1. ), 1 ) )
 with expansion:
-  0.0 is within 1 ULPs of 4.9406564584124654e-324 ([0.0000000000000000e+00, 9.
+  0 is within 1 ULPs of 4.9406564584124654e-324 ([0.0000000000000000e+00, 9.
   8813129168249309e-324])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1., WithinULP( nextafter( 1., 0. ), 1 ) )
 with expansion:
-  1.0 is within 1 ULPs of 9.9999999999999989e-01 ([9.9999999999999978e-01, 1.
+  1 is within 1 ULPs of 9.9999999999999989e-01 ([9.9999999999999978e-01, 1.
   0000000000000000e+00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1., !WithinULP( nextafter( 1., 2. ), 0 ) )
 with expansion:
-  1.0 not is within 0 ULPs of 1.0000000000000002e+00 ([1.0000000000000002e+00,
-  1.0000000000000002e+00])
+  1 not is within 0 ULPs of 1.0000000000000002e+00 ([1.0000000000000002e+00, 1.
+  0000000000000002e+00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1., WithinULP( 1., 0 ) )
 with expansion:
-  1.0 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.
+  1 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.
   0000000000000000e+00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( -0., WithinULP( 0., 0 ) )
 with expansion:
-  -0.0 is within 0 ULPs of 0.0000000000000000e+00 ([0.0000000000000000e+00, 0.
+  -0 is within 0 ULPs of 0.0000000000000000e+00 ([0.0000000000000000e+00, 0.
   0000000000000000e+00])
 
 -------------------------------------------------------------------------------
@@ -5033,19 +4995,19 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1., WithinAbs( 1., 0.5 ) || WithinULP( 2., 1 ) )
 with expansion:
-  1.0 ( is within 0.5 of 1.0 or is within 1 ULPs of 2.0000000000000000e+00 ([1.
+  1 ( is within 0.5 of 1 or is within 1 ULPs of 2.0000000000000000e+00 ([1.
   9999999999999998e+00, 2.0000000000000004e+00]) )
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1., WithinAbs( 2., 0.5 ) || WithinULP( 1., 0 ) )
 with expansion:
-  1.0 ( is within 0.5 of 2.0 or is within 0 ULPs of 1.0000000000000000e+00 ([1.
+  1 ( is within 0.5 of 2 or is within 0 ULPs of 1.0000000000000000e+00 ([1.
   0000000000000000e+00, 1.0000000000000000e+00]) )
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0.0001, WithinAbs( 0., 0.001 ) || WithinRel( 0., 0.1 ) )
 with expansion:
-  0.0001 ( is within 0.001 of 0.0 or and 0.0 are within 10% of each other )
+  0.0001 ( is within 0.001 of 0 or and 0 are within 10% of each other )
 
 -------------------------------------------------------------------------------
 Floating point matchers: double
@@ -5082,7 +5044,7 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1., !IsNaN() )
 with expansion:
-  1.0 not is NaN
+  1 not is NaN
 
 -------------------------------------------------------------------------------
 Floating point matchers: float
@@ -5094,22 +5056,22 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 10.f, WithinRel( 11.1f, 0.1f ) )
 with expansion:
-  10.0f and 11.10000038146972656 are within 10% of each other
+  1e+01f and 11.100000381469727 are within 10% of each other
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 10.f, !WithinRel( 11.2f, 0.1f ) )
 with expansion:
-  10.0f not and 11.19999980926513672 are within 10% of each other
+  1e+01f not and 11.199999809265137 are within 10% of each other
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1.f, !WithinRel( 0.f, 0.99f ) )
 with expansion:
-  1.0f not and 0.0 are within 99% of each other
+  1f not and 0 are within 99% of each other
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( -0.f, WithinRel( 0.f ) )
 with expansion:
-  -0.0f and 0.0 are within 0.00119209% of each other
+  -0f and 0 are within 0.00119209% of each other
 
 -------------------------------------------------------------------------------
 Floating point matchers: float
@@ -5122,7 +5084,8 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( v1, WithinRel( v2 ) )
 with expansion:
-  0.0f and 0.0 are within 0.00119209% of each other
+  1.1754944e-38f and 1.1754942106924411e-38 are within 0.00119209% of each
+  other
 
 -------------------------------------------------------------------------------
 Floating point matchers: float
@@ -5134,47 +5097,47 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1.f, WithinAbs( 1.f, 0 ) )
 with expansion:
-  1.0f is within 0.0 of 1.0
+  1f is within 0 of 1
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0.f, WithinAbs( 1.f, 1 ) )
 with expansion:
-  0.0f is within 1.0 of 1.0
+  0f is within 1 of 1
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0.f, !WithinAbs( 1.f, 0.99f ) )
 with expansion:
-  0.0f not is within 0.99000000953674316 of 1.0
+  0f not is within 0.9900000095367432 of 1
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0.f, !WithinAbs( 1.f, 0.99f ) )
 with expansion:
-  0.0f not is within 0.99000000953674316 of 1.0
+  0f not is within 0.9900000095367432 of 1
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0.f, WithinAbs( -0.f, 0 ) )
 with expansion:
-  0.0f is within 0.0 of -0.0
+  0f is within 0 of -0
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 11.f, !WithinAbs( 10.f, 0.5f ) )
 with expansion:
-  11.0f not is within 0.5 of 10.0
+  11f not is within 0.5 of 1e+01
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 10.f, !WithinAbs( 11.f, 0.5f ) )
 with expansion:
-  10.0f not is within 0.5 of 11.0
+  1e+01f not is within 0.5 of 11
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( -10.f, WithinAbs( -10.f, 0.5f ) )
 with expansion:
-  -10.0f is within 0.5 of -10.0
+  -1e+01f is within 0.5 of -1e+01
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( -10.f, WithinAbs( -9.6f, 0.5f ) )
 with expansion:
-  -10.0f is within 0.5 of -9.60000038146972656
+  -1e+01f is within 0.5 of -9.600000381469727
 
 -------------------------------------------------------------------------------
 Floating point matchers: float
@@ -5186,45 +5149,43 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1.f, WithinULP( 1.f, 0 ) )
 with expansion:
-  1.0f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
+  1f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( -1.f, WithinULP( -1.f, 0 ) )
 with expansion:
-  -1.0f is within 0 ULPs of -1.00000000e+00f ([-1.00000000e+00, -1.00000000e+
-  00])
+  -1f is within 0 ULPs of -1.00000000e+00f ([-1.00000000e+00, -1.00000000e+00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( nextafter( 1.f, 2.f ), WithinULP( 1.f, 1 ) )
 with expansion:
-  1.000000119f is within 1 ULPs of 1.00000000e+00f ([9.99999940e-01, 1.
-  00000012e+00])
+  1.0000001f is within 1 ULPs of 1.00000000e+00f ([9.99999940e-01, 1.00000012e+
+  00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0.f, WithinULP( nextafter( 0.f, 1.f ), 1 ) )
 with expansion:
-  0.0f is within 1 ULPs of 1.40129846e-45f ([0.00000000e+00, 2.80259693e-45])
+  0f is within 1 ULPs of 1.40129846e-45f ([0.00000000e+00, 2.80259693e-45])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1.f, WithinULP( nextafter( 1.f, 0.f ), 1 ) )
 with expansion:
-  1.0f is within 1 ULPs of 9.99999940e-01f ([9.99999881e-01, 1.00000000e+00])
+  1f is within 1 ULPs of 9.99999940e-01f ([9.99999881e-01, 1.00000000e+00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1.f, !WithinULP( nextafter( 1.f, 2.f ), 0 ) )
 with expansion:
-  1.0f not is within 0 ULPs of 1.00000012e+00f ([1.00000012e+00, 1.00000012e+
-  00])
+  1f not is within 0 ULPs of 1.00000012e+00f ([1.00000012e+00, 1.00000012e+00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1.f, WithinULP( 1.f, 0 ) )
 with expansion:
-  1.0f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
+  1f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( -0.f, WithinULP( 0.f, 0 ) )
 with expansion:
-  -0.0f is within 0 ULPs of 0.00000000e+00f ([0.00000000e+00, 0.00000000e+00])
+  -0f is within 0 ULPs of 0.00000000e+00f ([0.00000000e+00, 0.00000000e+00])
 
 -------------------------------------------------------------------------------
 Floating point matchers: float
@@ -5236,19 +5197,19 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1.f, WithinAbs( 1.f, 0.5 ) || WithinULP( 1.f, 1 ) )
 with expansion:
-  1.0f ( is within 0.5 of 1.0 or is within 1 ULPs of 1.00000000e+00f ([9.
-  99999940e-01, 1.00000012e+00]) )
+  1f ( is within 0.5 of 1 or is within 1 ULPs of 1.00000000e+00f ([9.99999940e-
+  01, 1.00000012e+00]) )
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1.f, WithinAbs( 2.f, 0.5 ) || WithinULP( 1.f, 0 ) )
 with expansion:
-  1.0f ( is within 0.5 of 2.0 or is within 0 ULPs of 1.00000000e+00f ([1.
-  00000000e+00, 1.00000000e+00]) )
+  1f ( is within 0.5 of 2 or is within 0 ULPs of 1.00000000e+00f ([1.00000000e+
+  00, 1.00000000e+00]) )
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 0.0001f, WithinAbs( 0.f, 0.001f ) || WithinRel( 0.f, 0.1f ) )
 with expansion:
-  0.0001f ( is within 0.00100000004749745 of 0.0 or and 0.0 are within 10% of
+  0.0001f ( is within 0.0010000000474974513 of 0 or and 0 are within 10% of
   each other )
 
 -------------------------------------------------------------------------------
@@ -5289,7 +5250,7 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( 1., !IsNaN() )
 with expansion:
-  1.0 not is NaN
+  1 not is NaN
 
 -------------------------------------------------------------------------------
 GENERATE can combine literals and generators
@@ -6415,7 +6376,7 @@ GeneratorsImpl.tests.cpp:<line number>
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == 2.0 )
 with expansion:
-  2.0 == 2.0
+  2 == 2
 
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.next() )
@@ -6425,7 +6386,7 @@ with expansion:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == 4.0 )
 with expansion:
-  4.0 == 4.0
+  4 == 4
 
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.next() )
@@ -6435,7 +6396,7 @@ with expansion:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == 6.0 )
 with expansion:
-  6.0 == 6.0
+  6 == 6
 
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE_FALSE( gen.next() )
@@ -6452,7 +6413,7 @@ GeneratorsImpl.tests.cpp:<line number>
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == 2.0 )
 with expansion:
-  2.0 == 2.0
+  2 == 2
 
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.next() )
@@ -6462,7 +6423,7 @@ with expansion:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == 4.0 )
 with expansion:
-  4.0 == 4.0
+  4 == 4
 
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.next() )
@@ -6472,7 +6433,7 @@ with expansion:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == 6.0 )
 with expansion:
-  6.0 == 6.0
+  6 == 6
 
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE_FALSE( gen.next() )
@@ -6836,7 +6797,7 @@ GeneratorsImpl.tests.cpp:<line number>
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -1.0 == Approx( -1.0 )
+  -1 == Approx( -1 )
 with message:
   Current expected value is -1
 
@@ -6850,9 +6811,7 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -0.90000000000000002
-  ==
-  Approx( -0.90000000000000002 )
+  -0.9 == Approx( -0.9 )
 with message:
   Current expected value is -0.9
 
@@ -6866,9 +6825,7 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -0.80000000000000004
-  ==
-  Approx( -0.80000000000000004 )
+  -0.8 == Approx( -0.8 )
 with message:
   Current expected value is -0.8
 
@@ -6882,9 +6839,9 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -0.70000000000000007
+  -0.7000000000000001
   ==
-  Approx( -0.70000000000000007 )
+  Approx( -0.7000000000000001 )
 with message:
   Current expected value is -0.7
 
@@ -6898,9 +6855,9 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -0.60000000000000009
+  -0.6000000000000001
   ==
-  Approx( -0.60000000000000009 )
+  Approx( -0.6000000000000001 )
 with message:
   Current expected value is -0.6
 
@@ -6914,9 +6871,9 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -0.50000000000000011
+  -0.5000000000000001
   ==
-  Approx( -0.50000000000000011 )
+  Approx( -0.5000000000000001 )
 with message:
   Current expected value is -0.5
 
@@ -6994,9 +6951,9 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -0.00000000000000014
+  -1.3877787807814457e-16
   ==
-  Approx( -0.00000000000000014 )
+  Approx( -1.3877787807814457e-16 )
 with message:
   Current expected value is -1.38778e-16
 
@@ -7042,9 +6999,9 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  0.29999999999999988
+  0.2999999999999999
   ==
-  Approx( 0.29999999999999988 )
+  Approx( 0.2999999999999999 )
 with message:
   Current expected value is 0.3
 
@@ -7058,9 +7015,9 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  0.39999999999999991
+  0.3999999999999999
   ==
-  Approx( 0.39999999999999991 )
+  Approx( 0.3999999999999999 )
 with message:
   Current expected value is 0.4
 
@@ -7074,9 +7031,9 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  0.49999999999999989
+  0.4999999999999999
   ==
-  Approx( 0.49999999999999989 )
+  Approx( 0.4999999999999999 )
 with message:
   Current expected value is 0.5
 
@@ -7090,9 +7047,9 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  0.59999999999999987
+  0.5999999999999999
   ==
-  Approx( 0.59999999999999987 )
+  Approx( 0.5999999999999999 )
 with message:
   Current expected value is 0.6
 
@@ -7106,9 +7063,9 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  0.69999999999999984
+  0.6999999999999998
   ==
-  Approx( 0.69999999999999984 )
+  Approx( 0.6999999999999998 )
 with message:
   Current expected value is 0.7
 
@@ -7122,9 +7079,9 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  0.79999999999999982
+  0.7999999999999998
   ==
-  Approx( 0.79999999999999982 )
+  Approx( 0.7999999999999998 )
 with message:
   Current expected value is 0.8
 
@@ -7154,7 +7111,7 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx( rangeEnd ) )
 with expansion:
-  0.99999999999999978 == Approx( 1.0 )
+  0.9999999999999998 == Approx( 1 )
 
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE_FALSE( gen.next() )
@@ -7174,7 +7131,7 @@ GeneratorsImpl.tests.cpp:<line number>
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -1.0 == Approx( -1.0 )
+  -1 == Approx( -1 )
 with message:
   Current expected value is -1
 
@@ -7188,9 +7145,7 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -0.69999999999999996
-  ==
-  Approx( -0.69999999999999996 )
+  -0.7 == Approx( -0.7 )
 with message:
   Current expected value is -0.7
 
@@ -7236,9 +7191,7 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  0.20000000000000001
-  ==
-  Approx( 0.20000000000000001 )
+  0.2 == Approx( 0.2 )
 with message:
   Current expected value is 0.2
 
@@ -7281,7 +7234,7 @@ GeneratorsImpl.tests.cpp:<line number>
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -1.0 == Approx( -1.0 )
+  -1 == Approx( -1 )
 with message:
   Current expected value is -1
 
@@ -7295,9 +7248,7 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  -0.69999999999999996
-  ==
-  Approx( -0.69999999999999996 )
+  -0.7 == Approx( -0.7 )
 with message:
   Current expected value is -0.7
 
@@ -7343,9 +7294,7 @@ with message:
 GeneratorsImpl.tests.cpp:<line number>: PASSED:
   REQUIRE( gen.get() == Approx(expected) )
 with expansion:
-  0.20000000000000001
-  ==
-  Approx( 0.20000000000000001 )
+  0.2 == Approx( 0.2 )
 with message:
   Current expected value is 0.2
 
@@ -7544,30 +7493,22 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d >= Approx( 1.22 ) )
 with expansion:
-  1.22999999999999998
-  >=
-  Approx( 1.21999999999999997 )
+  1.23 >= Approx( 1.22 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d >= Approx( 1.23 ) )
 with expansion:
-  1.22999999999999998
-  >=
-  Approx( 1.22999999999999998 )
+  1.23 >= Approx( 1.23 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE_FALSE( d >= Approx( 1.24 ) )
 with expansion:
-  !(1.22999999999999998
-  >=
-  Approx( 1.23999999999999999 ))
+  !(1.23 >= Approx( 1.24 ))
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d >= Approx( 1.24 ).epsilon(0.1) )
 with expansion:
-  1.22999999999999998
-  >=
-  Approx( 1.23999999999999999 )
+  1.23 >= Approx( 1.24 )
 
 -------------------------------------------------------------------------------
 Hashers with different seed produce different hash with same test case
@@ -7848,16 +7789,12 @@ with expansion:
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one != Approx( 9.1f ) )
 with expansion:
-  9.100000381f
-  !=
-  Approx( 9.10000038146972656 )
+  9.1f != Approx( 9.100000381469727 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.double_pi != Approx( 3.1415926535 ) )
 with expansion:
-  3.14159265350000005
-  !=
-  Approx( 3.14159265350000005 )
+  3.1415926535 != Approx( 3.1415926535 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.str_hello != "hello" )
@@ -7888,31 +7825,27 @@ with expansion:
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.float_nine_point_one != Approx( 9.11f ) )
 with expansion:
-  9.100000381f
-  !=
-  Approx( 9.10999965667724609 )
+  9.1f != Approx( 9.109999656677246 )
 
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.float_nine_point_one != Approx( 9.0f ) )
 with expansion:
-  9.100000381f != Approx( 9.0 )
+  9.1f != Approx( 9 )
 
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.float_nine_point_one != Approx( 1 ) )
 with expansion:
-  9.100000381f != Approx( 1.0 )
+  9.1f != Approx( 1 )
 
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.float_nine_point_one != Approx( 0 ) )
 with expansion:
-  9.100000381f != Approx( 0.0 )
+  9.1f != Approx( 0 )
 
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.double_pi != Approx( 3.1415 ) )
 with expansion:
-  3.14159265350000005
-  !=
-  Approx( 3.14150000000000018 )
+  3.1415926535 != Approx( 3.1415 )
 
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.str_hello != "goodbye" )
@@ -8336,30 +8269,22 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d <= Approx( 1.24 ) )
 with expansion:
-  1.22999999999999998
-  <=
-  Approx( 1.23999999999999999 )
+  1.23 <= Approx( 1.24 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d <= Approx( 1.23 ) )
 with expansion:
-  1.22999999999999998
-  <=
-  Approx( 1.22999999999999998 )
+  1.23 <= Approx( 1.23 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE_FALSE( d <= Approx( 1.22 ) )
 with expansion:
-  !(1.22999999999999998
-  <=
-  Approx( 1.21999999999999997 ))
+  !(1.23 <= Approx( 1.22 ))
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d <= Approx( 1.22 ).epsilon(0.1) )
 with expansion:
-  1.22999999999999998
-  <=
-  Approx( 1.21999999999999997 )
+  1.23 <= Approx( 1.22 )
 
 -------------------------------------------------------------------------------
 ManuallyRegistered
@@ -9040,17 +8965,17 @@ with expansion:
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one < 9 )
 with expansion:
-  9.100000381f < 9
+  9.1f < 9
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one > 10 )
 with expansion:
-  9.100000381f > 10
+  9.1f > 10
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one > 9.2 )
 with expansion:
-  9.100000381f > 9.19999999999999929
+  9.1f > 9.2
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.str_hello > "hello" )
@@ -9141,17 +9066,17 @@ with expansion:
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.float_nine_point_one > 9 )
 with expansion:
-  9.100000381f > 9
+  9.1f > 9
 
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.float_nine_point_one < 10 )
 with expansion:
-  9.100000381f < 10
+  9.1f < 10
 
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.float_nine_point_one < 9.2 )
 with expansion:
-  9.100000381f < 9.19999999999999929
+  9.1f < 9.2
 
 Condition.tests.cpp:<line number>: PASSED:
   REQUIRE( data.str_hello <= "hello" )
@@ -10730,9 +10655,7 @@ with expansion:
 CmdLine.tests.cpp:<line number>: PASSED:
   REQUIRE( config.benchmarkConfidenceInterval == Catch::Approx(0.99) )
 with expansion:
-  0.98999999999999999
-  ==
-  Approx( 0.98999999999999999 )
+  0.99 == Approx( 0.99 )
 
 -------------------------------------------------------------------------------
 Process can be configured on command line
@@ -12040,58 +11963,42 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d == Approx( 1.23 ) )
 with expansion:
-  1.22999999999999998
-  ==
-  Approx( 1.22999999999999998 )
+  1.23 == Approx( 1.23 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d != Approx( 1.22 ) )
 with expansion:
-  1.22999999999999998
-  !=
-  Approx( 1.21999999999999997 )
+  1.23 != Approx( 1.22 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d != Approx( 1.24 ) )
 with expansion:
-  1.22999999999999998
-  !=
-  Approx( 1.23999999999999999 )
+  1.23 != Approx( 1.24 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d == 1.23_a )
 with expansion:
-  1.22999999999999998
-  ==
-  Approx( 1.22999999999999998 )
+  1.23 == Approx( 1.23 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d != 1.22_a )
 with expansion:
-  1.22999999999999998
-  !=
-  Approx( 1.21999999999999997 )
+  1.23 != Approx( 1.22 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( Approx( d ) == 1.23 )
 with expansion:
-  Approx( 1.22999999999999998 )
-  ==
-  1.22999999999999998
+  Approx( 1.23 ) == 1.23
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( Approx( d ) != 1.22 )
 with expansion:
-  Approx( 1.22999999999999998 )
-  !=
-  1.21999999999999997
+  Approx( 1.23 ) != 1.22
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( Approx( d ) != 1.24 )
 with expansion:
-  Approx( 1.22999999999999998 )
-  !=
-  1.23999999999999999
+  Approx( 1.23 ) != 1.24
 
 Message from section one
 -------------------------------------------------------------------------------
@@ -12908,7 +12815,7 @@ Class.tests.cpp:<line number>
 Class.tests.cpp:<line number>: PASSED:
   REQUIRE( Template_Fixture<TestType>::m_a == 1 )
 with expansion:
-  1.0 == 1
+  1 == 1
 
 -------------------------------------------------------------------------------
 Template test case with test types specified inside non-copyable and non-
@@ -15080,7 +14987,7 @@ Exception.tests.cpp:<line number>
 
 Exception.tests.cpp:<line number>: FAILED:
 due to unexpected exception with message:
-  3.14000000000000012
+  3.14
 
 -------------------------------------------------------------------------------
 Unscoped capture outlives scope
@@ -16381,54 +16288,42 @@ Approx.tests.cpp:<line number>
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d == approx( 1.23 ) )
 with expansion:
-  1.22999999999999998
-  ==
-  Approx( 1.22999999999999998 )
+  1.23 == Approx( 1.23 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d == approx( 1.22 ) )
 with expansion:
-  1.22999999999999998
-  ==
-  Approx( 1.21999999999999997 )
+  1.23 == Approx( 1.22 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d == approx( 1.24 ) )
 with expansion:
-  1.22999999999999998
-  ==
-  Approx( 1.23999999999999999 )
+  1.23 == Approx( 1.24 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( d != approx( 1.25 ) )
 with expansion:
-  1.22999999999999998 != Approx( 1.25 )
+  1.23 != Approx( 1.25 )
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( approx( d ) == 1.23 )
 with expansion:
-  Approx( 1.22999999999999998 )
-  ==
-  1.22999999999999998
+  Approx( 1.23 ) == 1.23
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( approx( d ) == 1.22 )
 with expansion:
-  Approx( 1.22999999999999998 )
-  ==
-  1.21999999999999997
+  Approx( 1.23 ) == 1.22
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( approx( d ) == 1.24 )
 with expansion:
-  Approx( 1.22999999999999998 )
-  ==
-  1.23999999999999999
+  Approx( 1.23 ) == 1.24
 
 Approx.tests.cpp:<line number>: PASSED:
   REQUIRE( approx( d ) != 1.25 )
 with expansion:
-  Approx( 1.22999999999999998 ) != 1.25
+  Approx( 1.23 ) != 1.25
 
 -------------------------------------------------------------------------------
 Variadic macros
@@ -16464,12 +16359,12 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( v1, Approx( v1 ) )
 with expansion:
-  { 1.0, 2.0, 3.0 } is approx: { 1.0, 2.0, 3.0 }
+  { 1, 2, 3 } is approx: { 1, 2, 3 }
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( v1, Approx<double>( { 1., 2., 3. } ) )
 with expansion:
-  { 1.0, 2.0, 3.0 } is approx: { 1.0, 2.0, 3.0 }
+  { 1, 2, 3 } is approx: { 1, 2, 3 }
 
 -------------------------------------------------------------------------------
 Vector Approx matcher
@@ -16482,7 +16377,7 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( v1, !Approx( temp ) )
 with expansion:
-  { 1.0, 2.0, 3.0 } not is approx: { 1.0, 2.0, 3.0, 4.0 }
+  { 1, 2, 3 } not is approx: { 1, 2, 3, 4 }
 
 -------------------------------------------------------------------------------
 Vector Approx matcher
@@ -16495,22 +16390,22 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( v1, !Approx( v2 ) )
 with expansion:
-  { 1.0, 2.0, 3.0 } not is approx: { 1.5, 2.5, 3.5 }
+  { 1, 2, 3 } not is approx: { 1.5, 2.5, 3.5 }
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( v1, Approx( v2 ).margin( 0.5 ) )
 with expansion:
-  { 1.0, 2.0, 3.0 } is approx: { 1.5, 2.5, 3.5 }
+  { 1, 2, 3 } is approx: { 1.5, 2.5, 3.5 }
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( v1, Approx( v2 ).epsilon( 0.5 ) )
 with expansion:
-  { 1.0, 2.0, 3.0 } is approx: { 1.5, 2.5, 3.5 }
+  { 1, 2, 3 } is approx: { 1.5, 2.5, 3.5 }
 
 Matchers.tests.cpp:<line number>: PASSED:
   REQUIRE_THAT( v1, Approx( v2 ).epsilon( 0.1 ).scale( 500 ) )
 with expansion:
-  { 1.0, 2.0, 3.0 } is approx: { 1.5, 2.5, 3.5 }
+  { 1, 2, 3 } is approx: { 1.5, 2.5, 3.5 }
 
 -------------------------------------------------------------------------------
 Vector Approx matcher -- failing
@@ -16522,7 +16417,7 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: FAILED:
   CHECK_THAT( empty, Approx( t1 ) )
 with expansion:
-  {  } is approx: { 1.0, 2.0 }
+  {  } is approx: { 1, 2 }
 
 -------------------------------------------------------------------------------
 Vector Approx matcher -- failing
@@ -16534,7 +16429,7 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: FAILED:
   CHECK_THAT( v1, Approx( v2 ) )
 with expansion:
-  { 2.0, 4.0, 6.0 } is approx: { 1.0, 3.0, 5.0 }
+  { 2, 4, 6 } is approx: { 1, 3, 5 }
 
 -------------------------------------------------------------------------------
 Vector matchers
@@ -17040,32 +16935,32 @@ InternalBenchmark.tests.cpp:<line number>
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( analysis.mean.point.count() == 23 )
 with expansion:
-  23.0 == 23
+  23 == 23
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( analysis.mean.lower_bound.count() == 23 )
 with expansion:
-  23.0 == 23
+  23 == 23
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( analysis.mean.upper_bound.count() == 23 )
 with expansion:
-  23.0 == 23
+  23 == 23
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( analysis.standard_deviation.point.count() == 0 )
 with expansion:
-  0.0 == 0
+  0 == 0
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( analysis.standard_deviation.lower_bound.count() == 0 )
 with expansion:
-  0.0 == 0
+  0 == 0
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( analysis.standard_deviation.upper_bound.count() == 0 )
 with expansion:
-  0.0 == 0
+  0 == 0
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( analysis.outliers.total() == 0 )
@@ -17100,7 +16995,7 @@ with expansion:
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( analysis.outlier_variance == 0 )
 with expansion:
-  0.0 == 0
+  0 == 0
 
 -------------------------------------------------------------------------------
 array<int, N> -> toString
@@ -17776,9 +17671,9 @@ with expansion:
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( erfc_inv(0.050000) == Approx(1.38590382434967796) )
 with expansion:
-  1.38590382434967774
+  1.3859038243496777
   ==
-  Approx( 1.38590382434967796 )
+  Approx( 1.385903824349678 )
 
 -------------------------------------------------------------------------------
 estimate_clock_resolution
@@ -17789,7 +17684,7 @@ InternalBenchmark.tests.cpp:<line number>
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res.mean.count() == rate )
 with expansion:
-  2000.0 == 2000 (0x<hex digits>)
+  2e+03 == 2000 (0x<hex digits>)
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res.outliers.total() == 0 )
@@ -18246,7 +18141,7 @@ InternalBenchmark.tests.cpp:<line number>
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( m == 19. )
 with expansion:
-  19.0 == 19.0
+  19 == 19
 
 -------------------------------------------------------------------------------
 measure
@@ -18461,9 +18356,9 @@ with expansion:
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( normal_quantile(0.025000) == Approx(-1.95996398454005449) )
 with expansion:
-  -1.95996398454005405
+  -1.959963984540054
   ==
-  Approx( -1.95996398454005449 )
+  Approx( -1.9599639845400545 )
 
 -------------------------------------------------------------------------------
 not allowed
@@ -18855,47 +18750,47 @@ with expansion:
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res[i] == rate )
 with expansion:
-  1000.0 == 1000 (0x<hex digits>)
+  1e+03 == 1000 (0x<hex digits>)
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res[i] == rate )
 with expansion:
-  1000.0 == 1000 (0x<hex digits>)
+  1e+03 == 1000 (0x<hex digits>)
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res[i] == rate )
 with expansion:
-  1000.0 == 1000 (0x<hex digits>)
+  1e+03 == 1000 (0x<hex digits>)
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res[i] == rate )
 with expansion:
-  1000.0 == 1000 (0x<hex digits>)
+  1e+03 == 1000 (0x<hex digits>)
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res[i] == rate )
 with expansion:
-  1000.0 == 1000 (0x<hex digits>)
+  1e+03 == 1000 (0x<hex digits>)
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res[i] == rate )
 with expansion:
-  1000.0 == 1000 (0x<hex digits>)
+  1e+03 == 1000 (0x<hex digits>)
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res[i] == rate )
 with expansion:
-  1000.0 == 1000 (0x<hex digits>)
+  1e+03 == 1000 (0x<hex digits>)
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res[i] == rate )
 with expansion:
-  1000.0 == 1000 (0x<hex digits>)
+  1e+03 == 1000 (0x<hex digits>)
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( res[i] == rate )
 with expansion:
-  1000.0 == 1000 (0x<hex digits>)
+  1e+03 == 1000 (0x<hex digits>)
 
 -------------------------------------------------------------------------------
 run_for_at_least, chronometer
@@ -19851,22 +19746,22 @@ InternalBenchmark.tests.cpp:<line number>
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( e.point == 23 )
 with expansion:
-  23.0 == 23
+  23 == 23
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( e.upper_bound == 23 )
 with expansion:
-  23.0 == 23
+  23 == 23
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( e.lower_bound == 23 )
 with expansion:
-  23.0 == 23
+  23 == 23
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   CHECK( e.confidence_interval == 0.95 )
 with expansion:
-  0.94999999999999996 == 0.94999999999999996
+  0.95 == 0.95
 
 -------------------------------------------------------------------------------
 uniform_integer_distribution can return the bounds
@@ -20343,12 +20238,12 @@ with expansion:
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( med == 18. )
 with expansion:
-  18.0 == 18.0
+  18 == 18
 
 InternalBenchmark.tests.cpp:<line number>: PASSED:
   REQUIRE( q3 == 23. )
 with expansion:
-  23.0 == 23.0
+  23 == 23
 
 -------------------------------------------------------------------------------
 xmlentitycheck

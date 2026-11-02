@@ -78,10 +78,10 @@ PartTracker.tests.cpp:<line number>: passed: n for: 3
 Misc.tests.cpp:<line number>: passed:
 Misc.tests.cpp:<line number>: passed:
 Misc.tests.cpp:<line number>: passed:
-Matchers.tests.cpp:<line number>: passed: smallest_non_zero, WithinULP( -smallest_non_zero, 2 ) for: 0.0 is within 2 ULPs of -4.9406564584124654e-324 ([-1.4821969375237396e-323, 4.9406564584124654e-324])
-Matchers.tests.cpp:<line number>: passed: smallest_non_zero, !WithinULP( -smallest_non_zero, 1 ) for: 0.0 not is within 1 ULPs of -4.9406564584124654e-324 ([-9.8813129168249309e-324, -0.0000000000000000e+00])
-Matchers.tests.cpp:<line number>: passed: smallest_non_zero, WithinULP( -smallest_non_zero, 2 ) for: 0.0f is within 2 ULPs of -1.40129846e-45f ([-4.20389539e-45, 1.40129846e-45])
-Matchers.tests.cpp:<line number>: passed: smallest_non_zero, !WithinULP( -smallest_non_zero, 1 ) for: 0.0f not is within 1 ULPs of -1.40129846e-45f ([-2.80259693e-45, -0.00000000e+00])
+Matchers.tests.cpp:<line number>: passed: smallest_non_zero, WithinULP( -smallest_non_zero, 2 ) for: 5e-324 is within 2 ULPs of -4.9406564584124654e-324 ([-1.4821969375237396e-323, 4.9406564584124654e-324])
+Matchers.tests.cpp:<line number>: passed: smallest_non_zero, !WithinULP( -smallest_non_zero, 1 ) for: 5e-324 not is within 1 ULPs of -4.9406564584124654e-324 ([-9.8813129168249309e-324, -0.0000000000000000e+00])
+Matchers.tests.cpp:<line number>: passed: smallest_non_zero, WithinULP( -smallest_non_zero, 2 ) for: 1e-45f is within 2 ULPs of -1.40129846e-45f ([-4.20389539e-45, 1.40129846e-45])
+Matchers.tests.cpp:<line number>: passed: smallest_non_zero, !WithinULP( -smallest_non_zero, 1 ) for: 1e-45f not is within 1 ULPs of -1.40129846e-45f ([-2.80259693e-45, -0.00000000e+00])
 Generators.tests.cpp:<line number>: failed: unexpected exception with message: 'failure to init'; expression was: {Unknown expression after the reported line}
 Compilation.tests.cpp:<line number>: passed: bf.e == 1 for: 1 == 1
 Compilation.tests.cpp:<line number>: passed: 1 == bf.e for: 1 == 1
@@ -227,11 +227,11 @@ Class.tests.cpp:<line number>: passed: Template_Fixture_2<TestType>{}.m_a.size()
 Class.tests.cpp:<line number>: passed: Template_Fixture_2<TestType>{}.m_a.size() >= 2 for: 2 >= 2
 Class.tests.cpp:<line number>: passed: Template_Fixture_2<TestType>{}.m_a.size() >= 2 for: 6 >= 2
 Class.tests.cpp:<line number>: passed: Template_Fixture_2<TestType>{}.m_a.size() >= 2 for: 2 >= 2
-Class.tests.cpp:<line number>: failed: Template_Fixture<TestType>::m_a == 2 for: 1.0 == 2
-Class.tests.cpp:<line number>: failed: Template_Fixture<TestType>::m_a == 2 for: 1.0f == 2
 Class.tests.cpp:<line number>: failed: Template_Fixture<TestType>::m_a == 2 for: 1 == 2
-Class.tests.cpp:<line number>: passed: Template_Fixture<TestType>::m_a == 1 for: 1.0 == 1
-Class.tests.cpp:<line number>: passed: Template_Fixture<TestType>::m_a == 1 for: 1.0f == 1
+Class.tests.cpp:<line number>: failed: Template_Fixture<TestType>::m_a == 2 for: 1f == 2
+Class.tests.cpp:<line number>: failed: Template_Fixture<TestType>::m_a == 2 for: 1 == 2
+Class.tests.cpp:<line number>: passed: Template_Fixture<TestType>::m_a == 1 for: 1 == 1
+Class.tests.cpp:<line number>: passed: Template_Fixture<TestType>::m_a == 1 for: 1f == 1
 Class.tests.cpp:<line number>: passed: Template_Fixture<TestType>::m_a == 1 for: 1 == 1
 Class.tests.cpp:<line number>: failed: Nttp_Fixture<V>::value == 0 for: 1 == 0
 Class.tests.cpp:<line number>: failed: Nttp_Fixture<V>::value == 0 for: 3 == 0
@@ -253,32 +253,22 @@ Misc.tests.cpp:<line number>: passed: x.size() > 0 for: 42 > 0
 Misc.tests.cpp:<line number>: passed: x.size() > 0 for: 9 > 0
 Misc.tests.cpp:<line number>: passed: x.size() > 0 for: 42 > 0
 Misc.tests.cpp:<line number>: passed: x.size() > 0 for: 9 > 0
-Approx.tests.cpp:<line number>: passed: d == 1.23_a for: 1.22999999999999998
-==
-Approx( 1.22999999999999998 )
-Approx.tests.cpp:<line number>: passed: d != 1.22_a for: 1.22999999999999998
-!=
-Approx( 1.21999999999999997 )
-Approx.tests.cpp:<line number>: passed: -d == -1.23_a for: -1.22999999999999998
-==
-Approx( -1.22999999999999998 )
-Approx.tests.cpp:<line number>: passed: d == 1.2_a .epsilon(.1) for: 1.22999999999999998
-==
-Approx( 1.19999999999999996 )
-Approx.tests.cpp:<line number>: passed: d != 1.2_a .epsilon(.001) for: 1.22999999999999998
-!=
-Approx( 1.19999999999999996 )
-Approx.tests.cpp:<line number>: passed: d == 1_a .epsilon(.3) for: 1.22999999999999998 == Approx( 1.0 )
+Approx.tests.cpp:<line number>: passed: d == 1.23_a for: 1.23 == Approx( 1.23 )
+Approx.tests.cpp:<line number>: passed: d != 1.22_a for: 1.23 != Approx( 1.22 )
+Approx.tests.cpp:<line number>: passed: -d == -1.23_a for: -1.23 == Approx( -1.23 )
+Approx.tests.cpp:<line number>: passed: d == 1.2_a .epsilon(.1) for: 1.23 == Approx( 1.2 )
+Approx.tests.cpp:<line number>: passed: d != 1.2_a .epsilon(.001) for: 1.23 != Approx( 1.2 )
+Approx.tests.cpp:<line number>: passed: d == 1_a .epsilon(.3) for: 1.23 == Approx( 1 )
 Misc.tests.cpp:<line number>: passed: with 1 message: 'that's not flying - that's failing in style'
 Misc.tests.cpp:<line number>: failed: explicitly with 1 message: 'to infinity and beyond'
 Tricky.tests.cpp:<line number>: failed: &o1 == &o2 for: 0x<hex digits> == 0x<hex digits>
 Tricky.tests.cpp:<line number>: failed: o1 == o2 for: {?} == {?}
-Approx.tests.cpp:<line number>: passed: 104.0 != Approx(100.0) for: 104.0 != Approx( 100.0 )
-Approx.tests.cpp:<line number>: passed: 104.0 == Approx(100.0).margin(5) for: 104.0 == Approx( 100.0 )
-Approx.tests.cpp:<line number>: passed: 104.0 == Approx(100.0).margin(4) for: 104.0 == Approx( 100.0 )
-Approx.tests.cpp:<line number>: passed: 104.0 != Approx(100.0).margin(3) for: 104.0 != Approx( 100.0 )
-Approx.tests.cpp:<line number>: passed: 100.3 != Approx(100.0) for: 100.29999999999999716 != Approx( 100.0 )
-Approx.tests.cpp:<line number>: passed: 100.3 == Approx(100.0).margin(0.5) for: 100.29999999999999716 == Approx( 100.0 )
+Approx.tests.cpp:<line number>: passed: 104.0 != Approx(100.0) for: 104 != Approx( 1e+02 )
+Approx.tests.cpp:<line number>: passed: 104.0 == Approx(100.0).margin(5) for: 104 == Approx( 1e+02 )
+Approx.tests.cpp:<line number>: passed: 104.0 == Approx(100.0).margin(4) for: 104 == Approx( 1e+02 )
+Approx.tests.cpp:<line number>: passed: 104.0 != Approx(100.0).margin(3) for: 104 != Approx( 1e+02 )
+Approx.tests.cpp:<line number>: passed: 100.3 != Approx(100.0) for: 100.3 != Approx( 1e+02 )
+Approx.tests.cpp:<line number>: passed: 100.3 == Approx(100.0).margin(0.5) for: 100.3 == Approx( 1e+02 )
 Tricky.tests.cpp:<line number>: passed: i++ == 7 for: 7 == 7
 Tricky.tests.cpp:<line number>: passed: i++ == 8 for: 8 == 8
 Exception.tests.cpp:<line number>: passed: 1 == 1
@@ -291,38 +281,24 @@ Approx.tests.cpp:<line number>: passed: Approx(0).epsilon(0)
 Approx.tests.cpp:<line number>: passed: Approx(0).epsilon(1)
 Approx.tests.cpp:<line number>: passed: Approx(0).epsilon(-0.001), std::domain_error
 Approx.tests.cpp:<line number>: passed: Approx(0).epsilon(1.0001), std::domain_error
-Approx.tests.cpp:<line number>: passed: 0.25f == Approx(0.0f).margin(0.25f) for: 0.25f == Approx( 0.0 )
-Approx.tests.cpp:<line number>: passed: 0.0f == Approx(0.25f).margin(0.25f) for: 0.0f == Approx( 0.25 )
+Approx.tests.cpp:<line number>: passed: 0.25f == Approx(0.0f).margin(0.25f) for: 0.25f == Approx( 0 )
+Approx.tests.cpp:<line number>: passed: 0.0f == Approx(0.25f).margin(0.25f) for: 0f == Approx( 0.25 )
 Approx.tests.cpp:<line number>: passed: 0.5f == Approx(0.25f).margin(0.25f) for: 0.5f == Approx( 0.25 )
-Approx.tests.cpp:<line number>: passed: 245.0f == Approx(245.25f).margin(0.25f) for: 245.0f == Approx( 245.25 )
+Approx.tests.cpp:<line number>: passed: 245.0f == Approx(245.25f).margin(0.25f) for: 245f == Approx( 245.25 )
 Approx.tests.cpp:<line number>: passed: 245.5f == Approx(245.25f).margin(0.25f) for: 245.5f == Approx( 245.25 )
-Approx.tests.cpp:<line number>: passed: divide( 22, 7 ) == Approx( 3.141 ).epsilon( 0.001 ) for: 3.14285714285714279
-==
-Approx( 3.14100000000000001 )
-Approx.tests.cpp:<line number>: passed: divide( 22, 7 ) != Approx( 3.141 ).epsilon( 0.0001 ) for: 3.14285714285714279
-!=
-Approx( 3.14100000000000001 )
-Approx.tests.cpp:<line number>: passed: d != Approx( 1.231 ) for: 1.22999999999999998
-!=
-Approx( 1.23100000000000009 )
-Approx.tests.cpp:<line number>: passed: d == Approx( 1.231 ).epsilon( 0.1 ) for: 1.22999999999999998
-==
-Approx( 1.23100000000000009 )
-Approx.tests.cpp:<line number>: passed: 1.23f == Approx( 1.23f ) for: 1.230000019f
-==
-Approx( 1.23000001907348633 )
-Approx.tests.cpp:<line number>: passed: 0.0f == Approx( 0.0f ) for: 0.0f == Approx( 0.0 )
-Approx.tests.cpp:<line number>: passed: 1 == Approx( 1 ) for: 1 == Approx( 1.0 )
-Approx.tests.cpp:<line number>: passed: 0 == Approx( 0 ) for: 0 == Approx( 0.0 )
-Approx.tests.cpp:<line number>: passed: 1.0f == Approx( 1 ) for: 1.0f == Approx( 1.0 )
-Approx.tests.cpp:<line number>: passed: 0 == Approx( dZero) for: 0 == Approx( 0.0 )
-Approx.tests.cpp:<line number>: passed: 0 == Approx( dSmall ).margin( 0.001 ) for: 0 == Approx( 0.00001 )
-Approx.tests.cpp:<line number>: passed: 1.234f == Approx( dMedium ) for: 1.233999968f
-==
-Approx( 1.23399999999999999 )
-Approx.tests.cpp:<line number>: passed: dMedium == Approx( 1.234f ) for: 1.23399999999999999
-==
-Approx( 1.23399996757507324 )
+Approx.tests.cpp:<line number>: passed: divide( 22, 7 ) == Approx( 3.141 ).epsilon( 0.001 ) for: 3.142857142857143 == Approx( 3.141 )
+Approx.tests.cpp:<line number>: passed: divide( 22, 7 ) != Approx( 3.141 ).epsilon( 0.0001 ) for: 3.142857142857143 != Approx( 3.141 )
+Approx.tests.cpp:<line number>: passed: d != Approx( 1.231 ) for: 1.23 != Approx( 1.231 )
+Approx.tests.cpp:<line number>: passed: d == Approx( 1.231 ).epsilon( 0.1 ) for: 1.23 == Approx( 1.231 )
+Approx.tests.cpp:<line number>: passed: 1.23f == Approx( 1.23f ) for: 1.23f == Approx( 1.2300000190734863 )
+Approx.tests.cpp:<line number>: passed: 0.0f == Approx( 0.0f ) for: 0f == Approx( 0 )
+Approx.tests.cpp:<line number>: passed: 1 == Approx( 1 )
+Approx.tests.cpp:<line number>: passed: 0 == Approx( 0 )
+Approx.tests.cpp:<line number>: passed: 1.0f == Approx( 1 ) for: 1f == Approx( 1 )
+Approx.tests.cpp:<line number>: passed: 0 == Approx( dZero) for: 0 == Approx( 0 )
+Approx.tests.cpp:<line number>: passed: 0 == Approx( dSmall ).margin( 0.001 ) for: 0 == Approx( 1e-05 )
+Approx.tests.cpp:<line number>: passed: 1.234f == Approx( dMedium ) for: 1.234f == Approx( 1.234 )
+Approx.tests.cpp:<line number>: passed: dMedium == Approx( 1.234f ) for: 1.234 == Approx( 1.2339999675750732 )
 Matchers.tests.cpp:<line number>: passed: 1, Predicate<int>( alwaysTrue, "always true" ) for: 1 matches predicate: "always true"
 Matchers.tests.cpp:<line number>: passed: 1, !Predicate<int>( alwaysFalse, "always false" ) for: 1 not matches predicate: "always false"
 Matchers.tests.cpp:<line number>: passed: "Hello olleH", Predicate<std::string>( []( std::string const& str ) -> bool { return str.front() == str.back(); }, "First and last character should be equal" ) for: "Hello olleH" matches predicate: "First and last character should be equal"
@@ -354,9 +330,9 @@ MatchersRanges.tests.cpp:<line number>: passed: in, Contains(1) for: { 1, 2, 3, 
 MatchersRanges.tests.cpp:<line number>: passed: in, !Contains(8) for: { 1, 2, 3, 4, 5 } not contains element 8
 MatchersRanges.tests.cpp:<line number>: passed: in, Contains(MoveOnlyTestElement{ 2 }) for: { 1, 2, 3 } contains element 2
 MatchersRanges.tests.cpp:<line number>: passed: in, !Contains(MoveOnlyTestElement{ 9 }) for: { 1, 2, 3 } not contains element 9
-MatchersRanges.tests.cpp:<line number>: passed: in, Contains(Catch::Matchers::WithinAbs(0.5, 0.5)) for: { 1.0, 2.0, 3.0, 0.0 } contains element matching is within 0.5 of 0.5
+MatchersRanges.tests.cpp:<line number>: passed: in, Contains(Catch::Matchers::WithinAbs(0.5, 0.5)) for: { 1, 2, 3, 0 } contains element matching is within 0.5 of 0.5
 MatchersRanges.tests.cpp:<line number>: passed: empty_array, IsEmpty() for: {  } is empty
-MatchersRanges.tests.cpp:<line number>: passed: non_empty_array, !IsEmpty() for: { 0.0 } not is empty
+MatchersRanges.tests.cpp:<line number>: passed: non_empty_array, !IsEmpty() for: { 0 } not is empty
 MatchersRanges.tests.cpp:<line number>: passed: empty_vec, IsEmpty() for: {  } is empty
 MatchersRanges.tests.cpp:<line number>: passed: non_empty_vec, !IsEmpty() for: { 'a', 'b', 'c' } not is empty
 MatchersRanges.tests.cpp:<line number>: passed: inner_lists_are_empty, !IsEmpty() for: { {  } } not is empty
@@ -494,18 +470,18 @@ RandomNumberGeneration.tests.cpp:<line number>: passed: SimplePcg32{} == SimpleP
 RandomNumberGeneration.tests.cpp:<line number>: passed: SimplePcg32{ 0 } != SimplePcg32{} for: {?} != {?}
 RandomNumberGeneration.tests.cpp:<line number>: passed: !(SimplePcg32{ 1 } == SimplePcg32{ 2 }) for: !({?} == {?})
 RandomNumberGeneration.tests.cpp:<line number>: passed: !(SimplePcg32{ 1 } != SimplePcg32{ 1 }) for: !({?} != {?})
-Approx.tests.cpp:<line number>: passed: td == Approx(10.0) for: StrongDoubleTypedef(10) == Approx( 10.0 )
-Approx.tests.cpp:<line number>: passed: Approx(10.0) == td for: Approx( 10.0 ) == StrongDoubleTypedef(10)
-Approx.tests.cpp:<line number>: passed: td != Approx(11.0) for: StrongDoubleTypedef(10) != Approx( 11.0 )
-Approx.tests.cpp:<line number>: passed: Approx(11.0) != td for: Approx( 11.0 ) != StrongDoubleTypedef(10)
-Approx.tests.cpp:<line number>: passed: td <= Approx(10.0) for: StrongDoubleTypedef(10) <= Approx( 10.0 )
-Approx.tests.cpp:<line number>: passed: td <= Approx(11.0) for: StrongDoubleTypedef(10) <= Approx( 11.0 )
-Approx.tests.cpp:<line number>: passed: Approx(10.0) <= td for: Approx( 10.0 ) <= StrongDoubleTypedef(10)
-Approx.tests.cpp:<line number>: passed: Approx(9.0) <= td for: Approx( 9.0 ) <= StrongDoubleTypedef(10)
-Approx.tests.cpp:<line number>: passed: td >= Approx(9.0) for: StrongDoubleTypedef(10) >= Approx( 9.0 )
-Approx.tests.cpp:<line number>: passed: td >= Approx(td) for: StrongDoubleTypedef(10) >= Approx( 10.0 )
-Approx.tests.cpp:<line number>: passed: Approx(td) >= td for: Approx( 10.0 ) >= StrongDoubleTypedef(10)
-Approx.tests.cpp:<line number>: passed: Approx(11.0) >= td for: Approx( 11.0 ) >= StrongDoubleTypedef(10)
+Approx.tests.cpp:<line number>: passed: td == Approx(10.0) for: StrongDoubleTypedef(10) == Approx( 1e+01 )
+Approx.tests.cpp:<line number>: passed: Approx(10.0) == td for: Approx( 1e+01 ) == StrongDoubleTypedef(10)
+Approx.tests.cpp:<line number>: passed: td != Approx(11.0) for: StrongDoubleTypedef(10) != Approx( 11 )
+Approx.tests.cpp:<line number>: passed: Approx(11.0) != td for: Approx( 11 ) != StrongDoubleTypedef(10)
+Approx.tests.cpp:<line number>: passed: td <= Approx(10.0) for: StrongDoubleTypedef(10) <= Approx( 1e+01 )
+Approx.tests.cpp:<line number>: passed: td <= Approx(11.0) for: StrongDoubleTypedef(10) <= Approx( 11 )
+Approx.tests.cpp:<line number>: passed: Approx(10.0) <= td for: Approx( 1e+01 ) <= StrongDoubleTypedef(10)
+Approx.tests.cpp:<line number>: passed: Approx(9.0) <= td for: Approx( 9 ) <= StrongDoubleTypedef(10)
+Approx.tests.cpp:<line number>: passed: td >= Approx(9.0) for: StrongDoubleTypedef(10) >= Approx( 9 )
+Approx.tests.cpp:<line number>: passed: td >= Approx(td) for: StrongDoubleTypedef(10) >= Approx( 1e+01 )
+Approx.tests.cpp:<line number>: passed: Approx(td) >= td for: Approx( 1e+01 ) >= StrongDoubleTypedef(10)
+Approx.tests.cpp:<line number>: passed: Approx(11.0) >= td for: Approx( 11 ) >= StrongDoubleTypedef(10)
 Condition.tests.cpp:<line number>: passed: 54 == 6*9 for: 54 == 54
 Condition.tests.cpp:<line number>: passed: ( -1 > 2u ) for: true
 Condition.tests.cpp:<line number>: passed: -1 > 2u for: -1 > 2
@@ -570,8 +546,8 @@ Stream.tests.cpp:<line number>: passed: Catch::makeStream( "-" )->isConsole() fo
 Exception.tests.cpp:<line number>: failed: unexpected exception with message: 'custom exception - not std'; expression was: throwCustom()
 Exception.tests.cpp:<line number>: failed: unexpected exception with message: 'custom exception - not std'; expression was: throwCustom(), std::exception
 Exception.tests.cpp:<line number>: failed: unexpected exception with message: 'custom std exception'
-Approx.tests.cpp:<line number>: passed: 101.000001 != Approx(100).epsilon(0.01) for: 101.00000099999999748 != Approx( 100.0 )
-Approx.tests.cpp:<line number>: passed: std::pow(10, -5) != Approx(std::pow(10, -7)) for: 0.00001 != Approx( 0.0000001 )
+Approx.tests.cpp:<line number>: passed: 101.000001 != Approx(100).epsilon(0.01) for: 101.000001 != Approx( 1e+02 )
+Approx.tests.cpp:<line number>: passed: std::pow(10, -5) != Approx(std::pow(10, -7)) for: 1e-05 != Approx( 1e-07 )
 Message.tests.cpp:<line number>: passed: true with 1 message: 'a'
 Message.tests.cpp:<line number>: failed: false with 1 message: 'b'
 EnumToString.tests.cpp:<line number>: passed: enumInfo.lookup(0) == "Value1" for: Value1 == "Value1"
@@ -595,39 +571,27 @@ EnumToString.tests.cpp:<line number>: passed: stringify( EnumClass3::Value4 ) ==
 EnumToString.tests.cpp:<line number>: passed: stringify( ec3 ) == "Value2" for: "Value2" == "Value2"
 EnumToString.tests.cpp:<line number>: passed: stringify( Bikeshed::Colours::Red ) == "Red" for: "Red" == "Red"
 EnumToString.tests.cpp:<line number>: passed: stringify( Bikeshed::Colours::Blue ) == "Blue" for: "Blue" == "Blue"
-Approx.tests.cpp:<line number>: passed: 101.01 != Approx(100).epsilon(0.01) for: 101.01000000000000512 != Approx( 100.0 )
+Approx.tests.cpp:<line number>: passed: 101.01 != Approx(100).epsilon(0.01) for: 101.01 != Approx( 1e+02 )
 Condition.tests.cpp:<line number>: failed: data.int_seven == 6 for: 7 == 6
 Condition.tests.cpp:<line number>: failed: data.int_seven == 8 for: 7 == 8
 Condition.tests.cpp:<line number>: failed: data.int_seven == 0 for: 7 == 0
-Condition.tests.cpp:<line number>: failed: data.float_nine_point_one == Approx( 9.11f ) for: 9.100000381f
-==
-Approx( 9.10999965667724609 )
-Condition.tests.cpp:<line number>: failed: data.float_nine_point_one == Approx( 9.0f ) for: 9.100000381f == Approx( 9.0 )
-Condition.tests.cpp:<line number>: failed: data.float_nine_point_one == Approx( 1 ) for: 9.100000381f == Approx( 1.0 )
-Condition.tests.cpp:<line number>: failed: data.float_nine_point_one == Approx( 0 ) for: 9.100000381f == Approx( 0.0 )
-Condition.tests.cpp:<line number>: failed: data.double_pi == Approx( 3.1415 ) for: 3.14159265350000005
-==
-Approx( 3.14150000000000018 )
+Condition.tests.cpp:<line number>: failed: data.float_nine_point_one == Approx( 9.11f ) for: 9.1f == Approx( 9.109999656677246 )
+Condition.tests.cpp:<line number>: failed: data.float_nine_point_one == Approx( 9.0f ) for: 9.1f == Approx( 9 )
+Condition.tests.cpp:<line number>: failed: data.float_nine_point_one == Approx( 1 ) for: 9.1f == Approx( 1 )
+Condition.tests.cpp:<line number>: failed: data.float_nine_point_one == Approx( 0 ) for: 9.1f == Approx( 0 )
+Condition.tests.cpp:<line number>: failed: data.double_pi == Approx( 3.1415 ) for: 3.1415926535 == Approx( 3.1415 )
 Condition.tests.cpp:<line number>: failed: data.str_hello == "goodbye" for: "hello" == "goodbye"
 Condition.tests.cpp:<line number>: failed: data.str_hello == "hell" for: "hello" == "hell"
 Condition.tests.cpp:<line number>: failed: data.str_hello == "hello1" for: "hello" == "hello1"
 Condition.tests.cpp:<line number>: failed: data.str_hello.size() == 6 for: 5 == 6
-Condition.tests.cpp:<line number>: failed: x == Approx( 1.301 ) for: 1.30000000000000027
-==
-Approx( 1.30099999999999993 )
+Condition.tests.cpp:<line number>: failed: x == Approx( 1.301 ) for: 1.3000000000000003 == Approx( 1.301 )
 Condition.tests.cpp:<line number>: passed: data.int_seven == 7 for: 7 == 7
-Condition.tests.cpp:<line number>: passed: data.float_nine_point_one == Approx( 9.1f ) for: 9.100000381f
-==
-Approx( 9.10000038146972656 )
-Condition.tests.cpp:<line number>: passed: data.double_pi == Approx( 3.1415926535 ) for: 3.14159265350000005
-==
-Approx( 3.14159265350000005 )
+Condition.tests.cpp:<line number>: passed: data.float_nine_point_one == Approx( 9.1f ) for: 9.1f == Approx( 9.100000381469727 )
+Condition.tests.cpp:<line number>: passed: data.double_pi == Approx( 3.1415926535 ) for: 3.1415926535 == Approx( 3.1415926535 )
 Condition.tests.cpp:<line number>: passed: data.str_hello == "hello" for: "hello" == "hello"
 Condition.tests.cpp:<line number>: passed: "hello" == data.str_hello for: "hello" == "hello"
 Condition.tests.cpp:<line number>: passed: data.str_hello.size() == 5 for: 5 == 5
-Condition.tests.cpp:<line number>: passed: x == Approx( 1.3 ) for: 1.30000000000000027
-==
-Approx( 1.30000000000000004 )
+Condition.tests.cpp:<line number>: passed: x == Approx( 1.3 ) for: 1.3000000000000003 == Approx( 1.3 )
 Matchers.tests.cpp:<line number>: passed: testStringForMatching(), Equals( "this string contains 'abc' as a substring" ) for: "this string contains 'abc' as a substring" equals: "this string contains 'abc' as a substring"
 Matchers.tests.cpp:<line number>: passed: testStringForMatching(), Equals( "this string contains 'ABC' as a substring", Catch::CaseSensitive::No ) for: "this string contains 'abc' as a substring" equals: "this string contains 'ABC' as a substring" (case insensitive)
 Matchers.tests.cpp:<line number>: failed: testStringForMatching(), Equals( "this string contains 'ABC' as a substring" ) for: "this string contains 'abc' as a substring" equals: "this string contains 'ABC' as a substring"
@@ -685,61 +649,61 @@ GeneratorsImpl.tests.cpp:<line number>: passed: values.get() == 3 for: 3 == 3
 GeneratorsImpl.tests.cpp:<line number>: passed: values.currentElementIndex() == 4 for: 4 == 4
 GeneratorsImpl.tests.cpp:<line number>: passed: values.get() == 4 for: 4 == 4
 GeneratorsImpl.tests.cpp:<line number>: passed: values.skipToNthElement( 5 )
-Matchers.tests.cpp:<line number>: passed: 10., WithinRel( 11.1, 0.1 ) for: 10.0 and 11.09999999999999964 are within 10% of each other
-Matchers.tests.cpp:<line number>: passed: 10., !WithinRel( 11.2, 0.1 ) for: 10.0 not and 11.19999999999999929 are within 10% of each other
-Matchers.tests.cpp:<line number>: passed: 1., !WithinRel( 0., 0.99 ) for: 1.0 not and 0.0 are within 99% of each other
-Matchers.tests.cpp:<line number>: passed: -0., WithinRel( 0. ) for: -0.0 and 0.0 are within 2.22045e-12% of each other
-Matchers.tests.cpp:<line number>: passed: v1, WithinRel( v2 ) for: 0.0 and 0.0 are within 2.22045e-12% of each other
-Matchers.tests.cpp:<line number>: passed: 1., WithinAbs( 1., 0 ) for: 1.0 is within 0.0 of 1.0
-Matchers.tests.cpp:<line number>: passed: 0., WithinAbs( 1., 1 ) for: 0.0 is within 1.0 of 1.0
-Matchers.tests.cpp:<line number>: passed: 0., !WithinAbs( 1., 0.99 ) for: 0.0 not is within 0.98999999999999999 of 1.0
-Matchers.tests.cpp:<line number>: passed: 0., !WithinAbs( 1., 0.99 ) for: 0.0 not is within 0.98999999999999999 of 1.0
-Matchers.tests.cpp:<line number>: passed: 11., !WithinAbs( 10., 0.5 ) for: 11.0 not is within 0.5 of 10.0
-Matchers.tests.cpp:<line number>: passed: 10., !WithinAbs( 11., 0.5 ) for: 10.0 not is within 0.5 of 11.0
-Matchers.tests.cpp:<line number>: passed: -10., WithinAbs( -10., 0.5 ) for: -10.0 is within 0.5 of -10.0
-Matchers.tests.cpp:<line number>: passed: -10., WithinAbs( -9.6, 0.5 ) for: -10.0 is within 0.5 of -9.59999999999999964
-Matchers.tests.cpp:<line number>: passed: 1., WithinULP( 1., 0 ) for: 1.0 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00])
-Matchers.tests.cpp:<line number>: passed: nextafter( 1., 2. ), WithinULP( 1., 1 ) for: 1.00000000000000022 is within 1 ULPs of 1.0000000000000000e+00 ([9.9999999999999989e-01, 1.0000000000000002e+00])
-Matchers.tests.cpp:<line number>: passed: 0., WithinULP( nextafter( 0., 1. ), 1 ) for: 0.0 is within 1 ULPs of 4.9406564584124654e-324 ([0.0000000000000000e+00, 9.8813129168249309e-324])
-Matchers.tests.cpp:<line number>: passed: 1., WithinULP( nextafter( 1., 0. ), 1 ) for: 1.0 is within 1 ULPs of 9.9999999999999989e-01 ([9.9999999999999978e-01, 1.0000000000000000e+00])
-Matchers.tests.cpp:<line number>: passed: 1., !WithinULP( nextafter( 1., 2. ), 0 ) for: 1.0 not is within 0 ULPs of 1.0000000000000002e+00 ([1.0000000000000002e+00, 1.0000000000000002e+00])
-Matchers.tests.cpp:<line number>: passed: 1., WithinULP( 1., 0 ) for: 1.0 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00])
-Matchers.tests.cpp:<line number>: passed: -0., WithinULP( 0., 0 ) for: -0.0 is within 0 ULPs of 0.0000000000000000e+00 ([0.0000000000000000e+00, 0.0000000000000000e+00])
-Matchers.tests.cpp:<line number>: passed: 1., WithinAbs( 1., 0.5 ) || WithinULP( 2., 1 ) for: 1.0 ( is within 0.5 of 1.0 or is within 1 ULPs of 2.0000000000000000e+00 ([1.9999999999999998e+00, 2.0000000000000004e+00]) )
-Matchers.tests.cpp:<line number>: passed: 1., WithinAbs( 2., 0.5 ) || WithinULP( 1., 0 ) for: 1.0 ( is within 0.5 of 2.0 or is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00]) )
-Matchers.tests.cpp:<line number>: passed: 0.0001, WithinAbs( 0., 0.001 ) || WithinRel( 0., 0.1 ) for: 0.0001 ( is within 0.001 of 0.0 or and 0.0 are within 10% of each other )
+Matchers.tests.cpp:<line number>: passed: 10., WithinRel( 11.1, 0.1 ) for: 1e+01 and 11.1 are within 10% of each other
+Matchers.tests.cpp:<line number>: passed: 10., !WithinRel( 11.2, 0.1 ) for: 1e+01 not and 11.2 are within 10% of each other
+Matchers.tests.cpp:<line number>: passed: 1., !WithinRel( 0., 0.99 ) for: 1 not and 0 are within 99% of each other
+Matchers.tests.cpp:<line number>: passed: -0., WithinRel( 0. ) for: -0 and 0 are within 2.22045e-12% of each other
+Matchers.tests.cpp:<line number>: passed: v1, WithinRel( v2 ) for: 2.2250738585072014e-308 and 2.225073858507201e-308 are within 2.22045e-12% of each other
+Matchers.tests.cpp:<line number>: passed: 1., WithinAbs( 1., 0 ) for: 1 is within 0 of 1
+Matchers.tests.cpp:<line number>: passed: 0., WithinAbs( 1., 1 ) for: 0 is within 1 of 1
+Matchers.tests.cpp:<line number>: passed: 0., !WithinAbs( 1., 0.99 ) for: 0 not is within 0.99 of 1
+Matchers.tests.cpp:<line number>: passed: 0., !WithinAbs( 1., 0.99 ) for: 0 not is within 0.99 of 1
+Matchers.tests.cpp:<line number>: passed: 11., !WithinAbs( 10., 0.5 ) for: 11 not is within 0.5 of 1e+01
+Matchers.tests.cpp:<line number>: passed: 10., !WithinAbs( 11., 0.5 ) for: 1e+01 not is within 0.5 of 11
+Matchers.tests.cpp:<line number>: passed: -10., WithinAbs( -10., 0.5 ) for: -1e+01 is within 0.5 of -1e+01
+Matchers.tests.cpp:<line number>: passed: -10., WithinAbs( -9.6, 0.5 ) for: -1e+01 is within 0.5 of -9.6
+Matchers.tests.cpp:<line number>: passed: 1., WithinULP( 1., 0 ) for: 1 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00])
+Matchers.tests.cpp:<line number>: passed: nextafter( 1., 2. ), WithinULP( 1., 1 ) for: 1.0000000000000002 is within 1 ULPs of 1.0000000000000000e+00 ([9.9999999999999989e-01, 1.0000000000000002e+00])
+Matchers.tests.cpp:<line number>: passed: 0., WithinULP( nextafter( 0., 1. ), 1 ) for: 0 is within 1 ULPs of 4.9406564584124654e-324 ([0.0000000000000000e+00, 9.8813129168249309e-324])
+Matchers.tests.cpp:<line number>: passed: 1., WithinULP( nextafter( 1., 0. ), 1 ) for: 1 is within 1 ULPs of 9.9999999999999989e-01 ([9.9999999999999978e-01, 1.0000000000000000e+00])
+Matchers.tests.cpp:<line number>: passed: 1., !WithinULP( nextafter( 1., 2. ), 0 ) for: 1 not is within 0 ULPs of 1.0000000000000002e+00 ([1.0000000000000002e+00, 1.0000000000000002e+00])
+Matchers.tests.cpp:<line number>: passed: 1., WithinULP( 1., 0 ) for: 1 is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00])
+Matchers.tests.cpp:<line number>: passed: -0., WithinULP( 0., 0 ) for: -0 is within 0 ULPs of 0.0000000000000000e+00 ([0.0000000000000000e+00, 0.0000000000000000e+00])
+Matchers.tests.cpp:<line number>: passed: 1., WithinAbs( 1., 0.5 ) || WithinULP( 2., 1 ) for: 1 ( is within 0.5 of 1 or is within 1 ULPs of 2.0000000000000000e+00 ([1.9999999999999998e+00, 2.0000000000000004e+00]) )
+Matchers.tests.cpp:<line number>: passed: 1., WithinAbs( 2., 0.5 ) || WithinULP( 1., 0 ) for: 1 ( is within 0.5 of 2 or is within 0 ULPs of 1.0000000000000000e+00 ([1.0000000000000000e+00, 1.0000000000000000e+00]) )
+Matchers.tests.cpp:<line number>: passed: 0.0001, WithinAbs( 0., 0.001 ) || WithinRel( 0., 0.1 ) for: 0.0001 ( is within 0.001 of 0 or and 0 are within 10% of each other )
 Matchers.tests.cpp:<line number>: passed: WithinAbs( 1., 0. )
 Matchers.tests.cpp:<line number>: passed: WithinAbs( 1., -1. ), std::domain_error
 Matchers.tests.cpp:<line number>: passed: WithinULP( 1., 0 )
 Matchers.tests.cpp:<line number>: passed: WithinRel( 1., 0. )
 Matchers.tests.cpp:<line number>: passed: WithinRel( 1., -0.2 ), std::domain_error
 Matchers.tests.cpp:<line number>: passed: WithinRel( 1., 1. ), std::domain_error
-Matchers.tests.cpp:<line number>: passed: 1., !IsNaN() for: 1.0 not is NaN
-Matchers.tests.cpp:<line number>: passed: 10.f, WithinRel( 11.1f, 0.1f ) for: 10.0f and 11.10000038146972656 are within 10% of each other
-Matchers.tests.cpp:<line number>: passed: 10.f, !WithinRel( 11.2f, 0.1f ) for: 10.0f not and 11.19999980926513672 are within 10% of each other
-Matchers.tests.cpp:<line number>: passed: 1.f, !WithinRel( 0.f, 0.99f ) for: 1.0f not and 0.0 are within 99% of each other
-Matchers.tests.cpp:<line number>: passed: -0.f, WithinRel( 0.f ) for: -0.0f and 0.0 are within 0.00119209% of each other
-Matchers.tests.cpp:<line number>: passed: v1, WithinRel( v2 ) for: 0.0f and 0.0 are within 0.00119209% of each other
-Matchers.tests.cpp:<line number>: passed: 1.f, WithinAbs( 1.f, 0 ) for: 1.0f is within 0.0 of 1.0
-Matchers.tests.cpp:<line number>: passed: 0.f, WithinAbs( 1.f, 1 ) for: 0.0f is within 1.0 of 1.0
-Matchers.tests.cpp:<line number>: passed: 0.f, !WithinAbs( 1.f, 0.99f ) for: 0.0f not is within 0.99000000953674316 of 1.0
-Matchers.tests.cpp:<line number>: passed: 0.f, !WithinAbs( 1.f, 0.99f ) for: 0.0f not is within 0.99000000953674316 of 1.0
-Matchers.tests.cpp:<line number>: passed: 0.f, WithinAbs( -0.f, 0 ) for: 0.0f is within 0.0 of -0.0
-Matchers.tests.cpp:<line number>: passed: 11.f, !WithinAbs( 10.f, 0.5f ) for: 11.0f not is within 0.5 of 10.0
-Matchers.tests.cpp:<line number>: passed: 10.f, !WithinAbs( 11.f, 0.5f ) for: 10.0f not is within 0.5 of 11.0
-Matchers.tests.cpp:<line number>: passed: -10.f, WithinAbs( -10.f, 0.5f ) for: -10.0f is within 0.5 of -10.0
-Matchers.tests.cpp:<line number>: passed: -10.f, WithinAbs( -9.6f, 0.5f ) for: -10.0f is within 0.5 of -9.60000038146972656
-Matchers.tests.cpp:<line number>: passed: 1.f, WithinULP( 1.f, 0 ) for: 1.0f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
-Matchers.tests.cpp:<line number>: passed: -1.f, WithinULP( -1.f, 0 ) for: -1.0f is within 0 ULPs of -1.00000000e+00f ([-1.00000000e+00, -1.00000000e+00])
-Matchers.tests.cpp:<line number>: passed: nextafter( 1.f, 2.f ), WithinULP( 1.f, 1 ) for: 1.000000119f is within 1 ULPs of 1.00000000e+00f ([9.99999940e-01, 1.00000012e+00])
-Matchers.tests.cpp:<line number>: passed: 0.f, WithinULP( nextafter( 0.f, 1.f ), 1 ) for: 0.0f is within 1 ULPs of 1.40129846e-45f ([0.00000000e+00, 2.80259693e-45])
-Matchers.tests.cpp:<line number>: passed: 1.f, WithinULP( nextafter( 1.f, 0.f ), 1 ) for: 1.0f is within 1 ULPs of 9.99999940e-01f ([9.99999881e-01, 1.00000000e+00])
-Matchers.tests.cpp:<line number>: passed: 1.f, !WithinULP( nextafter( 1.f, 2.f ), 0 ) for: 1.0f not is within 0 ULPs of 1.00000012e+00f ([1.00000012e+00, 1.00000012e+00])
-Matchers.tests.cpp:<line number>: passed: 1.f, WithinULP( 1.f, 0 ) for: 1.0f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
-Matchers.tests.cpp:<line number>: passed: -0.f, WithinULP( 0.f, 0 ) for: -0.0f is within 0 ULPs of 0.00000000e+00f ([0.00000000e+00, 0.00000000e+00])
-Matchers.tests.cpp:<line number>: passed: 1.f, WithinAbs( 1.f, 0.5 ) || WithinULP( 1.f, 1 ) for: 1.0f ( is within 0.5 of 1.0 or is within 1 ULPs of 1.00000000e+00f ([9.99999940e-01, 1.00000012e+00]) )
-Matchers.tests.cpp:<line number>: passed: 1.f, WithinAbs( 2.f, 0.5 ) || WithinULP( 1.f, 0 ) for: 1.0f ( is within 0.5 of 2.0 or is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00]) )
-Matchers.tests.cpp:<line number>: passed: 0.0001f, WithinAbs( 0.f, 0.001f ) || WithinRel( 0.f, 0.1f ) for: 0.0001f ( is within 0.00100000004749745 of 0.0 or and 0.0 are within 10% of each other )
+Matchers.tests.cpp:<line number>: passed: 1., !IsNaN() for: 1 not is NaN
+Matchers.tests.cpp:<line number>: passed: 10.f, WithinRel( 11.1f, 0.1f ) for: 1e+01f and 11.100000381469727 are within 10% of each other
+Matchers.tests.cpp:<line number>: passed: 10.f, !WithinRel( 11.2f, 0.1f ) for: 1e+01f not and 11.199999809265137 are within 10% of each other
+Matchers.tests.cpp:<line number>: passed: 1.f, !WithinRel( 0.f, 0.99f ) for: 1f not and 0 are within 99% of each other
+Matchers.tests.cpp:<line number>: passed: -0.f, WithinRel( 0.f ) for: -0f and 0 are within 0.00119209% of each other
+Matchers.tests.cpp:<line number>: passed: v1, WithinRel( v2 ) for: 1.1754944e-38f and 1.1754942106924411e-38 are within 0.00119209% of each other
+Matchers.tests.cpp:<line number>: passed: 1.f, WithinAbs( 1.f, 0 ) for: 1f is within 0 of 1
+Matchers.tests.cpp:<line number>: passed: 0.f, WithinAbs( 1.f, 1 ) for: 0f is within 1 of 1
+Matchers.tests.cpp:<line number>: passed: 0.f, !WithinAbs( 1.f, 0.99f ) for: 0f not is within 0.9900000095367432 of 1
+Matchers.tests.cpp:<line number>: passed: 0.f, !WithinAbs( 1.f, 0.99f ) for: 0f not is within 0.9900000095367432 of 1
+Matchers.tests.cpp:<line number>: passed: 0.f, WithinAbs( -0.f, 0 ) for: 0f is within 0 of -0
+Matchers.tests.cpp:<line number>: passed: 11.f, !WithinAbs( 10.f, 0.5f ) for: 11f not is within 0.5 of 1e+01
+Matchers.tests.cpp:<line number>: passed: 10.f, !WithinAbs( 11.f, 0.5f ) for: 1e+01f not is within 0.5 of 11
+Matchers.tests.cpp:<line number>: passed: -10.f, WithinAbs( -10.f, 0.5f ) for: -1e+01f is within 0.5 of -1e+01
+Matchers.tests.cpp:<line number>: passed: -10.f, WithinAbs( -9.6f, 0.5f ) for: -1e+01f is within 0.5 of -9.600000381469727
+Matchers.tests.cpp:<line number>: passed: 1.f, WithinULP( 1.f, 0 ) for: 1f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
+Matchers.tests.cpp:<line number>: passed: -1.f, WithinULP( -1.f, 0 ) for: -1f is within 0 ULPs of -1.00000000e+00f ([-1.00000000e+00, -1.00000000e+00])
+Matchers.tests.cpp:<line number>: passed: nextafter( 1.f, 2.f ), WithinULP( 1.f, 1 ) for: 1.0000001f is within 1 ULPs of 1.00000000e+00f ([9.99999940e-01, 1.00000012e+00])
+Matchers.tests.cpp:<line number>: passed: 0.f, WithinULP( nextafter( 0.f, 1.f ), 1 ) for: 0f is within 1 ULPs of 1.40129846e-45f ([0.00000000e+00, 2.80259693e-45])
+Matchers.tests.cpp:<line number>: passed: 1.f, WithinULP( nextafter( 1.f, 0.f ), 1 ) for: 1f is within 1 ULPs of 9.99999940e-01f ([9.99999881e-01, 1.00000000e+00])
+Matchers.tests.cpp:<line number>: passed: 1.f, !WithinULP( nextafter( 1.f, 2.f ), 0 ) for: 1f not is within 0 ULPs of 1.00000012e+00f ([1.00000012e+00, 1.00000012e+00])
+Matchers.tests.cpp:<line number>: passed: 1.f, WithinULP( 1.f, 0 ) for: 1f is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00])
+Matchers.tests.cpp:<line number>: passed: -0.f, WithinULP( 0.f, 0 ) for: -0f is within 0 ULPs of 0.00000000e+00f ([0.00000000e+00, 0.00000000e+00])
+Matchers.tests.cpp:<line number>: passed: 1.f, WithinAbs( 1.f, 0.5 ) || WithinULP( 1.f, 1 ) for: 1f ( is within 0.5 of 1 or is within 1 ULPs of 1.00000000e+00f ([9.99999940e-01, 1.00000012e+00]) )
+Matchers.tests.cpp:<line number>: passed: 1.f, WithinAbs( 2.f, 0.5 ) || WithinULP( 1.f, 0 ) for: 1f ( is within 0.5 of 2 or is within 0 ULPs of 1.00000000e+00f ([1.00000000e+00, 1.00000000e+00]) )
+Matchers.tests.cpp:<line number>: passed: 0.0001f, WithinAbs( 0.f, 0.001f ) || WithinRel( 0.f, 0.1f ) for: 0.0001f ( is within 0.0010000000474974513 of 0 or and 0 are within 10% of each other )
 Matchers.tests.cpp:<line number>: passed: WithinAbs( 1.f, 0.f )
 Matchers.tests.cpp:<line number>: passed: WithinAbs( 1.f, -1.f ), std::domain_error
 Matchers.tests.cpp:<line number>: passed: WithinULP( 1.f, 0 )
@@ -747,7 +711,7 @@ Matchers.tests.cpp:<line number>: passed: WithinULP( 1.f, static_cast<uint64_t>(
 Matchers.tests.cpp:<line number>: passed: WithinRel( 1.f, 0.f )
 Matchers.tests.cpp:<line number>: passed: WithinRel( 1.f, -0.2f ), std::domain_error
 Matchers.tests.cpp:<line number>: passed: WithinRel( 1.f, 1.f ), std::domain_error
-Matchers.tests.cpp:<line number>: passed: 1., !IsNaN() for: 1.0 not is NaN
+Matchers.tests.cpp:<line number>: passed: 1., !IsNaN() for: 1 not is NaN
 Generators.tests.cpp:<line number>: passed: i % 2 == 0 for: 0 == 0
 Generators.tests.cpp:<line number>: passed: i % 2 == 0 for: 0 == 0
 Generators.tests.cpp:<line number>: passed: i % 2 == 0 for: 0 == 0
@@ -872,17 +836,17 @@ GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 2 for: 2 == 2
 GeneratorsImpl.tests.cpp:<line number>: passed: !(gen.next()) for: !false
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 1 for: 1 == 1
 GeneratorsImpl.tests.cpp:<line number>: passed: !(gen.next()) for: !false
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 2.0 for: 2.0 == 2.0
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 2.0 for: 2 == 2
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 4.0 for: 4.0 == 4.0
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 4.0 for: 4 == 4
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 6.0 for: 6.0 == 6.0
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 6.0 for: 6 == 6
 GeneratorsImpl.tests.cpp:<line number>: passed: !(gen.next()) for: !false
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 2.0 for: 2.0 == 2.0
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 2.0 for: 2 == 2
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 4.0 for: 4.0 == 4.0
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 4.0 for: 4 == 4
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 6.0 for: 6.0 == 6.0
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 6.0 for: 6 == 6
 GeneratorsImpl.tests.cpp:<line number>: passed: !(gen.next()) for: !false
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 3 for: 3 == 3
 GeneratorsImpl.tests.cpp:<line number>: passed: !(gen.next()) for: !false
@@ -940,27 +904,23 @@ GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 2 for: 2 == 2
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == 5 for: 5 == 5
 GeneratorsImpl.tests.cpp:<line number>: passed: !(gen.next()) for: !false
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -1.0 == Approx( -1.0 ) with 1 message: 'Current expected value is -1'
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -1 == Approx( -1 ) with 1 message: 'Current expected value is -1'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -1'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.90000000000000002
-==
-Approx( -0.90000000000000002 ) with 1 message: 'Current expected value is -0.9'
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.9 == Approx( -0.9 ) with 1 message: 'Current expected value is -0.9'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -0.9'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.80000000000000004
-==
-Approx( -0.80000000000000004 ) with 1 message: 'Current expected value is -0.8'
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.8 == Approx( -0.8 ) with 1 message: 'Current expected value is -0.8'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -0.8'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.70000000000000007
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.7000000000000001
 ==
-Approx( -0.70000000000000007 ) with 1 message: 'Current expected value is -0.7'
+Approx( -0.7000000000000001 ) with 1 message: 'Current expected value is -0.7'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -0.7'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.60000000000000009
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.6000000000000001
 ==
-Approx( -0.60000000000000009 ) with 1 message: 'Current expected value is -0.6'
+Approx( -0.6000000000000001 ) with 1 message: 'Current expected value is -0.6'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -0.6'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.50000000000000011
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.5000000000000001
 ==
-Approx( -0.50000000000000011 ) with 1 message: 'Current expected value is -0.5'
+Approx( -0.5000000000000001 ) with 1 message: 'Current expected value is -0.5'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -0.5'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.40000000000000013
 ==
@@ -978,9 +938,9 @@ GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) fo
 ==
 Approx( -0.10000000000000014 ) with 1 message: 'Current expected value is -0.1'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -0.1'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.00000000000000014
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -1.3877787807814457e-16
 ==
-Approx( -0.00000000000000014 ) with 1 message: 'Current expected value is -1.38778e-16'
+Approx( -1.3877787807814457e-16 ) with 1 message: 'Current expected value is -1.38778e-16'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -1.38778e-16'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.09999999999999987
 ==
@@ -990,41 +950,39 @@ GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) fo
 ==
 Approx( 0.19999999999999987 ) with 1 message: 'Current expected value is 0.2'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.2'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.29999999999999988
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.2999999999999999
 ==
-Approx( 0.29999999999999988 ) with 1 message: 'Current expected value is 0.3'
+Approx( 0.2999999999999999 ) with 1 message: 'Current expected value is 0.3'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.3'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.39999999999999991
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.3999999999999999
 ==
-Approx( 0.39999999999999991 ) with 1 message: 'Current expected value is 0.4'
+Approx( 0.3999999999999999 ) with 1 message: 'Current expected value is 0.4'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.4'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.49999999999999989
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.4999999999999999
 ==
-Approx( 0.49999999999999989 ) with 1 message: 'Current expected value is 0.5'
+Approx( 0.4999999999999999 ) with 1 message: 'Current expected value is 0.5'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.5'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.59999999999999987
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.5999999999999999
 ==
-Approx( 0.59999999999999987 ) with 1 message: 'Current expected value is 0.6'
+Approx( 0.5999999999999999 ) with 1 message: 'Current expected value is 0.6'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.6'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.69999999999999984
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.6999999999999998
 ==
-Approx( 0.69999999999999984 ) with 1 message: 'Current expected value is 0.7'
+Approx( 0.6999999999999998 ) with 1 message: 'Current expected value is 0.7'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.7'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.79999999999999982
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.7999999999999998
 ==
-Approx( 0.79999999999999982 ) with 1 message: 'Current expected value is 0.8'
+Approx( 0.7999999999999998 ) with 1 message: 'Current expected value is 0.8'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.8'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.8999999999999998
 ==
 Approx( 0.8999999999999998 ) with 1 message: 'Current expected value is 0.9'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.9'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx( rangeEnd ) for: 0.99999999999999978 == Approx( 1.0 )
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx( rangeEnd ) for: 0.9999999999999998 == Approx( 1 )
 GeneratorsImpl.tests.cpp:<line number>: passed: !(gen.next()) for: !false
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -1.0 == Approx( -1.0 ) with 1 message: 'Current expected value is -1'
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -1 == Approx( -1 ) with 1 message: 'Current expected value is -1'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -1'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.69999999999999996
-==
-Approx( -0.69999999999999996 ) with 1 message: 'Current expected value is -0.7'
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.7 == Approx( -0.7 ) with 1 message: 'Current expected value is -0.7'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -0.7'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.39999999999999997
 ==
@@ -1034,18 +992,14 @@ GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) fo
 ==
 Approx( -0.09999999999999998 ) with 1 message: 'Current expected value is -0.1'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -0.1'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.20000000000000001
-==
-Approx( 0.20000000000000001 ) with 1 message: 'Current expected value is 0.2'
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.2 == Approx( 0.2 ) with 1 message: 'Current expected value is 0.2'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.2'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.5 == Approx( 0.5 ) with 1 message: 'Current expected value is 0.5'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.5'
 GeneratorsImpl.tests.cpp:<line number>: passed: !(gen.next()) for: !false
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -1.0 == Approx( -1.0 ) with 1 message: 'Current expected value is -1'
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -1 == Approx( -1 ) with 1 message: 'Current expected value is -1'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -1'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.69999999999999996
-==
-Approx( -0.69999999999999996 ) with 1 message: 'Current expected value is -0.7'
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.7 == Approx( -0.7 ) with 1 message: 'Current expected value is -0.7'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -0.7'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: -0.39999999999999997
 ==
@@ -1055,9 +1009,7 @@ GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) fo
 ==
 Approx( -0.09999999999999998 ) with 1 message: 'Current expected value is -0.1'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is -0.1'
-GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.20000000000000001
-==
-Approx( 0.20000000000000001 ) with 1 message: 'Current expected value is 0.2'
+GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.2 == Approx( 0.2 ) with 1 message: 'Current expected value is 0.2'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.2'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == Approx(expected) for: 0.5 == Approx( 0.5 ) with 1 message: 'Current expected value is 0.5'
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true with 1 message: 'Current expected value is 0.5'
@@ -1088,18 +1040,10 @@ GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == -4 for: -4 == -4
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.next() for: true
 GeneratorsImpl.tests.cpp:<line number>: passed: gen.get() == -7 for: -7 == -7
 GeneratorsImpl.tests.cpp:<line number>: passed: !(gen.next()) for: !false
-Approx.tests.cpp:<line number>: passed: d >= Approx( 1.22 ) for: 1.22999999999999998
->=
-Approx( 1.21999999999999997 )
-Approx.tests.cpp:<line number>: passed: d >= Approx( 1.23 ) for: 1.22999999999999998
->=
-Approx( 1.22999999999999998 )
-Approx.tests.cpp:<line number>: passed: !(d >= Approx( 1.24 )) for: !(1.22999999999999998
->=
-Approx( 1.23999999999999999 ))
-Approx.tests.cpp:<line number>: passed: d >= Approx( 1.24 ).epsilon(0.1) for: 1.22999999999999998
->=
-Approx( 1.23999999999999999 )
+Approx.tests.cpp:<line number>: passed: d >= Approx( 1.22 ) for: 1.23 >= Approx( 1.22 )
+Approx.tests.cpp:<line number>: passed: d >= Approx( 1.23 ) for: 1.23 >= Approx( 1.23 )
+Approx.tests.cpp:<line number>: passed: !(d >= Approx( 1.24 )) for: !(1.23 >= Approx( 1.24 ))
+Approx.tests.cpp:<line number>: passed: d >= Approx( 1.24 ).epsilon(0.1) for: 1.23 >= Approx( 1.24 )
 TestCaseInfoHasher.tests.cpp:<line number>: passed: h1( dummy ) != h2( dummy ) for: 3422778688 (0x<hex digits>)
 !=
 130711275 (0x<hex digits>)
@@ -1138,25 +1082,17 @@ Message.tests.cpp:<line number>: passed: i < 10 for: 9 < 10 with 2 messages: 'cu
 Message.tests.cpp:<line number>: failed: i < 10 for: 10 < 10 with 2 messages: 'current counter 10' and 'i := 10'
 AssertionHandler.tests.cpp:<line number>: failed: unexpected exception with message: 'Exception translation was disabled by CATCH_CONFIG_FAST_COMPILE'; expression was: Dummy
 Condition.tests.cpp:<line number>: failed: data.int_seven != 7 for: 7 != 7
-Condition.tests.cpp:<line number>: failed: data.float_nine_point_one != Approx( 9.1f ) for: 9.100000381f
-!=
-Approx( 9.10000038146972656 )
-Condition.tests.cpp:<line number>: failed: data.double_pi != Approx( 3.1415926535 ) for: 3.14159265350000005
-!=
-Approx( 3.14159265350000005 )
+Condition.tests.cpp:<line number>: failed: data.float_nine_point_one != Approx( 9.1f ) for: 9.1f != Approx( 9.100000381469727 )
+Condition.tests.cpp:<line number>: failed: data.double_pi != Approx( 3.1415926535 ) for: 3.1415926535 != Approx( 3.1415926535 )
 Condition.tests.cpp:<line number>: failed: data.str_hello != "hello" for: "hello" != "hello"
 Condition.tests.cpp:<line number>: failed: data.str_hello.size() != 5 for: 5 != 5
 Condition.tests.cpp:<line number>: passed: data.int_seven != 6 for: 7 != 6
 Condition.tests.cpp:<line number>: passed: data.int_seven != 8 for: 7 != 8
-Condition.tests.cpp:<line number>: passed: data.float_nine_point_one != Approx( 9.11f ) for: 9.100000381f
-!=
-Approx( 9.10999965667724609 )
-Condition.tests.cpp:<line number>: passed: data.float_nine_point_one != Approx( 9.0f ) for: 9.100000381f != Approx( 9.0 )
-Condition.tests.cpp:<line number>: passed: data.float_nine_point_one != Approx( 1 ) for: 9.100000381f != Approx( 1.0 )
-Condition.tests.cpp:<line number>: passed: data.float_nine_point_one != Approx( 0 ) for: 9.100000381f != Approx( 0.0 )
-Condition.tests.cpp:<line number>: passed: data.double_pi != Approx( 3.1415 ) for: 3.14159265350000005
-!=
-Approx( 3.14150000000000018 )
+Condition.tests.cpp:<line number>: passed: data.float_nine_point_one != Approx( 9.11f ) for: 9.1f != Approx( 9.109999656677246 )
+Condition.tests.cpp:<line number>: passed: data.float_nine_point_one != Approx( 9.0f ) for: 9.1f != Approx( 9 )
+Condition.tests.cpp:<line number>: passed: data.float_nine_point_one != Approx( 1 ) for: 9.1f != Approx( 1 )
+Condition.tests.cpp:<line number>: passed: data.float_nine_point_one != Approx( 0 ) for: 9.1f != Approx( 0 )
+Condition.tests.cpp:<line number>: passed: data.double_pi != Approx( 3.1415 ) for: 3.1415926535 != Approx( 3.1415 )
 Condition.tests.cpp:<line number>: passed: data.str_hello != "goodbye" for: "hello" != "goodbye"
 Condition.tests.cpp:<line number>: passed: data.str_hello != "hell" for: "hello" != "hell"
 Condition.tests.cpp:<line number>: passed: data.str_hello != "hello1" for: "hello" != "hello1"
@@ -1267,18 +1203,10 @@ Json.tests.cpp:<line number>: passed: sstream.str(), ContainsSubstring( "\"doubl
   ]
 }" )
 Compilation.tests.cpp:<line number>: passed: []() { return true; }() for: true
-Approx.tests.cpp:<line number>: passed: d <= Approx( 1.24 ) for: 1.22999999999999998
-<=
-Approx( 1.23999999999999999 )
-Approx.tests.cpp:<line number>: passed: d <= Approx( 1.23 ) for: 1.22999999999999998
-<=
-Approx( 1.22999999999999998 )
-Approx.tests.cpp:<line number>: passed: !(d <= Approx( 1.22 )) for: !(1.22999999999999998
-<=
-Approx( 1.21999999999999997 ))
-Approx.tests.cpp:<line number>: passed: d <= Approx( 1.22 ).epsilon(0.1) for: 1.22999999999999998
-<=
-Approx( 1.21999999999999997 )
+Approx.tests.cpp:<line number>: passed: d <= Approx( 1.24 ) for: 1.23 <= Approx( 1.24 )
+Approx.tests.cpp:<line number>: passed: d <= Approx( 1.23 ) for: 1.23 <= Approx( 1.23 )
+Approx.tests.cpp:<line number>: passed: !(d <= Approx( 1.22 )) for: !(1.23 <= Approx( 1.22 ))
+Approx.tests.cpp:<line number>: passed: d <= Approx( 1.22 ).epsilon(0.1) for: 1.23 <= Approx( 1.22 )
 Misc.tests.cpp:<line number>: passed: with 1 message: 'was called'
 GeneratorsImpl.tests.cpp:<line number>: passed: map_calls == 0 for: 0 == 0
 GeneratorsImpl.tests.cpp:<line number>: passed: map_calls == 0 for: 0 == 0
@@ -1367,9 +1295,9 @@ Condition.tests.cpp:<line number>: failed: data.int_seven < 0 for: 7 < 0
 Condition.tests.cpp:<line number>: failed: data.int_seven < -1 for: 7 < -1
 Condition.tests.cpp:<line number>: failed: data.int_seven >= 8 for: 7 >= 8
 Condition.tests.cpp:<line number>: failed: data.int_seven <= 6 for: 7 <= 6
-Condition.tests.cpp:<line number>: failed: data.float_nine_point_one < 9 for: 9.100000381f < 9
-Condition.tests.cpp:<line number>: failed: data.float_nine_point_one > 10 for: 9.100000381f > 10
-Condition.tests.cpp:<line number>: failed: data.float_nine_point_one > 9.2 for: 9.100000381f > 9.19999999999999929
+Condition.tests.cpp:<line number>: failed: data.float_nine_point_one < 9 for: 9.1f < 9
+Condition.tests.cpp:<line number>: failed: data.float_nine_point_one > 10 for: 9.1f > 10
+Condition.tests.cpp:<line number>: failed: data.float_nine_point_one > 9.2 for: 9.1f > 9.2
 Condition.tests.cpp:<line number>: failed: data.str_hello > "hello" for: "hello" > "hello"
 Condition.tests.cpp:<line number>: failed: data.str_hello < "hello" for: "hello" < "hello"
 Condition.tests.cpp:<line number>: failed: data.str_hello > "hellp" for: "hello" > "hellp"
@@ -1386,9 +1314,9 @@ Condition.tests.cpp:<line number>: passed: data.int_seven >= 7 for: 7 >= 7
 Condition.tests.cpp:<line number>: passed: data.int_seven >= 6 for: 7 >= 6
 Condition.tests.cpp:<line number>: passed: data.int_seven <= 7 for: 7 <= 7
 Condition.tests.cpp:<line number>: passed: data.int_seven <= 8 for: 7 <= 8
-Condition.tests.cpp:<line number>: passed: data.float_nine_point_one > 9 for: 9.100000381f > 9
-Condition.tests.cpp:<line number>: passed: data.float_nine_point_one < 10 for: 9.100000381f < 10
-Condition.tests.cpp:<line number>: passed: data.float_nine_point_one < 9.2 for: 9.100000381f < 9.19999999999999929
+Condition.tests.cpp:<line number>: passed: data.float_nine_point_one > 9 for: 9.1f > 9
+Condition.tests.cpp:<line number>: passed: data.float_nine_point_one < 10 for: 9.1f < 10
+Condition.tests.cpp:<line number>: passed: data.float_nine_point_one < 9.2 for: 9.1f < 9.2
 Condition.tests.cpp:<line number>: passed: data.str_hello <= "hello" for: "hello" <= "hello"
 Condition.tests.cpp:<line number>: passed: data.str_hello >= "hello" for: "hello" >= "hello"
 Condition.tests.cpp:<line number>: passed: data.str_hello < "hellp" for: "hello" < "hellp"
@@ -1613,9 +1541,7 @@ CmdLine.tests.cpp:<line number>: passed: result.errorMessage(), ContainsSubstrin
 CmdLine.tests.cpp:<line number>: passed: cli.parse({ "test", "--benchmark-resamples=20000" }) for: {?}
 CmdLine.tests.cpp:<line number>: passed: config.benchmarkResamples == 20000 for: 20000 (0x<hex digits>) == 20000 (0x<hex digits>)
 CmdLine.tests.cpp:<line number>: passed: cli.parse({ "test", "--benchmark-confidence-interval=0.99" }) for: {?}
-CmdLine.tests.cpp:<line number>: passed: config.benchmarkConfidenceInterval == Catch::Approx(0.99) for: 0.98999999999999999
-==
-Approx( 0.98999999999999999 )
+CmdLine.tests.cpp:<line number>: passed: config.benchmarkConfidenceInterval == Catch::Approx(0.99) for: 0.99 == Approx( 0.99 )
 CmdLine.tests.cpp:<line number>: passed: cli.parse({ "test", "--benchmark-no-analysis" }) for: {?}
 CmdLine.tests.cpp:<line number>: passed: config.benchmarkNoAnalysis for: true
 CmdLine.tests.cpp:<line number>: passed: cli.parse({ "test", "--benchmark-warmup-time=10" }) for: {?}
@@ -1871,30 +1797,14 @@ Message.tests.cpp:<line number>: failed: false with 1 message: 'This will be rep
 Message.tests.cpp:<line number>: failed: false with 1 message: 'Should be in scope at the end'
 Message.tests.cpp:<line number>: passed: true with 1 message: 'Should survive a section end'
 Message.tests.cpp:<line number>: failed: false with 1 message: 'Should survive a section end'
-Approx.tests.cpp:<line number>: passed: d == Approx( 1.23 ) for: 1.22999999999999998
-==
-Approx( 1.22999999999999998 )
-Approx.tests.cpp:<line number>: passed: d != Approx( 1.22 ) for: 1.22999999999999998
-!=
-Approx( 1.21999999999999997 )
-Approx.tests.cpp:<line number>: passed: d != Approx( 1.24 ) for: 1.22999999999999998
-!=
-Approx( 1.23999999999999999 )
-Approx.tests.cpp:<line number>: passed: d == 1.23_a for: 1.22999999999999998
-==
-Approx( 1.22999999999999998 )
-Approx.tests.cpp:<line number>: passed: d != 1.22_a for: 1.22999999999999998
-!=
-Approx( 1.21999999999999997 )
-Approx.tests.cpp:<line number>: passed: Approx( d ) == 1.23 for: Approx( 1.22999999999999998 )
-==
-1.22999999999999998
-Approx.tests.cpp:<line number>: passed: Approx( d ) != 1.22 for: Approx( 1.22999999999999998 )
-!=
-1.21999999999999997
-Approx.tests.cpp:<line number>: passed: Approx( d ) != 1.24 for: Approx( 1.22999999999999998 )
-!=
-1.23999999999999999
+Approx.tests.cpp:<line number>: passed: d == Approx( 1.23 ) for: 1.23 == Approx( 1.23 )
+Approx.tests.cpp:<line number>: passed: d != Approx( 1.22 ) for: 1.23 != Approx( 1.22 )
+Approx.tests.cpp:<line number>: passed: d != Approx( 1.24 ) for: 1.23 != Approx( 1.24 )
+Approx.tests.cpp:<line number>: passed: d == 1.23_a for: 1.23 == Approx( 1.23 )
+Approx.tests.cpp:<line number>: passed: d != 1.22_a for: 1.23 != Approx( 1.22 )
+Approx.tests.cpp:<line number>: passed: Approx( d ) == 1.23 for: Approx( 1.23 ) == 1.23
+Approx.tests.cpp:<line number>: passed: Approx( d ) != 1.22 for: Approx( 1.23 ) != 1.22
+Approx.tests.cpp:<line number>: passed: Approx( d ) != 1.24 for: Approx( 1.23 ) != 1.24
 Matchers.tests.cpp:<line number>: failed: testStringForMatching(), StartsWith( "This String" ) for: "this string contains 'abc' as a substring" starts with: "This String"
 Matchers.tests.cpp:<line number>: failed: testStringForMatching(), StartsWith( "string", Catch::CaseSensitive::No ) for: "this string contains 'abc' as a substring" starts with: "string" (case insensitive)
 ToStringGeneral.tests.cpp:<line number>: passed: Catch::Detail::stringify(singular) == "{ 1 }" for: "{ 1 }" == "{ 1 }"
@@ -2016,7 +1926,7 @@ GeneratorsImpl.tests.cpp:<line number>: passed: take.get() == 5 for: 5 == 5
 GeneratorsImpl.tests.cpp:<line number>: passed: take.skipToNthElement( 6 )
 Class.tests.cpp:<line number>: passed: Template_Fixture<TestType>::m_a == 1 for: 1 == 1
 Class.tests.cpp:<line number>: passed: Template_Fixture<TestType>::m_a == 1 for: 1 == 1
-Class.tests.cpp:<line number>: passed: Template_Fixture<TestType>::m_a == 1 for: 1.0 == 1
+Class.tests.cpp:<line number>: passed: Template_Fixture<TestType>::m_a == 1 for: 1 == 1
 Misc.tests.cpp:<line number>: passed: std::is_default_constructible<TestType>::value for: true
 Misc.tests.cpp:<line number>: passed: std::is_default_constructible<TestType>::value for: true
 Misc.tests.cpp:<line number>: passed: std::is_trivially_copyable<TestType>::value for: true
@@ -2309,7 +2219,7 @@ MatchersRanges.tests.cpp:<line number>: passed: a, !RangeEquals( b ) for: { 1, 2
 MatchersRanges.tests.cpp:<line number>: passed: a, UnorderedRangeEquals( b ) for: { 1, 2, 3 } unordered elements are { 3, 2, 1 }
 MatchersRanges.tests.cpp:<line number>: passed: vector_a, RangeEquals( array_a_plus_1, close_enough ) for: { 1, 2, 3 } elements are { 2, 3, 4 }
 MatchersRanges.tests.cpp:<line number>: passed: vector_a, UnorderedRangeEquals( array_a_plus_1, close_enough ) for: { 1, 2, 3 } unordered elements are { 2, 3, 4 }
-Exception.tests.cpp:<line number>: failed: unexpected exception with message: '3.14000000000000012'
+Exception.tests.cpp:<line number>: failed: unexpected exception with message: '3.14'
 Message.tests.cpp:<line number>: failed: false with 3 messages: 'i := 1' and 'j := 2' and 'i + j := 3'
 UniquePtr.tests.cpp:<line number>: passed: bptr->i == 3 for: 3 == 3
 UniquePtr.tests.cpp:<line number>: passed: bptr->i == 3 for: 3 == 3
@@ -2460,37 +2370,25 @@ MatchersRanges.tests.cpp:<line number>: passed: arr, !SizeIs(!Lt(3)) for: { 0, 0
 MatchersRanges.tests.cpp:<line number>: passed: map, SizeIs(3) for: { {?}, {?}, {?} } has size == 3
 MatchersRanges.tests.cpp:<line number>: passed: unrelated::ADL_size{}, SizeIs(12) for: {?} has size == 12
 MatchersRanges.tests.cpp:<line number>: passed: has_size{}, SizeIs(13) for: {?} has size == 13
-Approx.tests.cpp:<line number>: passed: d == approx( 1.23 ) for: 1.22999999999999998
-==
-Approx( 1.22999999999999998 )
-Approx.tests.cpp:<line number>: passed: d == approx( 1.22 ) for: 1.22999999999999998
-==
-Approx( 1.21999999999999997 )
-Approx.tests.cpp:<line number>: passed: d == approx( 1.24 ) for: 1.22999999999999998
-==
-Approx( 1.23999999999999999 )
-Approx.tests.cpp:<line number>: passed: d != approx( 1.25 ) for: 1.22999999999999998 != Approx( 1.25 )
-Approx.tests.cpp:<line number>: passed: approx( d ) == 1.23 for: Approx( 1.22999999999999998 )
-==
-1.22999999999999998
-Approx.tests.cpp:<line number>: passed: approx( d ) == 1.22 for: Approx( 1.22999999999999998 )
-==
-1.21999999999999997
-Approx.tests.cpp:<line number>: passed: approx( d ) == 1.24 for: Approx( 1.22999999999999998 )
-==
-1.23999999999999999
-Approx.tests.cpp:<line number>: passed: approx( d ) != 1.25 for: Approx( 1.22999999999999998 ) != 1.25
+Approx.tests.cpp:<line number>: passed: d == approx( 1.23 ) for: 1.23 == Approx( 1.23 )
+Approx.tests.cpp:<line number>: passed: d == approx( 1.22 ) for: 1.23 == Approx( 1.22 )
+Approx.tests.cpp:<line number>: passed: d == approx( 1.24 ) for: 1.23 == Approx( 1.24 )
+Approx.tests.cpp:<line number>: passed: d != approx( 1.25 ) for: 1.23 != Approx( 1.25 )
+Approx.tests.cpp:<line number>: passed: approx( d ) == 1.23 for: Approx( 1.23 ) == 1.23
+Approx.tests.cpp:<line number>: passed: approx( d ) == 1.22 for: Approx( 1.23 ) == 1.22
+Approx.tests.cpp:<line number>: passed: approx( d ) == 1.24 for: Approx( 1.23 ) == 1.24
+Approx.tests.cpp:<line number>: passed: approx( d ) != 1.25 for: Approx( 1.23 ) != 1.25
 VariadicMacros.tests.cpp:<line number>: passed: with 1 message: 'no assertions'
 Matchers.tests.cpp:<line number>: passed: empty, Approx( empty ) for: {  } is approx: {  }
-Matchers.tests.cpp:<line number>: passed: v1, Approx( v1 ) for: { 1.0, 2.0, 3.0 } is approx: { 1.0, 2.0, 3.0 }
-Matchers.tests.cpp:<line number>: passed: v1, Approx<double>( { 1., 2., 3. } ) for: { 1.0, 2.0, 3.0 } is approx: { 1.0, 2.0, 3.0 }
-Matchers.tests.cpp:<line number>: passed: v1, !Approx( temp ) for: { 1.0, 2.0, 3.0 } not is approx: { 1.0, 2.0, 3.0, 4.0 }
-Matchers.tests.cpp:<line number>: passed: v1, !Approx( v2 ) for: { 1.0, 2.0, 3.0 } not is approx: { 1.5, 2.5, 3.5 }
-Matchers.tests.cpp:<line number>: passed: v1, Approx( v2 ).margin( 0.5 ) for: { 1.0, 2.0, 3.0 } is approx: { 1.5, 2.5, 3.5 }
-Matchers.tests.cpp:<line number>: passed: v1, Approx( v2 ).epsilon( 0.5 ) for: { 1.0, 2.0, 3.0 } is approx: { 1.5, 2.5, 3.5 }
-Matchers.tests.cpp:<line number>: passed: v1, Approx( v2 ).epsilon( 0.1 ).scale( 500 ) for: { 1.0, 2.0, 3.0 } is approx: { 1.5, 2.5, 3.5 }
-Matchers.tests.cpp:<line number>: failed: empty, Approx( t1 ) for: {  } is approx: { 1.0, 2.0 }
-Matchers.tests.cpp:<line number>: failed: v1, Approx( v2 ) for: { 2.0, 4.0, 6.0 } is approx: { 1.0, 3.0, 5.0 }
+Matchers.tests.cpp:<line number>: passed: v1, Approx( v1 ) for: { 1, 2, 3 } is approx: { 1, 2, 3 }
+Matchers.tests.cpp:<line number>: passed: v1, Approx<double>( { 1., 2., 3. } ) for: { 1, 2, 3 } is approx: { 1, 2, 3 }
+Matchers.tests.cpp:<line number>: passed: v1, !Approx( temp ) for: { 1, 2, 3 } not is approx: { 1, 2, 3, 4 }
+Matchers.tests.cpp:<line number>: passed: v1, !Approx( v2 ) for: { 1, 2, 3 } not is approx: { 1.5, 2.5, 3.5 }
+Matchers.tests.cpp:<line number>: passed: v1, Approx( v2 ).margin( 0.5 ) for: { 1, 2, 3 } is approx: { 1.5, 2.5, 3.5 }
+Matchers.tests.cpp:<line number>: passed: v1, Approx( v2 ).epsilon( 0.5 ) for: { 1, 2, 3 } is approx: { 1.5, 2.5, 3.5 }
+Matchers.tests.cpp:<line number>: passed: v1, Approx( v2 ).epsilon( 0.1 ).scale( 500 ) for: { 1, 2, 3 } is approx: { 1.5, 2.5, 3.5 }
+Matchers.tests.cpp:<line number>: failed: empty, Approx( t1 ) for: {  } is approx: { 1, 2 }
+Matchers.tests.cpp:<line number>: failed: v1, Approx( v2 ) for: { 2, 4, 6 } is approx: { 1, 3, 5 }
 Matchers.tests.cpp:<line number>: passed: v, VectorContains( 1 ) for: { 1, 2, 3 } Contains: 1
 Matchers.tests.cpp:<line number>: passed: v, VectorContains( 2 ) for: { 1, 2, 3 } Contains: 2
 Matchers.tests.cpp:<line number>: passed: v5, ( VectorContains<int, CustomAllocator<int>>( 2 ) ) for: { 1, 2, 3 } Contains: 2
@@ -2561,19 +2459,19 @@ Xml.tests.cpp:<line number>: passed: stream.str(), ContainsSubstring(R"(attr1="t
 " ( contains: "attr1="true"" and contains: "attr2="false"" )
 Skip.tests.cpp:<line number>: passed:
 Skip.tests.cpp:<line number>: skipped:
-InternalBenchmark.tests.cpp:<line number>: passed: analysis.mean.point.count() == 23 for: 23.0 == 23
-InternalBenchmark.tests.cpp:<line number>: passed: analysis.mean.lower_bound.count() == 23 for: 23.0 == 23
-InternalBenchmark.tests.cpp:<line number>: passed: analysis.mean.upper_bound.count() == 23 for: 23.0 == 23
-InternalBenchmark.tests.cpp:<line number>: passed: analysis.standard_deviation.point.count() == 0 for: 0.0 == 0
-InternalBenchmark.tests.cpp:<line number>: passed: analysis.standard_deviation.lower_bound.count() == 0 for: 0.0 == 0
-InternalBenchmark.tests.cpp:<line number>: passed: analysis.standard_deviation.upper_bound.count() == 0 for: 0.0 == 0
+InternalBenchmark.tests.cpp:<line number>: passed: analysis.mean.point.count() == 23 for: 23 == 23
+InternalBenchmark.tests.cpp:<line number>: passed: analysis.mean.lower_bound.count() == 23 for: 23 == 23
+InternalBenchmark.tests.cpp:<line number>: passed: analysis.mean.upper_bound.count() == 23 for: 23 == 23
+InternalBenchmark.tests.cpp:<line number>: passed: analysis.standard_deviation.point.count() == 0 for: 0 == 0
+InternalBenchmark.tests.cpp:<line number>: passed: analysis.standard_deviation.lower_bound.count() == 0 for: 0 == 0
+InternalBenchmark.tests.cpp:<line number>: passed: analysis.standard_deviation.upper_bound.count() == 0 for: 0 == 0
 InternalBenchmark.tests.cpp:<line number>: passed: analysis.outliers.total() == 0 for: 0 == 0
 InternalBenchmark.tests.cpp:<line number>: passed: analysis.outliers.low_mild == 0 for: 0 == 0
 InternalBenchmark.tests.cpp:<line number>: passed: analysis.outliers.low_severe == 0 for: 0 == 0
 InternalBenchmark.tests.cpp:<line number>: passed: analysis.outliers.high_mild == 0 for: 0 == 0
 InternalBenchmark.tests.cpp:<line number>: passed: analysis.outliers.high_severe == 0 for: 0 == 0
 InternalBenchmark.tests.cpp:<line number>: passed: analysis.outliers.samples_seen == 0 for: 0 == 0
-InternalBenchmark.tests.cpp:<line number>: passed: analysis.outlier_variance == 0 for: 0.0 == 0
+InternalBenchmark.tests.cpp:<line number>: passed: analysis.outlier_variance == 0 for: 0 == 0
 ToStringVector.tests.cpp:<line number>: passed: Catch::Detail::stringify( empty ) == "{  }" for: "{  }" == "{  }"
 ToStringVector.tests.cpp:<line number>: passed: Catch::Detail::stringify( oneValue ) == "{ 42 }" for: "{ 42 }" == "{ 42 }"
 ToStringVector.tests.cpp:<line number>: passed: Catch::Detail::stringify( twoValues ) == "{ 42, 250 }" for: "{ 42, 250 }" == "{ 42, 250 }"
@@ -2674,10 +2572,10 @@ Approx( -0.09203687623843015 )
 InternalBenchmark.tests.cpp:<line number>: passed: erfc_inv(1.067400) == Approx(-0.05980291115763361) for: -0.05980291115763361
 ==
 Approx( -0.05980291115763361 )
-InternalBenchmark.tests.cpp:<line number>: passed: erfc_inv(0.050000) == Approx(1.38590382434967796) for: 1.38590382434967774
+InternalBenchmark.tests.cpp:<line number>: passed: erfc_inv(0.050000) == Approx(1.38590382434967796) for: 1.3859038243496777
 ==
-Approx( 1.38590382434967796 )
-InternalBenchmark.tests.cpp:<line number>: passed: res.mean.count() == rate for: 2000.0 == 2000 (0x<hex digits>)
+Approx( 1.385903824349678 )
+InternalBenchmark.tests.cpp:<line number>: passed: res.mean.count() == rate for: 2e+03 == 2000 (0x<hex digits>)
 InternalBenchmark.tests.cpp:<line number>: passed: res.outliers.total() == 0 for: 0 == 0
 Misc.tests.cpp:<line number>: passed:
 Misc.tests.cpp:<line number>: passed:
@@ -2729,7 +2627,7 @@ Stream.tests.cpp:<line number>: passed: Catch::makeStream( "%debug" )
 UniquePtr.tests.cpp:<line number>: passed: !(lval.has_moved) for: !false
 UniquePtr.tests.cpp:<line number>: passed: rval.has_moved for: true
 UniquePtr.tests.cpp:<line number>: passed: *ptr == std::tuple<int, double, int>{1, 2., 3} for: {?} == {?}
-InternalBenchmark.tests.cpp:<line number>: passed: m == 19. for: 19.0 == 19.0
+InternalBenchmark.tests.cpp:<line number>: passed: m == 19. for: 19 == 19
 InternalBenchmark.tests.cpp:<line number>: passed: x == 17 for: 17 == 17
 InternalBenchmark.tests.cpp:<line number>: passed: x == 23 for: 23 == 23
 InternalBenchmark.tests.cpp:<line number>: passed: r.elapsed.count() == 42 for: 42 == 42
@@ -2755,9 +2653,9 @@ Approx( 0.13015979861484198 )
 InternalBenchmark.tests.cpp:<line number>: passed: normal_quantile(0.533700) == Approx(0.08457408802851875) for: 0.08457408802851875
 ==
 Approx( 0.08457408802851875 )
-InternalBenchmark.tests.cpp:<line number>: passed: normal_quantile(0.025000) == Approx(-1.95996398454005449) for: -1.95996398454005405
+InternalBenchmark.tests.cpp:<line number>: passed: normal_quantile(0.025000) == Approx(-1.95996398454005449) for: -1.959963984540054
 ==
-Approx( -1.95996398454005449 )
+Approx( -1.9599639845400545 )
 Misc.tests.cpp:<line number>: passed:
 Message.tests.cpp:<line number>: passed: true with 1 message: 'this MAY be seen only for the FIRST assertion IF info is printed for passing assertions'
 Message.tests.cpp:<line number>: passed: true with 1 message: 'this MAY be seen only for the SECOND assertion IF info is printed for passing assertions'
@@ -2805,15 +2703,15 @@ StringManip.tests.cpp:<line number>: passed: Catch::replaceInPlace(s, "'", "|'")
 StringManip.tests.cpp:<line number>: passed: s == "didn|'t" for: "didn|'t" == "didn|'t"
 Stream.tests.cpp:<line number>: passed: Catch::makeStream( "%somestream" )
 InternalBenchmark.tests.cpp:<line number>: passed: res.size() == count for: 10 == 10
-InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1000.0 == 1000 (0x<hex digits>)
-InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1000.0 == 1000 (0x<hex digits>)
-InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1000.0 == 1000 (0x<hex digits>)
-InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1000.0 == 1000 (0x<hex digits>)
-InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1000.0 == 1000 (0x<hex digits>)
-InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1000.0 == 1000 (0x<hex digits>)
-InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1000.0 == 1000 (0x<hex digits>)
-InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1000.0 == 1000 (0x<hex digits>)
-InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1000.0 == 1000 (0x<hex digits>)
+InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1e+03 == 1000 (0x<hex digits>)
+InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1e+03 == 1000 (0x<hex digits>)
+InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1e+03 == 1000 (0x<hex digits>)
+InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1e+03 == 1000 (0x<hex digits>)
+InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1e+03 == 1000 (0x<hex digits>)
+InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1e+03 == 1000 (0x<hex digits>)
+InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1e+03 == 1000 (0x<hex digits>)
+InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1e+03 == 1000 (0x<hex digits>)
+InternalBenchmark.tests.cpp:<line number>: passed: res[i] == rate for: 1e+03 == 1000 (0x<hex digits>)
 InternalBenchmark.tests.cpp:<line number>: passed: meter.runs() >= old_runs for: 1 >= 1
 InternalBenchmark.tests.cpp:<line number>: passed: meter.runs() >= old_runs for: 2 >= 1
 InternalBenchmark.tests.cpp:<line number>: passed: meter.runs() >= old_runs for: 4 >= 2
@@ -2954,10 +2852,10 @@ ToStringTuple.tests.cpp:<line number>: passed: "{ \"hello\", \"world\" }" == ::C
 ToStringTuple.tests.cpp:<line number>: passed: "{ { 42 }, { }, 1.5f }" == ::Catch::Detail::stringify(value) for: "{ { 42 }, { }, 1.5f }"
 ==
 "{ { 42 }, { }, 1.5f }"
-InternalBenchmark.tests.cpp:<line number>: passed: e.point == 23 for: 23.0 == 23
-InternalBenchmark.tests.cpp:<line number>: passed: e.upper_bound == 23 for: 23.0 == 23
-InternalBenchmark.tests.cpp:<line number>: passed: e.lower_bound == 23 for: 23.0 == 23
-InternalBenchmark.tests.cpp:<line number>: passed: e.confidence_interval == 0.95 for: 0.94999999999999996 == 0.94999999999999996
+InternalBenchmark.tests.cpp:<line number>: passed: e.point == 23 for: 23 == 23
+InternalBenchmark.tests.cpp:<line number>: passed: e.upper_bound == 23 for: 23 == 23
+InternalBenchmark.tests.cpp:<line number>: passed: e.lower_bound == 23 for: 23 == 23
+InternalBenchmark.tests.cpp:<line number>: passed: e.confidence_interval == 0.95 for: 0.95 == 0.95
 RandomNumberGeneration.tests.cpp:<line number>: passed: dist.a() == -10 for: -10 == -10
 RandomNumberGeneration.tests.cpp:<line number>: passed: dist.b() == 10 for: 10 == 10
 UniquePtr.tests.cpp:<line number>: passed: !(ptr) for: !{?}
@@ -3021,8 +2919,8 @@ Misc.tests.cpp:<line number>: passed: v.capacity() >= 5 for: 5 >= 5
 InternalBenchmark.tests.cpp:<line number>: passed: (iterations * rate) > Catch::Benchmark::Detail::warmup_time.count() for: 160000000 (0x<hex digits>) > 100
 InternalBenchmark.tests.cpp:<line number>: passed: (end - start) > Catch::Benchmark::Detail::warmup_time for: 310016000 ns > 100 ms
 InternalBenchmark.tests.cpp:<line number>: passed: q1 == 14.5 for: 14.5 == 14.5
-InternalBenchmark.tests.cpp:<line number>: passed: med == 18. for: 18.0 == 18.0
-InternalBenchmark.tests.cpp:<line number>: passed: q3 == 23. for: 23.0 == 23.0
+InternalBenchmark.tests.cpp:<line number>: passed: med == 18. for: 18 == 18
+InternalBenchmark.tests.cpp:<line number>: passed: q3 == 23. for: 23 == 23
 Misc.tests.cpp:<line number>: passed:
 Misc.tests.cpp:<line number>: passed:
 test cases:  456 |  336 passed |  96 failed | 6 skipped | 18 failed as expected

@@ -9,6 +9,7 @@
 #define CATCH_CONFIG_ENABLE_PAIR_STRINGMAKER
 #include <catch2/catch_test_macros.hpp>
 
+#include <limits>
 #include <map>
 #include <set>
 
@@ -150,6 +151,36 @@ TEST_CASE("Precision of floating point stringification can be set", "[toString][
 
         sm::precision = oldPrecision;
     }
+}
+
+TEST_CASE( "#3197 - infinite floating point values retain their sign",
+           "[toString][floatingPoint][approvals]" ) {
+    const auto positiveDouble = Catch::StringMaker<double>::convert(
+        std::numeric_limits<double>::infinity() );
+    const auto negativeDouble = Catch::StringMaker<double>::convert(
+        -std::numeric_limits<double>::infinity() );
+    const auto positiveFloat = Catch::StringMaker<float>::convert(
+        std::numeric_limits<float>::infinity() );
+    const auto negativeFloat = Catch::StringMaker<float>::convert(
+        -std::numeric_limits<float>::infinity() );
+
+    REQUIRE_FALSE( positiveDouble.empty() );
+    REQUIRE_FALSE( negativeDouble.empty() );
+    REQUIRE_FALSE( positiveFloat.empty() );
+    REQUIRE_FALSE( negativeFloat.empty() );
+    CHECK( positiveDouble.front() != '-' );
+    CHECK( negativeDouble.front() == '-' );
+    CHECK( positiveFloat.front() != '-' );
+    CHECK( negativeFloat.front() == '-' );
+}
+TEST_CASE( "#3197 - nearby floating point values are distinguishable",
+           "[toString][floatingPoint][approvals]" ) {
+    const auto lhs =
+        Catch::StringMaker<double>::convert( 5.000000000000001e-05 );
+    const auto rhs = Catch::StringMaker<double>::convert( 5e-05 );
+    CHECK( lhs == "5.000000000000001e-05" );
+    CHECK( rhs == "5e-05" );
+    CHECK( lhs != rhs );
 }
 
 namespace {

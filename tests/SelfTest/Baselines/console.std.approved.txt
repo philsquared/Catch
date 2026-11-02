@@ -230,7 +230,7 @@ Class.tests.cpp:<line number>
 Class.tests.cpp:<line number>: FAILED:
   REQUIRE( Template_Fixture<TestType>::m_a == 2 )
 with expansion:
-  1.0 == 2
+  1 == 2
 
 -------------------------------------------------------------------------------
 A TEMPLATE_TEST_CASE_METHOD based test run that fails - float
@@ -241,7 +241,7 @@ Class.tests.cpp:<line number>
 Class.tests.cpp:<line number>: FAILED:
   REQUIRE( Template_Fixture<TestType>::m_a == 2 )
 with expansion:
-  1.0f == 2
+  1f == 2
 
 -------------------------------------------------------------------------------
 A TEMPLATE_TEST_CASE_METHOD based test run that fails - int
@@ -512,31 +512,27 @@ with expansion:
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one == Approx( 9.11f ) )
 with expansion:
-  9.100000381f
-  ==
-  Approx( 9.10999965667724609 )
+  9.1f == Approx( 9.109999656677246 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one == Approx( 9.0f ) )
 with expansion:
-  9.100000381f == Approx( 9.0 )
+  9.1f == Approx( 9 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one == Approx( 1 ) )
 with expansion:
-  9.100000381f == Approx( 1.0 )
+  9.1f == Approx( 1 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one == Approx( 0 ) )
 with expansion:
-  9.100000381f == Approx( 0.0 )
+  9.1f == Approx( 0 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.double_pi == Approx( 3.1415 ) )
 with expansion:
-  3.14159265350000005
-  ==
-  Approx( 3.14150000000000018 )
+  3.1415926535 == Approx( 3.1415 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.str_hello == "goodbye" )
@@ -561,9 +557,7 @@ with expansion:
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( x == Approx( 1.301 ) )
 with expansion:
-  1.30000000000000027
-  ==
-  Approx( 1.30099999999999993 )
+  1.3000000000000003 == Approx( 1.301 )
 
 -------------------------------------------------------------------------------
 Equals string matcher
@@ -795,16 +789,12 @@ with expansion:
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one != Approx( 9.1f ) )
 with expansion:
-  9.100000381f
-  !=
-  Approx( 9.10000038146972656 )
+  9.1f != Approx( 9.100000381469727 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.double_pi != Approx( 3.1415926535 ) )
 with expansion:
-  3.14159265350000005
-  !=
-  Approx( 3.14159265350000005 )
+  3.1415926535 != Approx( 3.1415926535 )
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.str_hello != "hello" )
@@ -958,17 +948,17 @@ with expansion:
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one < 9 )
 with expansion:
-  9.100000381f < 9
+  9.1f < 9
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one > 10 )
 with expansion:
-  9.100000381f > 10
+  9.1f > 10
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.float_nine_point_one > 9.2 )
 with expansion:
-  9.100000381f > 9.19999999999999929
+  9.1f > 9.2
 
 Condition.tests.cpp:<line number>: FAILED:
   CHECK( data.str_hello > "hello" )
@@ -1201,7 +1191,7 @@ Exception.tests.cpp:<line number>
 
 Exception.tests.cpp:<line number>: FAILED:
 due to unexpected exception with message:
-  3.14000000000000012
+  3.14
 
 -------------------------------------------------------------------------------
 Unscoped capture outlives scope
@@ -1226,7 +1216,7 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: FAILED:
   CHECK_THAT( empty, Approx( t1 ) )
 with expansion:
-  {  } is approx: { 1.0, 2.0 }
+  {  } is approx: { 1, 2 }
 
 -------------------------------------------------------------------------------
 Vector Approx matcher -- failing
@@ -1238,7 +1228,7 @@ Matchers.tests.cpp:<line number>
 Matchers.tests.cpp:<line number>: FAILED:
   CHECK_THAT( v1, Approx( v2 ) )
 with expansion:
-  { 2.0, 4.0, 6.0 } is approx: { 1.0, 3.0, 5.0 }
+  { 2, 4, 6 } is approx: { 1, 3, 5 }
 
 -------------------------------------------------------------------------------
 Vector matchers that fail
