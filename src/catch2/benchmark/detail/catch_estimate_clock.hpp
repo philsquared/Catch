@@ -26,19 +26,14 @@ namespace Catch {
         namespace Detail {
             template <typename Clock>
             std::vector<double> resolution(int k) {
-                const size_t points = static_cast<size_t>( k + 1 );
-                // To avoid overhead from the branch inside vector::push_back,
-                // we allocate them all and then overwrite.
-                std::vector<TimePoint<Clock>> times(points);
-                for ( auto& time : times ) {
-                    time = Clock::now();
-                }
-
                 std::vector<double> deltas;
                 deltas.reserve(static_cast<size_t>(k));
-                for ( size_t idx = 1; idx < points; ++idx ) {
+                auto previous = Clock::now();
+                for ( int idx = 0; idx < k; ++idx ) {
+                    auto current = Clock::now();
                     deltas.push_back( static_cast<double>(
-                        ( times[idx] - times[idx - 1] ).count() ) );
+                        ( current - previous ).count() ) );
+                    previous = current;
                 }
 
                 return deltas;
@@ -49,6 +44,7 @@ namespace Catch {
             constexpr auto minimum_ticks = 1000;
             constexpr auto warmup_seed = 10000;
             constexpr auto clock_resolution_estimation_time = std::chrono::milliseconds(500);
+            constexpr auto clock_resolution_estimation_iteration_limit = 100000;
             constexpr auto clock_cost_estimation_time_limit = std::chrono::seconds(1);
             constexpr auto clock_cost_estimation_tick_limit = 100000;
             constexpr auto clock_cost_estimation_time = std::chrono::milliseconds(10);
@@ -61,12 +57,26 @@ namespace Catch {
             }
             template <typename Clock>
             EnvironmentEstimate estimate_clock_resolution(int iterations) {
-                auto r = run_for_at_least<Clock>(clock_resolution_estimation_time, iterations, &resolution<Clock>)
-                    .result;
-                return {
-                    FDuration(mean(r.data(), r.data() + r.size())),
-                    classify_outliers(r.data(), r.data() + r.size()),
-                };
+                auto iters = (std::min)( iterations,
+                                         clock_resolution_estimation_iteration_limit );
+                while ( true ) {
+                    auto timing =
+                        Detail::measure<Clock>( &resolution<Clock>, iters );
+                    auto const& r = timing.result;
+                    if ( timing.elapsed >= clock_resolution_estimation_time ||
+                         iters == clock_resolution_estimation_iteration_limit ) {
+                        return {
+                            FDuration(mean(r.data(), r.data() + r.size())),
+                            classify_outliers(r.data(), r.data() + r.size()),
+                        };
+                    }
+                    if ( iters >
+                         clock_resolution_estimation_iteration_limit / 2 ) {
+                        iters = clock_resolution_estimation_iteration_limit;
+                    } else {
+                        iters *= 2;
+                    }
+                }
             }
             template <typename Clock>
             EnvironmentEstimate estimate_clock_cost(FDuration resolution) {

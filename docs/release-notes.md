@@ -170,6 +170,7 @@
 ### Fixes
 * Fixed `--warn InfiniteGenerators` triggering even if the generator was limited to specific element via path filtering.
 * Fixed `-Wunused-parameter` triggering in `-fnoexceptions` builds.
+* Fixed benchmark clock-resolution estimation potentially exhausting memory on fast or memory-constrained platforms. (#3180)
 
 ### Improvements
 * `catch_discover_tests` can handle cases where the binary prints out non-Catch2 output due to global constructors (#3162)

@@ -109,11 +109,17 @@ TEST_CASE("estimate_clock_resolution", "[benchmark]") {
     auto rate = 2'000;
     counting_clock::set_rate(rate);
 
-    int iters = 160'000;
+    int iters =
+        Catch::Benchmark::Detail::clock_resolution_estimation_iteration_limit *
+        2;
     auto res = Catch::Benchmark::Detail::estimate_clock_resolution<counting_clock>(iters);
 
     REQUIRE(res.mean.count() == rate);
     REQUIRE(res.outliers.total() == 0);
+    if ( res.outliers.samples_seen >
+         Catch::Benchmark::Detail::clock_resolution_estimation_iteration_limit ) {
+        FAIL( "Clock resolution estimation exceeded the sample limit" );
+    }
 }
 
 TEST_CASE("benchmark function call", "[benchmark]") {
