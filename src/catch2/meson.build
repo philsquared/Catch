@@ -238,6 +238,7 @@ internal_sources = files(
   'internal/catch_message_info.cpp',
   'internal/catch_output_redirect.cpp',
   'internal/catch_parse_numbers.cpp',
+  'internal/catch_path_filter.cpp',
   'internal/catch_polyfills.cpp',
   'internal/catch_random_number_generator.cpp',
   'internal/catch_random_seed_generation.cpp',

@@ -225,12 +225,10 @@ namespace Catch {
         };
         auto const setGeneratorFilter = [&]( std::string const& generatorFilter ) {
             if (generatorFilter != "*") {
-                // TODO: avoid re-parsing the index?
-                auto parsedIndex = parseUInt( generatorFilter );
-                if ( !parsedIndex ) {
-                    return ParserResult::runtimeError( "Could not parse '" +
-                                                       generatorFilter +
-                                                       "' as generator index" );
+                if ( !parseGeneratorIndexRanges( generatorFilter ) ) {
+                    return ParserResult::runtimeError(
+                        "Could not parse '" + generatorFilter +
+                        "' as generator index spec" );
                 }
             }
             config.useNewPathFilteringBehaviour = true;

@@ -707,6 +707,18 @@ set_tests_properties(Warnings::InfiniteGenerators::MatchOneFilterDoesntWarn
 )
 
 add_test(
+  NAME Warnings::InfiniteGenerators::MatchRangeFilterDoesntWarn
+  COMMAND $<TARGET_FILE:InfiniteGenerators>
+    --warn InfiniteGenerators
+    --path-filter g:0,2-3
+)
+set_tests_properties(Warnings::InfiniteGenerators::MatchRangeFilterDoesntWarn
+  PROPERTIES
+    PASS_REGULAR_EXPRESSION "All tests passed \\(1 assertion in 2 test cases\\)"
+    TIMEOUT 5
+)
+
+add_test(
   NAME Warnings::InfiniteGenerators::SectionFilterWarns
   COMMAND $<TARGET_FILE:InfiniteGenerators>
     --warn InfiniteGenerators

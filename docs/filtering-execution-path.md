@@ -9,7 +9,7 @@ of the three commandline parameters, one or more times.
 
 ```
 -c, --section           <section name>
--g, --generator-index   <index in generator>
+-g, --generator-index   <index spec>
 -p, --path-filter       <path filter spec>
 ```
 
@@ -122,15 +122,32 @@ TEST_CASE( "qux" ) {
 > The new behaviour was introduced in Catch2 3.13.0
 
 ```
--g, --generator-index   <index in generator>
+-g, --generator-index   <index spec>
 -p, --path-filter       <path filter spec>
 ```
 
-The argument to `-g`/`--generator-index` must be either a non-negative
-number, which is interpreted as the index of the desired element from
-the generator, or "\*", which allows all elements from the generator.
+The argument to `-g`/`--generator-index` can be a non-negative index,
+a comma-separated list of indices, inclusive ranges, or "\*", which allows
+all elements from the generator. Indices are zero-based.
 
-Providing index outside of the generator is an error.
+> Lists and ranges were [introduced](https://github.com/catchorg/Catch2/issues/3071) in Catch2 X.Y.Z
+
+For example, `-g 1,3,6-10` selects indices 1, 3, and 6 through 10 (including
+both endpoints). `-g 1-1` selects just index 1. Each index is visited once,
+in the specified order. Each selected element runs all matching child
+sections and generators before moving to the next selected element.
+
+Indices and ranges must be in increasing order and must not overlap.
+Duplicate indices, decreasing ranges, and malformed selections are errors:
+`1,2,2`, `3,1`, `1-3,2-4`, `3-1`, and `1--2` are rejected. Open-ended
+ranges such as `3-*` and mixtures of "\*" with indices are not supported.
+Whitespace around indices and range endpoints is allowed.
+
+A list or range belongs to one generator. Repeating `-g` adds filters for
+successive generators along the execution path, as before.
+
+Providing an index outside of the generator is an error, including when
+earlier selected indices were valid.
 
 The argument to `-p`/`--path-filter` must start with either "c:" for
 a section filter, or with "g:" for a generator filter. Everything past

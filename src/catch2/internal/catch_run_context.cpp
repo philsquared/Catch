@@ -38,9 +38,11 @@ namespace Catch {
             struct GeneratorTracker final : TestCaseTracking::TrackerBase,
                                       IGeneratorTracker {
                 GeneratorBasePtr m_generator;
-                // Filtered generator has moved to specific index due to
-                // a filter, it needs special handling of `countedNext()`
                 bool m_isFiltered = false;
+                std::vector<GeneratorIndexRange> m_filterRanges;
+                std::size_t m_filterRange = 0;
+                std::size_t m_nextFilteredIndex = 0;
+                bool m_needsFilteredAdvance = false;
 
                 GeneratorTracker(
                     TestCaseTracking::NameAndLocation&& nameAndLocation,
@@ -74,12 +76,15 @@ namespace Catch {
                         // used for filtering sections below the generator, but
                         // not the generator itself.
                         if ( filter.filter != "*" ) {
+                            auto ranges =
+                                parseGeneratorIndexRanges( filter.filter );
+                            CATCH_ENFORCE( ranges,
+                                           "Invalid generator index spec: "
+                                               << filter.filter );
+                            m_filterRanges = CATCH_MOVE( *ranges );
                             m_isFiltered = true;
-                            // TBD: We assume that the filter was validated as
-                            //      number during parsing. We should pass it
-                            //      as number from the CLI parser.
-                            size_t targetIndex = std::stoul( filter.filter );
-                            m_generator->skipToNthElement( targetIndex );
+                            m_generator->skipToNthElement(
+                                m_filterRanges.front().first );
                         }
                     }
                 }
@@ -119,7 +124,20 @@ namespace Catch {
                         return nullptr;
                     }
 
-                    if ( !tracker->isComplete() ) { tracker->open(); }
+                    if ( !tracker->isComplete() ) {
+                        tracker->open();
+                        if ( tracker->m_needsFilteredAdvance ) {
+                            tracker->m_needsFilteredAdvance = false;
+                            auto const range = tracker->m_filterRange;
+                            // If skipping throws, close() must not schedule
+                            // another attempt on the exhausted generator.
+                            tracker->m_filterRange =
+                                tracker->m_filterRanges.size();
+                            tracker->m_generator->skipToNthElement(
+                                tracker->m_nextFilteredIndex );
+                            tracker->m_filterRange = range;
+                        }
+                    }
 
                     return tracker;
                 }
@@ -183,13 +201,34 @@ namespace Catch {
                     // value, but we do not want to invoke the side-effect if
                     // this generator is still waiting for any child to start.
                     assert( m_generator && "Tracker without generator" );
-                    if ( should_wait_for_child
-                        ||  ( m_runState == CompletedSuccessfully
-                            && !m_isFiltered // filtered generators cannot meaningfully move forward, as they would get past the filter
-                            && m_generator->countedNext() ) ) {
+                    if ( should_wait_for_child ||
+                         ( m_runState == CompletedSuccessfully &&
+                           ( m_isFiltered ? scheduleFilteredAdvance()
+                                          : m_generator->countedNext() ) ) ) {
                         m_children.clear();
                         m_runState = Executing;
                     }
+                }
+
+                bool scheduleFilteredAdvance() {
+                    if ( m_filterRange == m_filterRanges.size() ) {
+                        return false;
+                    }
+                    auto const index = m_generator->currentElementIndex();
+                    if ( index < m_filterRanges[m_filterRange].last ) {
+                        m_nextFilteredIndex = index + 1;
+                    } else {
+                        ++m_filterRange;
+                        if ( m_filterRange == m_filterRanges.size() ) {
+                            return false;
+                        }
+                        m_nextFilteredIndex =
+                            m_filterRanges[m_filterRange].first;
+                    }
+                    // Advance when GENERATE is entered again, inside the test's
+                    // exception handler, rather than while closing trackers.
+                    m_needsFilteredAdvance = true;
+                    return true;
                 }
 
                 // IGeneratorTracker interface

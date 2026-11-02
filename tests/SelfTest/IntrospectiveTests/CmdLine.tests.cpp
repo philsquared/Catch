@@ -6,17 +6,18 @@
 
 // SPDX-License-Identifier: BSL-1.0
 
-#include <catch2/catch_config.hpp>
 #include <catch2/catch_approx.hpp>
-#include <catch2/catch_test_macros.hpp>
-#include <catch2/matchers/catch_matchers_string.hpp>
-#include <catch2/internal/catch_test_spec_parser.hpp>
-#include <catch2/catch_user_config.hpp>
+#include <catch2/catch_config.hpp>
 #include <catch2/catch_test_case_info.hpp>
-#include <catch2/internal/catch_commandline.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/catch_user_config.hpp>
 #include <catch2/generators/catch_generators.hpp>
+#include <catch2/internal/catch_commandline.hpp>
 #include <catch2/internal/catch_compiler_capabilities.hpp>
+#include <catch2/internal/catch_test_spec_parser.hpp>
+#include <catch2/matchers/catch_matchers_string.hpp>
 
+#include <limits>
 
 namespace {
     auto fakeTestCase(const char* name, const char* desc = "") { return Catch::makeTestCaseInfo("", { name, desc }, CATCH_INTERNAL_LINEINFO); }
@@ -578,5 +579,59 @@ TEST_CASE( "Parsing path filter specs",
         REQUIRE( result );
         REQUIRE( config.pathFilters[0] == PathFilter(PathFilter::For::Section, "untrimmed" ) );
         REQUIRE( config.pathFilters[1] == PathFilter(PathFilter::For::Generator, "42" ) );
+    }
+}
+
+TEST_CASE( "Parsing generator index lists and ranges",
+           "[approvals][cli][section-spec]" ) {
+    Catch::ConfigData config;
+    auto cli = Catch::makeCommandLineParser( config );
+
+    SECTION( "Generator specs accept lists and inclusive ranges" ) {
+        auto const spec = GENERATE(
+            "0", "1,3", "1-3", "1-1", "1,3,6-10", "1-3,4,5-10", " 1, 3-5 " );
+        auto const option = GENERATE( "-g", "--generator-index", "-p" );
+        CAPTURE( spec, option );
+        auto argument = std::string( option ) == "-p"
+                            ? "g:" + std::string( spec )
+                            : std::string( spec );
+        REQUIRE( cli.parse( { "tests", option, argument } ) );
+        REQUIRE( config.pathFilters.size() == 1 );
+        REQUIRE( config.useNewPathFilteringBehaviour );
+    }
+    SECTION( "Generator specs reject invalid lists and ranges" ) {
+        auto const spec = GENERATE( "",
+                                    " ",
+                                    "1-3,2-4",
+                                    "3,2,1",
+                                    "3-1",
+                                    "1,2,2,3",
+                                    "-2",
+                                    "1--2",
+                                    "1-2-3",
+                                    ",1",
+                                    "1,",
+                                    "1,,2",
+                                    "1-",
+                                    "1,*",
+                                    "*-3",
+                                    "1-3,*",
+                                    "1 2",
+                                    "1,foo",
+                                    "1-foo",
+                                    "999999999999999999999999999999" );
+        auto const option = GENERATE( "-g", "--generator-index", "-p" );
+        CAPTURE( spec, option );
+        auto argument = std::string( option ) == "-p"
+                            ? "g:" + std::string( spec )
+                            : std::string( spec );
+        REQUIRE_FALSE( cli.parse( { "tests", option, argument } ) );
+        REQUIRE( config.pathFilters.empty() );
+    }
+    SECTION( "Generator ranges accept the largest supported index" ) {
+        auto const maxIndex =
+            std::to_string( std::numeric_limits<unsigned int>::max() );
+        REQUIRE( cli.parse( { "tests", "-g", "0-" + maxIndex } ) );
+        REQUIRE( cli.parse( { "tests", "-g", maxIndex + "-" + maxIndex } ) );
     }
 }
