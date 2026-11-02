@@ -20,6 +20,7 @@ Once you're up and running consider the following reference material.
 
 **Fine tuning:**
 * [Supplying your own main()](own-main.md#top)
+* [Clara (command line parser)](clara.md#top)
 * [Compile-time configuration](configuration.md#top)
 * [String Conversions](tostring.md#top)
 
