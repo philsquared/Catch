@@ -457,6 +457,10 @@ Using `random-device` asks for `std::random_device` to be used instead.
 If your implementation provides working `std::random_device`, it should
 be preferred to using `time`. Catch2 uses `std::random_device` by default.
 
+> [!WARNING]
+> You should not use this option when launching Catch2 tests on multiples processes that require synchronous communication,
+> (e.g., Message Passing Interface (MPI) code),
+> because the test order of execution will **not** be identical on all processes.
 
 <a id="libidentify"></a>
 ## Identify framework and version according to the libIdentify standard
