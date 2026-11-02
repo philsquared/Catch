@@ -16,6 +16,7 @@
 #include <limits>
 #include <locale>
 #include <sstream>
+#include <string>
 
 namespace {
     struct Custom {};
@@ -133,6 +134,40 @@ TEST_CASE( "JsonWriter", "[JSON][JsonWriter]" ) {
     SECTION( "Custom class shall be quoted" ) {
         Catch::JsonValueWriter{ stream }.write( Custom{} );
         REQUIRE( stream.str() == "\"custom\"" );
+    }
+}
+
+TEST_CASE( "JsonWriter escapes all control characters", "[JsonWriter][approvals]" ) {
+    std::stringstream sstream;
+    SECTION( "All JSON control characters are escaped" ) {
+        char const* const escapes[] = {
+            "\\u0000", "\\u0001", "\\u0002", "\\u0003",
+            "\\u0004", "\\u0005", "\\u0006", "\\u0007",
+            "\\b", "\\t", "\\n", "\\u000b",
+            "\\f", "\\r", "\\u000e", "\\u000f",
+            "\\u0010", "\\u0011", "\\u0012", "\\u0013",
+            "\\u0014", "\\u0015", "\\u0016", "\\u0017",
+            "\\u0018", "\\u0019", "\\u001a", "\\u001b",
+            "\\u001c", "\\u001d", "\\u001e", "\\u001f"
+        };
+        for ( unsigned int i = 0; i < 32; ++i ) {
+            std::stringstream output;
+            Catch::JsonValueWriter{ output }.write(
+                std::string( 1, static_cast<char>( i ) ) );
+            CAPTURE( i );
+            REQUIRE( output.str() == std::string( "\"" ) + escapes[i] + "\"" );
+        }
+    }
+    SECTION( "Embedded controls and existing escapes can be mixed with text" ) {
+        char const text[] = "start\0\a\x1b\n\"\\end";
+        Catch::JsonValueWriter{ sstream }.write(
+            Catch::StringRef( text, sizeof( text ) - 1 ) );
+        REQUIRE( sstream.str() ==
+                 "\"start\\u0000\\u0007\\u001b\\n\\\"\\\\end\"" );
+    }
+    SECTION( "Space, DEL, and UTF-8 bytes are preserved" ) {
+        Catch::JsonValueWriter{ sstream }.write( " \x7f\xc3\xa9" );
+        REQUIRE( sstream.str() == "\" \x7f\xc3\xa9\"" );
     }
 }
 

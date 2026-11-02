@@ -8,7 +8,6 @@
 #include <catch2/internal/catch_enforce.hpp>
 #include <catch2/internal/catch_jsonwriter.hpp>
 #include <catch2/internal/catch_polyfills.hpp>
-#include <catch2/internal/catch_unreachable.hpp>
 
 #include <cmath>
 #include <locale>
@@ -19,13 +18,11 @@ namespace Catch {
         struct EscapeLUT {
             bool escape[256] = {};
             constexpr EscapeLUT() {
+                for ( unsigned int i = 0; i < 0x20; ++i ) {
+                    escape[i] = true;
+                }
                 escape[static_cast<unsigned char>( '"' )] = true;
                 escape[static_cast<unsigned char>( '\\' )] = true;
-                escape[static_cast<unsigned char>( '\b' )] = true;
-                escape[static_cast<unsigned char>( '\f' )] = true;
-                escape[static_cast<unsigned char>( '\n' )] = true;
-                escape[static_cast<unsigned char>( '\r' )] = true;
-                escape[static_cast<unsigned char>( '\t' )] = true;
             }
         };
         static constexpr EscapeLUT escapeLUT{};
@@ -34,23 +31,28 @@ namespace Catch {
             return escapeLUT.escape[static_cast<unsigned char>( c )];
         }
 
-        static Catch::StringRef makeEscapeStringRef( char c ) {
+        static void writeEscape( std::ostream& os, char c ) {
             if ( c == '"' ) {
-                return "\\\""_sr;
+                os << "\\\""_sr;
             } else if ( c == '\\' ) {
-                return "\\\\"_sr;
+                os << "\\\\"_sr;
             } else if ( c == '\b' ) {
-                return "\\b"_sr;
+                os << "\\b"_sr;
             } else if ( c == '\f' ) {
-                return "\\f"_sr;
+                os << "\\f"_sr;
             } else if ( c == '\n' ) {
-                return "\\n"_sr;
+                os << "\\n"_sr;
             } else if ( c == '\r' ) {
-                return "\\r"_sr;
+                os << "\\r"_sr;
             } else if ( c == '\t' ) {
-                return "\\t"_sr;
+                os << "\\t"_sr;
+            } else {
+                auto const value = static_cast<unsigned char>( c );
+                static constexpr char hex[] = "0123456789abcdef";
+                char const escaped[] = {
+                    '\\', 'u', '0', '0', hex[value >> 4], hex[value & 0xf] };
+                os.write( escaped, sizeof( escaped ) );
             }
-            Catch::Detail::Unreachable();
         }
     } // namespace
 
@@ -199,7 +201,7 @@ namespace Catch {
                         m_os
                             << value.substr( current_start, i - current_start );
                     }
-                    m_os << makeEscapeStringRef( value[i] );
+                    writeEscape( m_os, value[i] );
                     current_start = i + 1;
                 }
             }
