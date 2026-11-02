@@ -8,6 +8,7 @@
 [Exceptions](#exceptions)<br>
 [Enums](#enums)<br>
 [Floating point precision](#floating-point-precision)<br>
+[Complex numbers](#complex-numbers)<br>
 
 
 Catch needs to be able to convert types you use in assertions and logging expressions into strings (for logging and reporting purposes).
@@ -126,6 +127,30 @@ inside the `StringMaker` specialization, like so:
 
 This assertion will fail and print out the `testFloat1` and `testFloat2`
 to 15 decimal places.
+
+## Complex numbers
+
+> [Introduced](https://github.com/catchorg/Catch2/issues/2876) in Catch2 X.Y.Z.
+
+Define `CATCH_CONFIG_ENABLE_COMPLEX_STRINGMAKER` before including Catch2 headers,
+or enable the corresponding CMake option, to configure the precision of
+`std::complex<T>` output. `CATCH_CONFIG_ENABLE_ALL_STRINGMAKERS` also enables it.
+
+```cpp
+#define CATCH_CONFIG_ENABLE_COMPLEX_STRINGMAKER
+#include <catch2/catch_tostring.hpp>
+
+Catch::StringMaker<std::complex<double>>::precision = 12;
+```
+
+The precision applies to both components and defaults to
+`std::numeric_limits<T>::max_digits10`. It is independent for each component type
+and does not change `StringMaker<float>::precision` or
+`StringMaker<double>::precision`. Output retains the standard stream format
+`(real,imag)`, so precision counts significant digits, not decimal places.
+
+Without this option, complex values continue to use the ordinary stream
+insertion fallback with its default precision.
 
 ---
 

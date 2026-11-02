@@ -359,11 +359,34 @@ namespace Catch {
 // This means that we do not bring in their headers
 
 #if defined(CATCH_CONFIG_ENABLE_ALL_STRINGMAKERS)
+#  define CATCH_CONFIG_ENABLE_COMPLEX_STRINGMAKER
 #  define CATCH_CONFIG_ENABLE_PAIR_STRINGMAKER
 #  define CATCH_CONFIG_ENABLE_TUPLE_STRINGMAKER
 #  define CATCH_CONFIG_ENABLE_VARIANT_STRINGMAKER
 #  define CATCH_CONFIG_ENABLE_OPTIONAL_STRINGMAKER
 #endif
+
+#if defined(CATCH_CONFIG_ENABLE_COMPLEX_STRINGMAKER)
+#include <complex>
+#include <limits>
+namespace Catch {
+    template <typename T>
+    struct StringMaker<std::complex<T>> {
+        static int precision;
+
+        static std::string convert( std::complex<T> const& value ) {
+            ReusableStringStream rss;
+            rss.get().precision( precision );
+            rss << value;
+            return rss.str();
+        }
+    };
+
+    template <typename T>
+    int StringMaker<std::complex<T>>::precision =
+        std::numeric_limits<T>::max_digits10;
+} // namespace Catch
+#endif // CATCH_CONFIG_ENABLE_COMPLEX_STRINGMAKER
 
 // Separate std::pair specialization
 #if defined(CATCH_CONFIG_ENABLE_PAIR_STRINGMAKER)

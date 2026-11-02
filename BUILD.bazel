@@ -38,6 +38,7 @@ expand_template(
         "#cmakedefine CATCH_CONFIG_DISABLE_STRINGIFICATION": "",
         "#cmakedefine CATCH_CONFIG_DISABLE": "",
         "#cmakedefine CATCH_CONFIG_ENABLE_ALL_STRINGMAKERS": "",
+        "#cmakedefine CATCH_CONFIG_ENABLE_COMPLEX_STRINGMAKER": "",
         "#cmakedefine CATCH_CONFIG_ENABLE_OPTIONAL_STRINGMAKER": "",
         "#cmakedefine CATCH_CONFIG_ENABLE_PAIR_STRINGMAKER": "",
         "#cmakedefine CATCH_CONFIG_ENABLE_TUPLE_STRINGMAKER": "",

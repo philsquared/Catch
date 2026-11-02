@@ -219,6 +219,7 @@ _Inspired by Doctest's `DOCTEST_CONFIG_DISABLE`_
 
 By default, Catch does not stringify some types from the standard library. This is done to avoid dragging in various standard library headers by default. However, Catch does contain these and can be configured to provide them, using these macros:
 
+    CATCH_CONFIG_ENABLE_COMPLEX_STRINGMAKER  // Provide StringMaker specialization for std::complex
     CATCH_CONFIG_ENABLE_PAIR_STRINGMAKER     // Provide StringMaker specialization for std::pair
     CATCH_CONFIG_ENABLE_TUPLE_STRINGMAKER    // Provide StringMaker specialization for std::tuple
     CATCH_CONFIG_ENABLE_VARIANT_STRINGMAKER  // Provide StringMaker specialization for std::variant, std::monostate (on C++17)
@@ -228,6 +229,10 @@ By default, Catch does not stringify some types from the standard library. This 
 > `CATCH_CONFIG_ENABLE_VARIANT_STRINGMAKER` was [introduced](https://github.com/catchorg/Catch2/issues/1380) in Catch2 2.4.1.
 
 > `CATCH_CONFIG_ENABLE_OPTIONAL_STRINGMAKER` was [introduced](https://github.com/catchorg/Catch2/issues/1510) in Catch2 2.6.0.
+
+> `CATCH_CONFIG_ENABLE_COMPLEX_STRINGMAKER` was [introduced](https://github.com/catchorg/Catch2/issues/2876) in Catch2 X.Y.Z.
+
+The complex stringmaker exposes a configurable [output precision](tostring.md#complex-numbers).
 
 ## Disabling exceptions
 
