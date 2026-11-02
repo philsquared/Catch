@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="<exe-name>" errors="0" failures="0" skipped="1" tests="1" hostname="tbd" time="{duration}" timestamp="{iso8601-timestamp}">
+    <properties>
+      <property name="random-seed" value="1"/>
+      <property name="filters" value="&quot;tests can be skipped dynamically at runtime&quot;"/>
+    </properties>
+    <testcase classname="<exe-name>.global" name="tests can be skipped dynamically at runtime" time="{duration}" status="run">
+      <skipped type="SKIP">
+SKIPPED
+at Skip.tests.cpp:<line number>
+      </skipped>
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="<exe-name>" errors="1" failures="0" skipped="0" tests="1" hostname="tbd" time="{duration}" timestamp="{iso8601-timestamp}">
+    <properties>
+      <property name="random-seed" value="1"/>
+      <property name="filters" value="&quot;An exception before an empty generator iteration&quot;"/>
+    </properties>
+    <testcase classname="<exe-name>.global" name="An exception before an empty generator iteration" time="{duration}" status="run">
+      <error message="{Unknown expression after the reported line}">
+FAILED:
+  {Unknown expression after the reported line}
+first iteration error
+at Exception.tests.cpp:<line number>
+      </error>
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+</testsuites>

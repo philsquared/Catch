@@ -212,6 +212,22 @@ base_args = ["--order", "lex", "--rng-seed", "1", "--colour-mode", "none"]
 # Standard console reporter
 approve("console.std", ["~[!nonportable]~[!benchmark]~[approvals] *"] + base_args)
 
+# Standard JUnit reporter with an executed test case without assertions
+approve("junit.std", ["An empty test with no assertions"] + base_args + ["-r", "junit"])
+
+# JUnit reporter with assertion-free sections and generators
+approve("junit.section", ["An assertion-free test with a section"] + base_args + ["-r", "junit"])
+approve("junit.generator", ["An assertion-free test with a generator"] + base_args + ["-r", "junit"])
+approve("junit.nested", ["An assertion-free test with nested empty sections"] + base_args + ["-r", "junit"])
+approve("junit.shouldfail", ["An empty shouldfail case for JUnit"] + base_args + ["-r", "junit"])
+approve("junit.exception-generated", ["An exception before an empty generator iteration"] + base_args + ["-r", "junit"])
+approve("junit.failure-nested-generated", ["A nested failure before an empty generator iteration"] + base_args + ["-r", "junit"])
+
+# JUnit reporter with a runtime-skipped test case
+approve("junit.skip", ["tests can be skipped dynamically at runtime"] + base_args + ["-r", "junit"])
+approve("junit.skip-generated", ["a skipped generator iteration keeps an otherwise empty test skipped"] + base_args + ["-r", "junit"])
+approve("junit.mayfail-generated", ["an allowed failure before an empty generator iteration"] + base_args + ["-r", "junit"])
+
 # console reporter, include passes, warn about No Assertions, limit failures to first 4
 approve("console.swa4", ["~[!nonportable]~[!benchmark]~[approvals] *", "-s", "-w", "NoAssertions", "-x", "4"] + base_args)
 

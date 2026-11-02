@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="<exe-name>" errors="0" failures="0" skipped="0" tests="0" hostname="tbd" time="{duration}" timestamp="{iso8601-timestamp}">
+    <properties>
+      <property name="random-seed" value="1"/>
+      <property name="filters" value="&quot;An assertion-free test with nested empty sections&quot;"/>
+    </properties>
+    <testcase classname="<exe-name>.global" name="An assertion-free test with nested empty sections" time="{duration}" status="run"/>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+</testsuites>

@@ -44,6 +44,18 @@ TEST_CASE( "dynamic skipping works with generators", "[skipping]" ) {
     SUCCEED();
 }
 
+TEST_CASE( "a skipped generator iteration keeps an otherwise empty test skipped",
+           "[skipping][approvals]" ) {
+    const int value = GENERATE( 1, 2 );
+    if ( value == 1 ) { SKIP( "first" ); }
+}
+
+TEST_CASE( "an allowed failure before an empty generator iteration",
+           "[!mayfail][approvals]" ) {
+    const int value = GENERATE( 1, 2 );
+    if ( value == 1 ) { CHECK( false ); }
+}
+
 TEST_CASE( "failed assertions before SKIP cause test case to fail",
            "[skipping][!shouldfail]" ) {
     CHECK( 3 == 4 );

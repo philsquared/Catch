@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="<exe-name>" errors="0" failures="0" skipped="0" tests="0" hostname="tbd" time="{duration}" timestamp="{iso8601-timestamp}">
+    <properties>
+      <property name="random-seed" value="1"/>
+      <property name="filters" value="&quot;An empty shouldfail case for JUnit&quot;"/>
+    </properties>
+    <testcase classname="<exe-name>.global" name="An empty shouldfail case for JUnit" time="{duration}" status="run">
+      <failure message="Test case was expected to fail, but no failure occurred"/>
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+</testsuites>

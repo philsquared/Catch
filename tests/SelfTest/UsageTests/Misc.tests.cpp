@@ -248,6 +248,18 @@ TEST_CASE( "Factorials are computed", "[factorial]" ) {
 
 TEST_CASE( "An empty test with no assertions", "[empty]" ) {}
 
+TEST_CASE( "An assertion-free test with a section", "[approvals]" ) {
+    SECTION( "output section" ) { std::cout << "section output"; }
+}
+
+TEST_CASE( "An assertion-free test with nested empty sections", "[approvals]" ) {
+    SECTION( "outer" ) {
+        SECTION( "inner" ) {}
+    }
+}
+
+TEST_CASE( "An empty shouldfail case for JUnit", "[.][!shouldfail][approvals]" ) {}
+
 TEST_CASE( "Nice descriptive name", "[tag1][tag2][tag3][.]" ) {
     WARN( "This one ran" );
 }

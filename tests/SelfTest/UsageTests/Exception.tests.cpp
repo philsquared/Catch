@@ -8,6 +8,7 @@
 
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_translate_exception.hpp>
+#include <catch2/generators/catch_generators.hpp>
 #include <catch2/matchers/catch_matchers_string.hpp>
 
 #include <string>
@@ -84,6 +85,12 @@ TEST_CASE( "Expected exceptions that don't throw or unexpected exceptions fail t
 
 TEST_CASE( "When unchecked exceptions are thrown directly they are always failures", "[.][failing][!throws]" ) {
     throw std::domain_error( "unexpected exception" );
+}
+
+TEST_CASE( "An exception before an empty generator iteration",
+           "[.][failing][!throws][approvals]" ) {
+    const int value = GENERATE( 1, 2 );
+    if ( value == 1 ) { throw std::runtime_error( "first iteration error" ); }
 }
 
 TEST_CASE( "An unchecked exception reports the line of the last assertion", "[.][failing][!throws]" ) {
