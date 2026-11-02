@@ -19,19 +19,21 @@ namespace Catch {
     TestSpecParser& TestSpecParser::parse( std::string const& arg ) {
         m_mode = None;
         m_exclusion = false;
+        m_isValid = true;
         m_arg = m_tagAliases->expandAliases( arg );
         m_escapeChars.clear();
         m_substring.reserve(m_arg.size());
         m_patternName.reserve(m_arg.size());
         m_realPatternPos = 0;
 
-        for( m_pos = 0; m_pos < m_arg.size(); ++m_pos )
-          //if visitChar fails
-           if( !visitChar( m_arg[m_pos] ) ){
-               m_testSpec.m_invalidSpecs.push_back(arg);
-               break;
-           }
+        for ( m_pos = 0; m_pos < m_arg.size(); ++m_pos ) {
+            if ( !visitChar( m_arg[m_pos] ) || !m_isValid ) {
+                m_isValid = false;
+                break;
+            }
+        }
         endMode();
+        if ( !m_isValid ) { m_testSpec.m_invalidSpecs.push_back( arg ); }
         return *this;
     }
     TestSpec TestSpecParser::testSpec() {
@@ -112,6 +114,7 @@ namespace Catch {
     }
     void TestSpecParser::startNewMode( Mode mode ) {
         m_mode = mode;
+        if ( mode == Tag ) { m_tagPatternStart = m_patternName.size(); }
     }
     void TestSpecParser::endMode() {
         switch( m_mode ) {
@@ -212,9 +215,12 @@ namespace Catch {
     }
 
     void TestSpecParser::addTagPattern() {
+        bool const isEmpty = m_patternName.size() == m_tagPatternStart;
         auto token = preprocessPattern();
 
-        if (!token.empty()) {
+        if ( isEmpty || token.empty() ) {
+            m_isValid = false;
+        } else {
             // If the tag pattern is the "hide and tag" shorthand (e.g. [.foo])
             // we have to create a separate hide tag and shorten the real one
             if (token.size() > 1 && token[0] == '.') {

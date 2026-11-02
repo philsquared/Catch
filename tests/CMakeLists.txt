@@ -535,6 +535,16 @@ set_tests_properties("ErrorHandling::InvalidTestSpecExitsEarly"
     FAIL_REGULAR_EXPRESSION "No tests ran"
 )
 
+add_test(NAME "ErrorHandling::EmptyTagFilterExitsEarly"
+  COMMAND
+    $<TARGET_FILE:SelfTest> "[]"
+)
+set_tests_properties("ErrorHandling::EmptyTagFilterExitsEarly"
+  PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid Filter: \\[\\]"
+    FAIL_REGULAR_EXPRESSION "No tests ran"
+)
+
 if(WIN32)
   set(_NullFile "NUL")
 else()

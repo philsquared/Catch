@@ -27,8 +27,10 @@ namespace Catch {
         Mode m_mode = None;
         Mode lastMode = None;
         bool m_exclusion = false;
+        bool m_isValid = true;
         std::size_t m_pos = 0;
         std::size_t m_realPatternPos = 0;
+        std::size_t m_tagPatternStart = 0;
         std::string m_arg;
         std::string m_substring;
         std::string m_patternName;

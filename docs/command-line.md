@@ -111,6 +111,12 @@ complex specs:
     This allows any test case tagged with "[some-tag]". Remember that some
     tags are special, e.g. those that start with "." or with "!".
 
+    Empty tag filters (`[]`) are invalid, including when negated or combined
+    with other test specs.
+
+    > Empty tag rejection was [introduced](https://github.com/catchorg/Catch2/issues/2367#issuecomment-1046310279)
+    > in Catch2 X.Y.Z.
+
 
 You can also combine the basic test specs to create more complex test
 specs. You can:

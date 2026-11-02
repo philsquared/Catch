@@ -245,6 +245,7 @@ TEST_CASE( "Parse test names and tags", "[command-line][test-spec][approvals]" )
     }
     SECTION( "empty tag" ) {
         TestSpec spec = parseTestSpec( "[]" );
+        REQUIRE( spec.getInvalidSpecs() == std::vector<std::string>{ "[]" } );
         CHECK( spec.hasFilters() == false );
         CHECK( spec.matches( *tcA ) == false );
         CHECK( spec.matches( *tcB ) == false );
