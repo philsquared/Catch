@@ -1,0 +1,10 @@
+---
+# This configuration deliberately does not inherit the repository-wide one.
+#
+InheritParentConfig: false
+Checks: '-*,bugprone-unchecked-optional-access'
+WarningsAsErrors: ''
+HeaderFilterRegex: ''
+FormatStyle: none
+CheckOptions: []
+...

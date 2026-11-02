@@ -127,3 +127,26 @@ jobs:
 
     - name: Run clang-tidy
       run: cmake --build build
+
+  static-analysis-tests:
+    name: static analysis support tests
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Prepare environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ninja-build clang-18 clang-tidy-18
+
+    - name: Configure
+      run: |
+        cmake --preset basic-tests -GNinja \
+              -DCMAKE_BUILD_TYPE=Debug \
+              -DCMAKE_CXX_COMPILER=clang++-18 \
+              -DCMAKE_CXX_STANDARD=17 \
+              -DCATCH_ENABLE_STATIC_ANALYSIS_TESTS=ON \
+              -DCATCH_CLANG_TIDY_COMMAND=clang-tidy-18
+
+    - name: Test
+      run: ctest --test-dir build -R "StaticAnalysis" --output-on-failure

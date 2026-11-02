@@ -84,12 +84,19 @@ time. This can be either because they take a long time to run, or because
 they take a long time to compile, e.g. because they test compile time
 configuration and require separate compilation.
 
-Finally, CMake config tests test that you set Catch2's compile-time
+CMake config tests test that you set Catch2's compile-time
 configuration options through CMake, using CMake options of the same name.
 
+Finally, static analysis tests check Catch2's static analysis support, by
+running clang-tidy over dedicated test files and comparing its warnings
+against the expected ones. They need clang-tidy 17 or newer, either on
+`PATH` or pointed at with `-DCATCH_CLANG_TIDY_COMMAND=<binary>`, and are
+skipped otherwise.
+
 These test categories can be enabled one by one, by passing
-`-DCATCH_BUILD_EXAMPLES=ON`, `-DCATCH_BUILD_EXTRA_TESTS=ON`, and
-`-DCATCH_ENABLE_CONFIGURE_TESTS=ON` when configuring the build.
+`-DCATCH_BUILD_EXAMPLES=ON`, `-DCATCH_BUILD_EXTRA_TESTS=ON`,
+`-DCATCH_ENABLE_CONFIGURE_TESTS=ON`, and
+`-DCATCH_ENABLE_STATIC_ANALYSIS_TESTS=ON` when configuring the build.
 
 Catch2 also provides a preset that promises to enable _all_ test types,
 `all-tests`.

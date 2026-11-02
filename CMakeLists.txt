@@ -26,6 +26,8 @@ cmake_dependent_option(CATCH_ENABLE_WERROR "Enables Werror during build" ON "CAT
 cmake_dependent_option(CATCH_BUILD_SURROGATES "Enable generating and building surrogate TUs for the main headers" OFF "CATCH_DEVELOPMENT_BUILD" OFF)
 cmake_dependent_option(CATCH_ENABLE_CONFIGURE_TESTS "Enable CMake configuration tests. WARNING: VERY EXPENSIVE" OFF "CATCH_DEVELOPMENT_BUILD" OFF)
 cmake_dependent_option(CATCH_ENABLE_CMAKE_HELPER_TESTS "Enable CMake helper tests. WARNING: VERY EXPENSIVE" OFF "CATCH_DEVELOPMENT_BUILD" OFF)
+cmake_dependent_option(CATCH_ENABLE_STATIC_ANALYSIS_TESTS "Enable static analysis tests. WARNING: VERY EXPENSIVE, needs clang-tidy 17 or newer" OFF "CATCH_DEVELOPMENT_BUILD" OFF)
+set(CATCH_CLANG_TIDY_COMMAND "clang-tidy" CACHE STRING "clang-tidy binary used by the static analysis tests, has to be version 17 or newer")
 
 # Catch2's build breaks if done in-tree. You probably should not build
 # things in tree anyway, but we can allow projects that include Catch2

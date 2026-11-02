@@ -33,7 +33,8 @@
             "description": "Enables development build with examples and ALL tests",
             "cacheVariables": {
                 "CATCH_ENABLE_CONFIGURE_TESTS": "ON",
-                "CATCH_ENABLE_CMAKE_HELPER_TESTS": "ON"
+                "CATCH_ENABLE_CMAKE_HELPER_TESTS": "ON",
+                "CATCH_ENABLE_STATIC_ANALYSIS_TESTS": "ON"
             }
         }
     ]   

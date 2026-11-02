@@ -57,6 +57,9 @@ namespace Catch {
     constexpr bool isFalseTest( int flags ) {
         return ( flags & ResultDisposition::FalseTest ) != 0;
     }
+    constexpr bool shouldTerminateOnFailure( int flags ) {
+        return ( flags & ResultDisposition::Normal ) != 0;
+    }
     constexpr bool shouldSuppressFailure( int flags ) {
         return ( flags & ResultDisposition::SuppressFail ) != 0;
     }

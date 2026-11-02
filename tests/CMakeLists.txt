@@ -679,6 +679,21 @@ if(CATCH_ENABLE_CMAKE_HELPER_TESTS)
   )
 endif()
 
+if(CATCH_ENABLE_STATIC_ANALYSIS_TESTS)
+  add_test(NAME "StaticAnalysis::AssertionModelling"
+    COMMAND
+      Python3::Interpreter "${CMAKE_CURRENT_LIST_DIR}/TestScripts/testStaticAnalysisSupport.py" "${CATCH_DIR}" "${CMAKE_CURRENT_BINARY_DIR}" "${CATCH_CLANG_TIDY_COMMAND}" "${CMAKE_CXX_COMPILER}"
+  )
+  set_tests_properties("StaticAnalysis::AssertionModelling"
+    PROPERTIES
+      COST 240
+      LABELS "uses-python"
+      # The script exits with 77 when clang-tidy is too old to model
+      # [[noreturn]], in which case the test cannot tell anything apart.
+      SKIP_RETURN_CODE 77
+  )
+endif()
+
 foreach(reporterName # "Automake" - the simple .trs format does not support any kind of comments/metadata
                        "compact"
                        "console"
