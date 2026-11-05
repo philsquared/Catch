@@ -130,10 +130,11 @@ def extract_tests_from_ctest(ctest_output) -> List[TestInfo]:
     for test in tests:
         test_command = test['command']
         # First part of the command is the binary, second is the filter,
-        # third is the `--order decl` arg for faster startup.
+        # followed by three EXTRA_ARGS and `--order decl` for faster startup.
         # If there are less, registration has failed. If there are more,
         # registration has changed and the script needs updating.
-        assert len(test_command) == 3, test_command
+        assert len(test_command) == 6, test_command
+        assert test_command[2:] == ['--success', '--durations', 'yes', '--order decl'], test_command
         test_name = test_command[1]
         labels = []
         for prop in test['properties']:
@@ -302,3 +303,7 @@ if __name__ == '__main__':
     cmake_version = get_cmake_version()
     if cmake_version >= (3, 27):
         check_DL_PATHS(ctest_output)
+
+    subprocess.run(['ctest', '--test-dir', build_path, '-C', 'Debug',
+                    '-R', '^ prefix Some test suffix $',
+                    '--output-on-failure'], check=True)

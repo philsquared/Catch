@@ -404,7 +404,7 @@ function(catch_discover_tests_impl)
     "${_TEST_EXECUTABLE}"
   )
   prepare_command_fragment(_args_reporter_fragment
-    "${extra_args}"
+    ${extra_args}
     "${reporter_arg}"
     "--order decl"
   )
