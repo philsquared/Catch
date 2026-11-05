@@ -54,6 +54,21 @@ expect_equal("out var does no accumulate commands"
 
 
 
+prepare_command_fragment(test_fragment "Name with ]==] inside")
+expect_equal("closing bracket delimiter is preserved"
+  "${test_fragment}" " [===[Name with ]==] inside]===]")
+
+prepare_command_fragment(test_fragment "Name with ]==] and ]===] inside")
+expect_equal("multiple closing bracket delimiters are preserved"
+  "${test_fragment}" " [====[Name with ]==] and ]===] inside]====]")
+
+set(roundtrip_name "Name with ]==] inside")
+prepare_command_fragment(test_fragment "${roundtrip_name}")
+cmake_language(EVAL CODE "set(roundtrip_result ${test_fragment})")
+expect_equal("generated fragment roundtrips as one argument"
+  "${roundtrip_result}" "${roundtrip_name}")
+
+
 if(_failures GREATER 0)
   message(FATAL_ERROR "${_failures} prepare_command_fragment test(s) failed")
 else()
