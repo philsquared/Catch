@@ -46,12 +46,13 @@ namespace Catch {
             TimingOf<Fun, run_for_at_least_argument_t<Clock, Fun>>
                 run_for_at_least(IDuration how_long,
                                  const int initial_iterations,
-                                 Fun&& fun) {
+                                 Fun&& fun,
+                                 const int max_iterations = (1 << 30)) {
                 auto iters = initial_iterations;
                 while (iters < (1 << 30)) {
                     auto&& Timing = measure_one<Clock>(fun, iters, is_callable<Fun(Chronometer)>());
 
-                    if (Timing.elapsed >= how_long) {
+                    if (Timing.elapsed >= how_long || iters >= max_iterations) {
                         return { Timing.elapsed, CATCH_MOVE(Timing.result), iters };
                     }
                     iters *= 2;

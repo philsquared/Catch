@@ -220,6 +220,7 @@ Nor would this
 :test-result: PASS Overloaded comma or address-of operators are not used
 :test-result: PASS Parse uints
 :test-result: PASS Parsed tags are matched case insensitive
+:test-result: PASS Parsing benchmark CLI options
 :test-result: PASS Parsing path filter specs
 :test-result: PASS Parsing sharding-related cli flags
 :test-result: PASS Parsing tags with non-alphabetical characters is pass-through

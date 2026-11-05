@@ -2376,6 +2376,22 @@ ok {test-number} - spec.hasFilters() for: true
 ok {test-number} - spec.getInvalidSpecs().empty() for: true
 # Parsed tags are matched case insensitive
 ok {test-number} - spec.matches( testCase ) for: true
+# Parsing benchmark CLI options
+ok {test-number} - result for: {?}
+# Parsing benchmark CLI options
+ok {test-number} - config.benchmarkWarmupTime == 100 for: 100 == 100
+# Parsing benchmark CLI options
+ok {test-number} - config.benchmarkEstimateClockTime == 500 for: 500 (0x<hex digits>) == 500 (0x<hex digits>)
+# Parsing benchmark CLI options
+ok {test-number} - result for: {?}
+# Parsing benchmark CLI options
+ok {test-number} - config.benchmarkWarmupTime == 250 for: 250 == 250
+# Parsing benchmark CLI options
+ok {test-number} - config.benchmarkEstimateClockTime == 1000 for: 1000 (0x<hex digits>) == 1000 (0x<hex digits>)
+# Parsing benchmark CLI options
+ok {test-number} - cfg.benchmarkWarmupTime() == std::chrono::milliseconds(250) for: 250 ms == 250 ms
+# Parsing benchmark CLI options
+ok {test-number} - cfg.benchmarkEstimateClockTime() == std::chrono::milliseconds(1000) for: 1000 ms == 1000 ms
 # Parsing path filter specs
 ok {test-number} - result for: {?}
 # Parsing path filter specs
@@ -4303,6 +4319,8 @@ ok {test-number} - erfc_inv(0.050000) == Approx(1.38590382434967796) for: 1.3859
 ok {test-number} - res.mean.count() == rate for: 2000.0 == 2000 (0x<hex digits>)
 # estimate_clock_resolution
 ok {test-number} - res.outliers.total() == 0 for: 0 == 0
+# estimate_clock_resolution
+ok {test-number} - limited_res.mean.count() == rate for: 2000.0 == 2000 (0x<hex digits>)
 # even more nested SECTION tests
 ok {test-number} -
 # even more nested SECTION tests
@@ -4907,5 +4925,5 @@ ok {test-number} - q3 == 23. for: 23.0 == 23.0
 ok {test-number} -
 # xmlentitycheck
 ok {test-number} -
-1..2456
+1..2465
 

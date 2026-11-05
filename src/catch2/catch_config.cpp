@@ -224,6 +224,7 @@ namespace Catch {
     double Config::benchmarkConfidenceInterval() const            { return m_data.benchmarkConfidenceInterval; }
     unsigned int Config::benchmarkResamples() const               { return m_data.benchmarkResamples; }
     std::chrono::milliseconds Config::benchmarkWarmupTime() const { return std::chrono::milliseconds(m_data.benchmarkWarmupTime); }
+    std::chrono::milliseconds Config::benchmarkEstimateClockTime() const { return std::chrono::milliseconds(m_data.benchmarkEstimateClockTime); }
 
     void Config::readBazelEnvVars() {
         // Register a JUnit reporter for Bazel. Bazel sets an environment

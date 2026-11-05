@@ -64,6 +64,9 @@ at AssertionHandler.tests.cpp:<line number>
     <testCase name="is_unary_function" duration="{duration}"/>
   </file>
   <file path="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp">
+    <testCase name="Parsing benchmark CLI options" duration="{duration}"/>
+    <testCase name="Parsing benchmark CLI options/Defaults" duration="{duration}"/>
+    <testCase name="Parsing benchmark CLI options/Custom warmup and clock estimation times" duration="{duration}"/>
     <testCase name="Parsing path filter specs" duration="{duration}"/>
     <testCase name="Parsing path filter specs/Only section specs leads to old filter behaviour" duration="{duration}"/>
     <testCase name="Parsing path filter specs/Generator specs enable new filter behaviour" duration="{duration}"/>
@@ -234,6 +237,7 @@ at AssertionHandler.tests.cpp:<line number>
     <testCase name="classify_outliers/mixed" duration="{duration}"/>
     <testCase name="erfc_inv" duration="{duration}"/>
     <testCase name="estimate_clock_resolution" duration="{duration}"/>
+    <testCase name="estimate_clock_resolution/with iteration limit" duration="{duration}"/>
     <testCase name="mean" duration="{duration}"/>
     <testCase name="measure" duration="{duration}"/>
     <testCase name="normal_quantile" duration="{duration}"/>

@@ -11315,6 +11315,79 @@ Approx( 1.21999999999999997 )
     </Expression>
     <OverallResult success="true" skips="0"/>
   </TestCase>
+  <TestCase name="Parsing benchmark CLI options" tags="[benchmark][cli]" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+    <Section name="Defaults" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+      <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+        <Original>
+          result
+        </Original>
+        <Expanded>
+          {?}
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+        <Original>
+          config.benchmarkWarmupTime == 100
+        </Original>
+        <Expanded>
+          100 == 100
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+        <Original>
+          config.benchmarkEstimateClockTime == 500
+        </Original>
+        <Expanded>
+          500 (0x<hex digits>) == 500 (0x<hex digits>)
+        </Expanded>
+      </Expression>
+      <OverallResults successes="3" failures="0" expectedFailures="0" skipped="false"/>
+    </Section>
+    <Section name="Custom warmup and clock estimation times" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+      <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+        <Original>
+          result
+        </Original>
+        <Expanded>
+          {?}
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+        <Original>
+          config.benchmarkWarmupTime == 250
+        </Original>
+        <Expanded>
+          250 == 250
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+        <Original>
+          config.benchmarkEstimateClockTime == 1000
+        </Original>
+        <Expanded>
+          1000 (0x<hex digits>) == 1000 (0x<hex digits>)
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+        <Original>
+          cfg.benchmarkWarmupTime() == std::chrono::milliseconds(250)
+        </Original>
+        <Expanded>
+          250 ms == 250 ms
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
+        <Original>
+          cfg.benchmarkEstimateClockTime() == std::chrono::milliseconds(1000)
+        </Original>
+        <Expanded>
+          1000 ms == 1000 ms
+        </Expanded>
+      </Expression>
+      <OverallResults successes="5" failures="0" expectedFailures="0" skipped="false"/>
+    </Section>
+    <OverallResult success="true" skips="0"/>
+  </TestCase>
   <TestCase name="Parsing path filter specs" tags="[cli][section-spec]" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
     <Section name="Only section specs leads to old filter behaviour" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
       <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/CmdLine.tests.cpp" >
@@ -20852,6 +20925,17 @@ Approx( 1.38590382434967796 )
         0 == 0
       </Expanded>
     </Expression>
+    <Section name="with iteration limit" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
+      <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/IntrospectiveTests/InternalBenchmark.tests.cpp" >
+        <Original>
+          limited_res.mean.count() == rate
+        </Original>
+        <Expanded>
+          2000.0 == 2000 (0x<hex digits>)
+        </Expanded>
+      </Expression>
+      <OverallResults successes="1" failures="0" expectedFailures="0" skipped="false"/>
+    </Section>
     <OverallResult success="true" skips="0"/>
   </TestCase>
   <TestCase name="even more nested SECTION tests" tags="[sections]" filename="tests/<exe-name>/UsageTests/Misc.tests.cpp" >
@@ -23652,6 +23736,6 @@ Approx( -1.95996398454005449 )
     </Section>
     <OverallResult success="true" skips="0"/>
   </TestCase>
-  <OverallResults successes="2243" failures="158" expectedFailures="43" skips="12"/>
-  <OverallResultsCases successes="336" failures="96" expectedFailures="18" skips="6"/>
+  <OverallResults successes="2252" failures="158" expectedFailures="43" skips="12"/>
+  <OverallResultsCases successes="337" failures="96" expectedFailures="18" skips="6"/>
 </Catch2TestRun>

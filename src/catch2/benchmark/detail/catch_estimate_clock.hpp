@@ -49,6 +49,7 @@ namespace Catch {
             constexpr auto minimum_ticks = 1000;
             constexpr auto warmup_seed = 10000;
             constexpr auto clock_resolution_estimation_time = std::chrono::milliseconds(500);
+            constexpr auto clock_resolution_estimation_max_iterations = 100000;
             constexpr auto clock_cost_estimation_time_limit = std::chrono::seconds(1);
             constexpr auto clock_cost_estimation_tick_limit = 100000;
             constexpr auto clock_cost_estimation_time = std::chrono::milliseconds(10);
@@ -60,8 +61,8 @@ namespace Catch {
                     .iterations;
             }
             template <typename Clock>
-            EnvironmentEstimate estimate_clock_resolution(int iterations) {
-                auto r = run_for_at_least<Clock>(clock_resolution_estimation_time, iterations, &resolution<Clock>)
+            EnvironmentEstimate estimate_clock_resolution(int iterations, std::chrono::milliseconds estimation_time = clock_resolution_estimation_time, int max_iterations = clock_resolution_estimation_max_iterations) {
+                auto r = run_for_at_least<Clock>(estimation_time, iterations, &resolution<Clock>, max_iterations)
                     .result;
                 return {
                     FDuration(mean(r.data(), r.data() + r.size())),
@@ -85,7 +86,10 @@ namespace Catch {
                 int iters = clock_cost_estimation_iterations;
                 auto&& r = run_for_at_least<Clock>(clock_cost_estimation_time, iters, time_clock);
                 std::vector<double> times;
-                int nsamples = static_cast<int>(std::ceil(time_limit / r.elapsed));
+                int nsamples = static_cast<int>( std::ceil(
+                    time_limit / ( std::max )( FDuration( r.elapsed ),
+                                               FDuration( 1.0 ) ) ) );
+                nsamples = (std::max)(1, (std::min)(nsamples, 100000));
                 times.reserve(static_cast<size_t>(nsamples));
                 for ( int s = 0; s < nsamples; ++s ) {
                     times.push_back( static_cast<double>(

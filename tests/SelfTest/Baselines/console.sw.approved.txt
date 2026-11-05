@@ -9433,6 +9433,60 @@ with expansion:
   true
 
 -------------------------------------------------------------------------------
+Parsing benchmark CLI options
+  Defaults
+-------------------------------------------------------------------------------
+CmdLine.tests.cpp:<line number>
+...............................................................................
+
+CmdLine.tests.cpp:<line number>: PASSED:
+  REQUIRE( result )
+with expansion:
+  {?}
+
+CmdLine.tests.cpp:<line number>: PASSED:
+  REQUIRE( config.benchmarkWarmupTime == 100 )
+with expansion:
+  100 == 100
+
+CmdLine.tests.cpp:<line number>: PASSED:
+  REQUIRE( config.benchmarkEstimateClockTime == 500 )
+with expansion:
+  500 (0x<hex digits>) == 500 (0x<hex digits>)
+
+-------------------------------------------------------------------------------
+Parsing benchmark CLI options
+  Custom warmup and clock estimation times
+-------------------------------------------------------------------------------
+CmdLine.tests.cpp:<line number>
+...............................................................................
+
+CmdLine.tests.cpp:<line number>: PASSED:
+  REQUIRE( result )
+with expansion:
+  {?}
+
+CmdLine.tests.cpp:<line number>: PASSED:
+  REQUIRE( config.benchmarkWarmupTime == 250 )
+with expansion:
+  250 == 250
+
+CmdLine.tests.cpp:<line number>: PASSED:
+  REQUIRE( config.benchmarkEstimateClockTime == 1000 )
+with expansion:
+  1000 (0x<hex digits>) == 1000 (0x<hex digits>)
+
+CmdLine.tests.cpp:<line number>: PASSED:
+  REQUIRE( cfg.benchmarkWarmupTime() == std::chrono::milliseconds(250) )
+with expansion:
+  250 ms == 250 ms
+
+CmdLine.tests.cpp:<line number>: PASSED:
+  REQUIRE( cfg.benchmarkEstimateClockTime() == std::chrono::milliseconds(1000) )
+with expansion:
+  1000 ms == 1000 ms
+
+-------------------------------------------------------------------------------
 Parsing path filter specs
   Only section specs leads to old filter behaviour
 -------------------------------------------------------------------------------
@@ -17797,6 +17851,18 @@ with expansion:
   0 == 0
 
 -------------------------------------------------------------------------------
+estimate_clock_resolution
+  with iteration limit
+-------------------------------------------------------------------------------
+InternalBenchmark.tests.cpp:<line number>
+...............................................................................
+
+InternalBenchmark.tests.cpp:<line number>: PASSED:
+  REQUIRE( limited_res.mean.count() == rate )
+with expansion:
+  2000.0 == 2000 (0x<hex digits>)
+
+-------------------------------------------------------------------------------
 even more nested SECTION tests
   c
   d (leaf)
@@ -20371,6 +20437,6 @@ Misc.tests.cpp:<line number>
 Misc.tests.cpp:<line number>: PASSED:
 
 ===============================================================================
-test cases:  456 |  336 passed |  96 failed | 6 skipped | 18 failed as expected
-assertions: 2444 | 2243 passed | 158 failed | 43 failed as expected
+test cases:  457 |  337 passed |  96 failed | 6 skipped | 18 failed as expected
+assertions: 2453 | 2252 passed | 158 failed | 43 failed as expected
 

@@ -114,6 +114,14 @@ TEST_CASE("estimate_clock_resolution", "[benchmark]") {
 
     REQUIRE(res.mean.count() == rate);
     REQUIRE(res.outliers.total() == 0);
+
+    SECTION("with iteration limit") {
+        int small_iters = 100;
+        int max_iters = 400;
+        auto limited_res = Catch::Benchmark::Detail::estimate_clock_resolution<counting_clock>(
+            small_iters, std::chrono::milliseconds(500), max_iters);
+        REQUIRE(limited_res.mean.count() == rate);
+    }
 }
 
 TEST_CASE("benchmark function call", "[benchmark]") {
@@ -460,7 +468,7 @@ TEST_CASE("run benchmark", "[benchmark][approvals]") {
     bench.run<counting_clock>();
     auto end = counting_clock::now();
 
-    CHECK((end - start).count() == 2867251000);
+    CHECK((end - start).count() == 1907245000);
 }
 
 TEST_CASE("Failing benchmarks", "[!benchmark][.approvals]") {

@@ -99,6 +99,7 @@ namespace Catch {
         virtual double benchmarkConfidenceInterval() const = 0;
         virtual unsigned int benchmarkResamples() const = 0;
         virtual std::chrono::milliseconds benchmarkWarmupTime() const = 0;
+        virtual std::chrono::milliseconds benchmarkEstimateClockTime() const = 0;
     };
 }
 

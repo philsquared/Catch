@@ -74,6 +74,7 @@ namespace Catch {
         double benchmarkConfidenceInterval = 0.95;
         unsigned int benchmarkResamples = 100'000;
         std::chrono::milliseconds::rep benchmarkWarmupTime = 100;
+        std::chrono::milliseconds::rep benchmarkEstimateClockTime = 500;
 
         Verbosity verbosity = Verbosity::Normal;
         WarnAbout::What warnings = WarnAbout::Nothing;
@@ -149,6 +150,7 @@ namespace Catch {
         double benchmarkConfidenceInterval() const override;
         unsigned int benchmarkResamples() const override;
         std::chrono::milliseconds benchmarkWarmupTime() const override;
+        std::chrono::milliseconds benchmarkEstimateClockTime() const override;
 
     private:
         // Reads Bazel env vars and applies them to the config

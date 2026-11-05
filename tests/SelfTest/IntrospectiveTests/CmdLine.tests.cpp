@@ -580,3 +580,27 @@ TEST_CASE( "Parsing path filter specs",
         REQUIRE( config.pathFilters[1] == PathFilter(PathFilter::For::Generator, "42" ) );
     }
 }
+
+TEST_CASE( "Parsing benchmark CLI options", "[cli][benchmark]" ) {
+    Catch::ConfigData config;
+    auto cli = Catch::makeCommandLineParser( config );
+
+    SECTION( "Defaults" ) {
+        auto result = cli.parse( { "tests" } );
+        REQUIRE( result );
+        REQUIRE( config.benchmarkWarmupTime == 100 );
+        REQUIRE( config.benchmarkEstimateClockTime == 500 );
+    }
+
+    SECTION( "Custom warmup and clock estimation times" ) {
+        auto result = cli.parse( { "tests", "--benchmark-warmup-time", "250", "--benchmark-estimate-clock-time", "1000" } );
+        REQUIRE( result );
+        REQUIRE( config.benchmarkWarmupTime == 250 );
+        REQUIRE( config.benchmarkEstimateClockTime == 1000 );
+
+        Catch::Config cfg{ config };
+        REQUIRE( cfg.benchmarkWarmupTime() == std::chrono::milliseconds(250) );
+        REQUIRE( cfg.benchmarkEstimateClockTime() == std::chrono::milliseconds(1000) );
+    }
+}
+

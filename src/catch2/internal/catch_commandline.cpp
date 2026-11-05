@@ -358,6 +358,9 @@ namespace Catch {
             | Opt( config.benchmarkWarmupTime, "benchmarkWarmupTime" )
                 ["--benchmark-warmup-time"]
                 ( "amount of time in milliseconds spent on warming up each test (default: 100)" )
+            | Opt( config.benchmarkEstimateClockTime, "benchmarkEstimateClockTime" )
+                ["--benchmark-estimate-clock-time"]
+                ( "amount of time in milliseconds spent on estimating clock resolution (default: 500)" )
             | Opt( setShardCount, "shard count" )
                 ["--shard-count"]
                 ( "split the tests to execute into this many groups" )

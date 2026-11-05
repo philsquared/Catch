@@ -559,6 +559,8 @@
 ##teamcity[testFinished name='Parse uints' duration="{duration}"]
 ##teamcity[testStarted name='Parsed tags are matched case insensitive']
 ##teamcity[testFinished name='Parsed tags are matched case insensitive' duration="{duration}"]
+##teamcity[testStarted name='Parsing benchmark CLI options']
+##teamcity[testFinished name='Parsing benchmark CLI options' duration="{duration}"]
 ##teamcity[testStarted name='Parsing path filter specs']
 ##teamcity[testFinished name='Parsing path filter specs' duration="{duration}"]
 ##teamcity[testStarted name='Parsing sharding-related cli flags']

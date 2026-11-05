@@ -1461,6 +1461,14 @@ TestSpecParser.tests.cpp:<line number>: passed: spec.hasFilters() for: true
 TestSpecParser.tests.cpp:<line number>: passed: spec.getInvalidSpecs().empty() for: true
 TestSpecParser.tests.cpp:<line number>: passed: spec.matches( testCase ) for: true
 CmdLine.tests.cpp:<line number>: passed: result for: {?}
+CmdLine.tests.cpp:<line number>: passed: config.benchmarkWarmupTime == 100 for: 100 == 100
+CmdLine.tests.cpp:<line number>: passed: config.benchmarkEstimateClockTime == 500 for: 500 (0x<hex digits>) == 500 (0x<hex digits>)
+CmdLine.tests.cpp:<line number>: passed: result for: {?}
+CmdLine.tests.cpp:<line number>: passed: config.benchmarkWarmupTime == 250 for: 250 == 250
+CmdLine.tests.cpp:<line number>: passed: config.benchmarkEstimateClockTime == 1000 for: 1000 (0x<hex digits>) == 1000 (0x<hex digits>)
+CmdLine.tests.cpp:<line number>: passed: cfg.benchmarkWarmupTime() == std::chrono::milliseconds(250) for: 250 ms == 250 ms
+CmdLine.tests.cpp:<line number>: passed: cfg.benchmarkEstimateClockTime() == std::chrono::milliseconds(1000) for: 1000 ms == 1000 ms
+CmdLine.tests.cpp:<line number>: passed: result for: {?}
 CmdLine.tests.cpp:<line number>: passed: !(config.useNewPathFilteringBehaviour) for: !false
 CmdLine.tests.cpp:<line number>: passed: result for: {?}
 CmdLine.tests.cpp:<line number>: passed: config.useNewPathFilteringBehaviour for: true
@@ -2679,6 +2687,7 @@ InternalBenchmark.tests.cpp:<line number>: passed: erfc_inv(0.050000) == Approx(
 Approx( 1.38590382434967796 )
 InternalBenchmark.tests.cpp:<line number>: passed: res.mean.count() == rate for: 2000.0 == 2000 (0x<hex digits>)
 InternalBenchmark.tests.cpp:<line number>: passed: res.outliers.total() == 0 for: 0 == 0
+InternalBenchmark.tests.cpp:<line number>: passed: limited_res.mean.count() == rate for: 2000.0 == 2000 (0x<hex digits>)
 Misc.tests.cpp:<line number>: passed:
 Misc.tests.cpp:<line number>: passed:
 Misc.tests.cpp:<line number>: passed:
@@ -3025,7 +3034,7 @@ InternalBenchmark.tests.cpp:<line number>: passed: med == 18. for: 18.0 == 18.0
 InternalBenchmark.tests.cpp:<line number>: passed: q3 == 23. for: 23.0 == 23.0
 Misc.tests.cpp:<line number>: passed:
 Misc.tests.cpp:<line number>: passed:
-test cases:  456 |  336 passed |  96 failed | 6 skipped | 18 failed as expected
-assertions: 2444 | 2243 passed | 158 failed | 43 failed as expected
+test cases:  457 |  337 passed |  96 failed | 6 skipped | 18 failed as expected
+assertions: 2453 | 2252 passed | 158 failed | 43 failed as expected
 
 
