@@ -664,6 +664,16 @@ if(CATCH_ENABLE_CMAKE_HELPER_TESTS)
       LABELS "uses-python"
   )
 
+  add_test(NAME "CMakeHelper::ShardTestsPath"
+    COMMAND
+      Python3::Interpreter "${CMAKE_CURRENT_LIST_DIR}/TestScripts/testShardTestsPath.py"
+      "${CATCH_DIR}/extras/CatchShardTestsImpl.cmake" "$<TARGET_FILE:SelfTest>"
+  )
+
+  set_tests_properties("CMakeHelper::ShardTestsPath"
+    PROPERTIES LABELS "uses-python"
+  )
+
   add_test(NAME "CMakeHelper::PrepareCommandFragment"
     COMMAND
       "${CMAKE_COMMAND}"

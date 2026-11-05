@@ -24,6 +24,13 @@ if(NOT EXISTS "${TEST_BINARY}")
   )
 endif()
 
+set(binary_bracket_equals "==")
+string(FIND "${TEST_BINARY}" "]${binary_bracket_equals}]" closing_bracket)
+while(NOT closing_bracket EQUAL -1)
+  string(APPEND binary_bracket_equals "=")
+  string(FIND "${TEST_BINARY}" "]${binary_bracket_equals}]" closing_bracket)
+endwhile()
+
 set(other_args "")
 if(TEST_SPEC)
   set(other_args "${other_args} ${TEST_SPEC}")
@@ -40,7 +47,7 @@ file(WRITE "${CTEST_FILE}"
   "\n"
   "foreach(shard_idx RANGE ${adjusted_shard_count})\n"
   "  add_test(${TARGET_NAME}-shard-" [[${shard_idx}]] "/${adjusted_shard_count}\n"
-  "    ${TEST_BINARY}"
+  "    [${binary_bracket_equals}[${TEST_BINARY}]${binary_bracket_equals}]"
   " --shard-index " [[${shard_idx}]]
   " --shard-count ${SHARD_COUNT}"
   " --rng-seed " [[0x${rng_seed}]]
