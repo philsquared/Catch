@@ -132,6 +132,12 @@ namespace Catch {
 
         // And... Print a result applicable to each result type.
         switch( result.getResultType() ) {
+            case ResultWas::ExpressionFailed:
+                m_xml.startElement( "ExpressionFailed" );
+                writeSourceInfo( result.getSourceInfo() );
+                m_xml.writeText( result.getMessage() );
+                m_xml.endElement();
+                break;
             case ResultWas::ThrewException:
                 m_xml.startElement( "Exception" );
                 writeSourceInfo( result.getSourceInfo() );

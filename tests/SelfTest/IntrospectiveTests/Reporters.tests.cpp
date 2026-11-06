@@ -9,6 +9,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include <catch2/catch_test_case_info.hpp>
+#include <catch2/catch_assertion_result.hpp>
 #include <catch2/catch_config.hpp>
 #include <catch2/interfaces/catch_interfaces_reporter.hpp>
 #include <catch2/interfaces/catch_interfaces_reporter_factory.hpp>
@@ -23,6 +24,7 @@
 #include <catch2/reporters/catch_reporter_event_listener.hpp>
 #include <catch2/reporters/catch_reporter_streaming_base.hpp>
 #include <catch2/reporters/catch_reporter_multi.hpp>
+#include <catch2/reporters/catch_reporter_xml.hpp>
 #include <catch2/internal/catch_move_and_forward.hpp>
 
 #include <sstream>
@@ -149,6 +151,33 @@ TEST_CASE( "Reporter's write listings to provided stream", "[reporters]" ) {
                               ContainsSubstring( "fakeTestTag"s ) );
         }
     }
+}
+
+TEST_CASE( "XML reporter includes messages from failed expressions",
+           "[reporters][xml]" ) {
+    using Catch::Matchers::ContainsSubstring;
+    Catch::Config config( Catch::ConfigData{} );
+    Catch::LazyExpression lazyExpression( false );
+    Catch::AssertionResultData resultData( Catch::ResultWas::ExpressionFailed,
+                                           lazyExpression );
+    resultData.message = "Actual sequence: one.Func1()";
+    Catch::AssertionInfo assertionInfo{
+        "CHECK", { "fake-file.cpp", 42 }, "mocked_call()",
+        Catch::ResultDisposition::ContinueOnFailure };
+    Catch::AssertionResult result( assertionInfo, CATCH_MOVE( resultData ) );
+    Catch::AssertionStats stats( result, {}, Catch::Totals{} );
+
+    auto stream = Catch::Detail::make_unique<StringIStream>();
+    auto& streamRef = *stream;
+    Catch::XmlReporter reporter( Catch::ReporterConfig{
+        &config, CATCH_MOVE( stream ), Catch::ColourMode::None,
+        Catch::Verbosity::Normal, {} } );
+
+    reporter.assertionEnded( stats );
+
+    REQUIRE_THAT( streamRef.str(),
+                  ContainsSubstring( "<ExpressionFailed" ) &&
+                      ContainsSubstring( "Actual sequence: one.Func1()" ) );
 }
 
 
